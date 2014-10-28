@@ -1,0 +1,42 @@
+body {
+    font-family:sans-serif;
+}
+
+.pdf {
+  padding-left: 32px;
+  font-weight:900;
+  background: url("img/pdf.png") no-repeat left bottom;
+}
+
+.external {
+  padding-left: 14px;
+  font-weight:900;
+  background: url("img/external.png") no-repeat left bottom;
+}
+
+.download {
+  padding-left: 20px;
+  font-weight:900;
+  background: url("img/download.png") no-repeat left bottom;
+}
+
+.note {
+  font-size:smaller;
+  padding:1em;
+  border:1px solid blue;
+  background:#000044;
+  color:white;
+  font-weight:900;
+  display:block;
+}
+
+.note p {
+  padding-left:4ex;
+}
+
+.test_data {
+  margin-top:1em;
+  padding:1em;
+  border:3px solid navy;
+}
+

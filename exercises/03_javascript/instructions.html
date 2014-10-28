@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 3: JavaScript</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 3: JavaScript</h1>
+<ol>
+	<li><a href="#questionnaire">JavaScript and jQuery Questionnaire</a></li>
+	<li><a href="#arrays">JavaScript Arrays</a></li>
+	<li><a href="#objects">JavaScript Objects</a></li>
+	<li><a href="#jquery">JQuery Link Decoration</a></li>
+</ol>
+</div>
+
+<div class="content" id="questionnaire">
+<h1>1. JavaScript and jQuery Questionnaire</h1>
+<p>Enter correct answers in the form at A-plus.</p>
+</div>
+
+<div class="content" id="arrays">
+<h1>2. Javascript Arrays</h1>
+
+<p>In this exercise, you should implement three functions in JavaScript.
+This is in order for you to get familiar with working with arrays and objects in JavaScript.</p>
+
+	<h2>The functions to implement</h2>
+	<h4>keywordusage(text, keywords) [5 points]</h4>
+	<p>The function <code>keywordusage</code> returns which of the keywords are present in the text. Whitespace is used to separate words in the text and punctuations are part of the words. For example, call</p>
+	<pre>keywordusage('Dive Into Python is a free book for experienced programmers', ['Python', 'python', 'scala'])
+</pre>
+	<p>should return an array: <code>[true, false, false]</code>.</p>
+
+	<h4>frequencies(text, wordlist) [5 points]</h4>
+	<p>The function frequencies should return an object with properties for each of the word in the wordlist. The values of the properties should be how many times the word is present in text. For example, call</p>
+	<pre>
+frequencies('foo foo bar foo   bar buz', ['foo', 'bar'])
+</pre>
+	<p>should return <code>{"bar": 2, "foo": 3}</code>.</p>
+
+	<h4>rotate(array, steps)</h4>
+	<p>Rotate all elements in the array.
+        Second argument of the function is used to define how many steps the list is rotated.
+        For example, if steps had the value 1, then all the list items would be moved to the right from their current
+        position by one position except the last item, which would be moved to the first position of the list and
+        thus we say that we rotate the list.</p>
+    <p>If steps is negative, the items are rotated to left instead.
+        The steps can also be more than the size of the array,
+        in which case the items rotate over the array more than once. For example, for an array with four elements,
+        rotating by 1 would have the same result as rotating by 5.</p>
+    <p>The function should modify the existing array instead of creating a new one.
+        In addition, it should return that same array.</p>
+    <p>Some examples:</p>
+	<pre>
+var a = [1, 2, 3, 4];
+rotate(a); // returns [4, 1, 2, 3]
+rotate([4, 1, 2, 3], -1); // changes a to [1, 2, 3, 4] and returns it
+rotate([1, 2, 3, 4], 10); // changes a to [3, 4, 1, 2] and returns it
+rotate([3, 4, 1, 2], -5); // changes a to [4, 1, 2, 3] and returns it
+rotate([4, 1, 2, 3], 0);  // changes a to [4, 1, 2, 3] and returns it
+</pre>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/03_javascript/exercises.js</code>
+and implement all three specified functions.</p>
+<p>You should use the <a href="test.html">provided tests</a> to test your solution before submitting.</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+
+</div>
+
+
+
+<div class="content" id="objects">
+	<h1>3. JavaScript Objects</h1>
+	<p>In this exercise you are to implement a JavaScript function called <code>addPersonMethods</code> that takes and object (that has <code>name</code> and <code>age</code> properties defined) and returns an object that has those same properties and additional methods <code>.greet(greetingString)</code>, <code>.compareAge(anotherPersonObject)</code> and <code>.namesake(anotherPersonObject)</code>.</p>
+	<p>The following example illustrates how the function should work and what the defined methods should do:</p>
+	<pre>
+var bob_def =  { name: 'Bob', age: 21 };
+var eve_def =  { name: 'Eve', age: 21 };
+
+var eve = addPersonMethods(eve_def);
+var bob = addPersonMethods(bob_def);
+var another_bob = addPersonMethods({name:'Bob', age: 40});
+
+eve.greet("Hi all");
+&gt;&gt;&gt; Hi all, my name is Eve
+
+eve.compareAge(bob);
+&gt;&gt;&gt; My name is Eve and I'm equally young as Bob
+
+bob.greet("Hello");
+&gt;&gt;&gt; Hello, my name is Bob
+
+eve.namesake(bob);
+&gt;&gt;&gt; We have different names, Bob and I.
+
+another_bob.compareAge(eve);
+&gt;&gt;&gt; My name is Bob and I'm older than Eve
+
+eve.compareAge(another_bob);
+&gt;&gt;&gt; My name is Eve and I'm younger than Bob
+
+another_bob.namesake(bob);
+&gt;&gt;&gt; We have the same name, Bob and I!</pre>
+	<p>Use <code>console.log</code> for output which is denoted in the example with <code>&gt;&gt;&gt;</code>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/03_javascript/decorate_objects.js</code>
+and implement the function.</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+</div>
+
+<div class="content" id="jquery">
+<h1>4. jQuery Link Decoration</h1>
+
+	<p>On many sites, you see little icons next to links that indicate, for example, the type of the linked file.
+		In this exercise, you need to write code that will do this. Your code should:</p>
+	<ul>
+		<li>be executed when the DOM is ready</li>
+		<li>add CSS class <code>pdf</code> to a link where the target ends with the suffix <code>.pdf</code></li>
+		<li>add CSS class <code>download</code> to a link where the target ends with any suffix (<code>.*</code>)
+		and does NOT end with <code>.pdf</code> or <code>.html</code></li>
+	</ul>
+
+	<h3>Where to start</h3>
+	<p>Open the <a href="linkdecoration.html">exercises/03_javascript/linkdecoration.html</a>
+	in browser. Note, that the grading is done using the original HTML file.
+	<strong>Do do not make your answer depend on changes to the HTML.</strong>
+	The HTML template loads jQuery 1.11.1 and the
+	<code>exercises/03_javascript/linkdecoration.js</code> file where
+	you write your code.
+	</p>
+
+	<ol>
+		<li>Try first to select all links and do something to them to see how things work.</li>
+		<li>Now try to target the pdf-links only. (hint: look in the learning material links below - there might have been some useful things in the questionnaire as well)</li>
+	</ol>
+
+	<h4>Hints</h4>
+	<ul>
+		<li><code>$(this)</code> creates a jQuery object from <code>this</code> DOM element. Might be handy when using the <a href="http://api.jquery.com/filter/">filter</a> function.</li>
+		<li>Check out the jQuery <a href="http://api.jquery.com/category/selectors/">selectors</a>.</li>
+		<li>Please do not use the href-attribute of DOM nodes like this: <del><code>this.href</code></del> - use the JQuery object instead <code>$(this).attr("href")</code>.</li>
+	</ul>
+
+	<h3>Submitting Your Project to A+</h3>
+	<p>Add, commit and push your file changes to the Git as in round 1.
+	Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+
+	<h3>Learning Material</h3>
+	<ul>
+		<li><a href="http://api.jquery.com/">jQuery API documentation</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.location">MDN: window.location</a></li>
+	</ul>
+</div>
+</body>
+</html>

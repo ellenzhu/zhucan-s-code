@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events Example</title>
+  <script src="../lectures/lib/jquery-1.11.1.min.js"></script>
+  <script>
+
+    $(document).ready(function() {
+
+      $("#sync").click(function(){
+        //Alert the user that something is happening
+        alert("Adding text");
+        //create a new li element with whatever is in the input text as content
+        var newText = $('<li>' + $("#someText").val() + '</li>');
+        $("#target").append(newText);
+        $("#someText").val(""); //clear the input text
+      });
+
+      $("#async").click(function(){
+        //create a new li element with whatever is in the input text as content
+        var newText = $('<li>' + $("#someText").val() + '</li>'); 
+        $("#target").append(newText);
+        $("#someText").val(""); //clear the input text
+      });  
+
+      $("#async").click(function(){
+        //Alert the user that something is happening
+        alert("Adding text");
+      });  
+
+    });
+  </script>
+</head>
+<body>
+  <input type="text" id="someText">
+  <p>Type some text in the box and try what to buttons do</p>
+  <div>
+    <button id="sync">Same Handler</button>
+    <button id="async">Separate Handler</button>
+    <ol id="target"></ol>
+  </div>
+
+  <p>Check (inspect) the code. Do play around with event handlers. What happens when you remove the alerts? What if you copy the block that starts with $("#sync")? What happens if you add more similar click-handlers?</p>
+  <p>Also try to change the order in which you attach the event handlers to #async button</p>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 2: HTML & CSS</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 2: HTML & CSS</h1>
+<ol>
+	<li><a href="#questionnaire">CSS and HTML Questionnaire</a></li>
+	<li><a href="#form">HTML Form</a></li>
+	<li><a href="#layout">CSS Layout</a></li>
+</ol>
+</div>
+
+<div class="content" id="questionnaire">
+<h1>1. CSS and HTML Questionnaire</h1>
+<p>Enter correct answers in the form at A-plus.</p>
+</div>
+
+<div class="content" id="form">
+<h1>2. HTML Form</h1>
+
+<p>You need to create a registration form for the new site you are building. When a user submits the form (clicking
+    the submit button), the resulting HTTP request should include at least the following:</p>
+<pre>POST /wsd/html_form_check HTTP/1.1
+Host: 127.0.0.1
+</pre>
+<p>Think about this for a minute. What doest that <code>POST</code> mean? What about the <code>Host:</code> header?
+    How are they related to submitting an HTML form?
+    <strong>Make sure you use this exact address and port combination in the file you submit!</strong>
+</p>
+
+<p>An example of the parameters in the body of the request, as well as their explanations:</p>
+<table>
+	<thead><tr><th>Name / ID</th><th>Example Value</th><th>Explanation</th></tr></thead>
+	<tbody>
+	<tr><td>email</td><td><i>test@example.com</i></td><td>User's email address</td></tr>
+	<tr><td>passwd</td><td><i>salasana</i></td><td>Password</td></tr>
+	<tr><td>passwd2</td><td><i>salasana</i></td><td>Repeat password</td></tr>
+	<tr><td>lang</td><td><i>da</i></td><td>Selection of user's preferred language: the application targets the nordic region, so the user can choose one from Swedish (submitted value sv), Finnish (fi), Norwegian (no), Danish (da), and Icelandic (is).</td></tr>
+	<tr><td>terms</td><td><i>on</i></td><td>Checkbox to accept site's terms and conditions</td></tr>
+	</tbody></table>
+
+<p>The example values above are just examples - <strong>Do not pre-populate the fields with data or pre-check checkboxes</strong>.</p>
+
+<p><strong>Important!</strong> Set the <strong>name</strong> and <strong>id</strong> attributes for the input- and select-elements as given in the table above. Otherwise the submission system cannot find the elements.</p>
+
+<p>Example of a form:<br>
+
+	</p>
+
+<p>Since you consider accessibility an important part of a user experience, you want all the form fields
+	to have <code>label</code> elements. The easiest way to test that the labels are working is to make sure that clicking the label moves the focus to the input element.</p>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/02_html_css/form.html</code>. In addition to the form,
+the file should contain required HTML elements (<code>html, head, title, body</code>),
+that is, it should be valid HTML.</p>
+
+<h3>Testing your form</h3>
+<p>When developing your form, we suggest that you test your form by submitting it to a service called RequestBin.
+    Create your own RequestBin at <a href="http://requestb.in/">http://requestb.in/</a> by clicking
+    "Create a RequestBin" there. You will receive a url looking something like http://requestb.in/yl2n61yl
+    (the yl2n61yl part is different). You should use the given address to test your form
+    instead of the 127.0.0.1:4589 required but just
+    remember to switch it back to 127.0.0.1:4589 before you submit your code.
+    Then fill out the form and submit it and visit the same url with "?inspect"
+    (eg. http://requestb.in/yl2n61yl?inspect) to inspect the data that got sent to the the RequestBin.
+    <strong>Do not use real passwords when testing your form!</strong></p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+
+<h3>Learning Material</h3>
+<ul>
+	<li><a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html">Forms in HTML4 Specification</a></li>
+	<li><a href="http://www.w3schools.com/html/html_forms.asp">HTML forms in W3School</a></li>
+	<li><a href="http://www.w3schools.com/tags/tag_label.asp">HTML label element</a></li>
+</ul>
+
+</div>
+
+<div class="content" id="layout">
+<h1>3. CSS Layout</h1>
+
+<p>In this exercise, your task is to create a simple page layout with CSS.</p>
+<p>The page to style is <code>exercises/02_html_css/html-layout.html</code>.
+The HTML consist of <code>div</code> elements with descriptive <code>id</code> attributes for the different parts of the page:
+<dl>
+	<dt>header</dt><dd>The header of the page. This also contains the <code>navigation</code> links that should be made into a horizontal navigation bar.</dd>
+	<dt>main</dt><dd>The main part of the page where the <code>content</code> element and an <code>aside</code> providing resources related to the content are.</dd>
+	<dt>footer</dt><dd>The footer of the page.</dd>
+</dl>
+<p>Your should write CSS so that the positioning of the elements looks like the figure below. You do not have to match the styling of the content (that is, the borders, heights, etc).</p>
+<a href="layout.png"><img src="layout.png" width="450" alt="Example Image" /></a>
+
+<p><strong>Note:</strong> Use floats to achieve the layout. Do not use absolute/fixed positioning. Also, do not use pixel based widths; you can make the <code>aside</code> element, for example, 20% wide and the <code>content</code> element 75% wide.</p>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/02_html_css/layout.css</code>.
+Open the <a href="html-layout.html">exercises/02_html_css/html-layout.html</a> in browser.
+Note, that the grading is done using the original HTML file.
+<strong>Do do not make your answer depend on changes to the HTML.</strong></p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+
+<h3>Hints if you have problems with the grader</h3>
+<p>The grader is quite picky, so here are some things to check if you're not getting the grade you would assume:</p>
+<ul>
+	<li>Do not use pixel-based widths. The grader runs the tests with a low resolution, so the components might not fit to the screen.</li>
+	<li>Do not use big pixel-based margins, padding, or borders to change your layout. Again, low resolution on grader...</li>
+	<li>Using CSS overflow directives can cause problems in the grader browser environment.</li>
+</ul>
+
+<h3>Learning Material</h3>
+<ul>
+	<li><a href="http://www.w3schools.com/css/css_navbar.asp">w3schools.com: CSS Navigation Bar</a></li>
+	<li><a href="http://www.alistapart.com/articles/css-floats-101/">A List Apart: CSS Floats 101</a></li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>WSD 2014 - Course Outline</title>
+
+    <meta name="description" content="Outline for the WSD 2014 course">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+      <section style="text-align: center">
+        <h1>WSD 2014</h1>
+        <h2>Welcome to Web Software Development</h2>
+        <p><small>
+          Lassi Haaranen
+          </small>
+        </p>
+
+        <p><small>No recording please</small></p>
+      </section>
+
+      <section>
+        <h2>About The Course</h2>
+        <h3>Learning Outcomes</h3>
+        <blockquote>"Student understands the distributed nature of a web application, session management and how the different parts of the application can communicate with each other. Student is able to design, implement, and deploy a small web application using a modern web application framework. Student knows how to test and debug a web application and has basic understanding of technologies and issues such as object relational mapping, security, efficiency, and scalability."</blockquote>
+      </section>
+      
+      <section>
+        <h2>About The Course</h2>
+        <h3>Learning Outcomes</h3>
+        <p>Skills</p>
+        <ul>
+          <li>You should be able to design, implement, and deploy a small web application using a modern web application framework.</li>
+          <li>Testing and debugging web applications... </li>
+        </ul>
+        <p>Knowledge</p>
+        <ul>
+          <li>... security, efficiency, scalability, accessibility... </li><li> ... ORM, AJAX, DOM, REST, </li>
+        </ul>
+
+      </section>
+
+      <section>
+        <h2>Bird's Eye View of Course Content</h2>
+        <p>User &lt;-<span style="color: green">-&gt; Browser &lt;--&gt; Web Service &lt;-</span>-&gt; Database</p>
+        <p>This course roughly deals with the area marked with green.</p>
+      </section>
+
+      <section>
+        <h2>About The Course</h2>
+        <h3>Prerequisites</h3>
+        <p><em>Intermediate programming</em> course (experience with big enough personal project)</p>
+        <p><em>Databases</em> You need to understand databases, but programming framework will handle most of the stuff.</p>
+        <h3>Academic Integrity</h3>
+        <p><a href="https://into.aalto.fi/display/enregulations/Aalto+University+Code+of+Academic+Integrity+and+Handling+Violations+Thereof">Aalto University Code of Academic Integrity and Handling Violations Thereof</a></p>
+      </section>
+
+      <section>
+        <h2>Course Personnel</h2>
+        <p>Responsible Teacher: Lassi Haaranen (lectures, exercises, exercise groups, exam, project grading). </p>
+        <p>Teaching Assistant: Teemu Lehtinen (exercises, exercise groups, project grading)</p>
+        <p>If you have general (or private) questions primarily post them to Piazza (more about that later), that will be easiest and fastest for you and for us.</p>
+        <p>There is no office hours, in case of private matters you can also email me <code>lassi.haaranen@aalto.fi</code> (be sure to put cse-c3210 in the title)</p>
+      </section>
+
+      <section>
+        <h2>Course Outline</h2>
+        <p>The course consists of <em>lectures</em>, <em>exercises</em>, <em>exam</em>, and a <em>group project</em>.</p>
+
+        <p>Personal exercises and exam is during the fall 2014.</p>
+        <p>Project is done in small groups during spring 2015.</p>
+        <p>Lectures during fall and spring.</p>
+      </section>
+
+      <section>
+        <h2>Course - Fall Lectures</h2>
+        <p>Preliminary schedule for fall lectures</p>
+        <table style="font-size: 80%">
+          <tr>
+            <th></th>
+            <th>Week 1</th>
+            <th>Week 2</th>
+            <th>Week 3</th>
+            <th>Week 4</th>
+            <th>Week 5</th>
+            <th>Week 6</th>
+          </tr>
+          <tr>
+            <th>Tuesday</th>
+
+            <td>Course and WSD introduction</td>
+            <td>JavaScript</td>
+            <td>JavaScript in Browser</td>
+            <td>Django</td>
+            <td>Django forms</td>
+            
+            <td>Sessions, Authentication</td>
+          </tr>
+          <tr>
+            <th>Wednesday</th>
+
+            <td>HTML &amp; CSS</td>
+            <td>Intro to Python</td>
+            <td>MVC and Intro to Django</td>
+            <td>AJAX</td>
+            
+            <td>Security</td>
+            <td>Testing, project kickoff</td>
+
+          </tr>
+        </table>
+        <p>Lecture topics for spring 2015 will be announced later.</p>
+      </section>
+
+      <section>
+        <h2>Course - Lecture Slides</h2>
+        <p>Only this slide set will be posted to <a href="https://noppa.aalto.fi/noppa/kurssi/cse-c3210/">Noppa</a>. Rest of the material is obtained from the course repository (explained later).</p>
+        <p>To create files for printing to pdf append <code>?print-pdf</code> to the url</p>
+        <p>If you want to print to paper, you change 
+        <pre><code>link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';// from
+link.href = 'lib/reveal.js-2.6.2/css/print/paper.css'; //to</code></pre>
+        <p>If you don't understand what those mean, don't worry. It will become clear.</p>
+        <p class="extra">More information about the slides and how to print them <a href="https://github.com/hakimel/reveal.js/">reveal.js</a>
+      </section>
+
+      <section>
+        <h2>Slide Notation</h2>
+        <p class="lecture_quiz">&#9733;</p>
+        <p>Specific terms and commands within the text will be marked with &lt;code&gt; element. Code samples look like this:</p>
+        <pre><code>//JavaScript sample
+alert("Hello World!");</code></pre>
+        <p>Slides are also color-coded. This slide has the default background. Colors roughly correspond to </p>
+        <p><span class="box html_color" style="color: white; padding: 1%;">HTML</span>
+          <span class="box css_color" style="color: white; padding: 1%;">CSS</span>
+          <span class="box js_color" style="color: white; padding: 1%;">JavaScript</span>
+          <span class="box python_color" style="color: white; padding: 1%;">Python &amp; Django</span>
+        </p>
+        <p>Earn extra points for the exam when slides are marked with a star (more on that later).</p>
+        <p class="extra">Extra material looks like this. They usually contain links to useful material that go beyond the course content.</p>
+      </section>
+
+      <section>
+        <h2>Course - Exercises</h2>
+        <p>Seven rounds of exercises covering five general topics:</p>
+        <ul class="dense">
+          <li>Setting Up Tools</li>
+          <li>HTML/CSS</li>
+          <li>JavaScript 1</li>
+          <li>JavaScript 2</li>
+          <li>Python</li>
+          <li>Django 1</li>
+          <li>Django 2</li>
+        </ul>
+        <p>At the very least you must pass one exercise round from each topic: Tools, HTML/CSS, JavaScript, Python, Django.</p>
+        <p>Passing all seven exercise rounds will give +1 towards the final course grade.</p>
+        <p>Failing to complete a round from each of the topic <em>will result in a failing grade from the course</em>.</p>
+      </section>
+
+      <section>
+        <h2>Exercise Groups</h2>
+        <p>There are exercise groups available every Wednesday after the lecture (14:15-16:00 T7/CS building) starting from tomorrow.</p>
+        <p>There is no mandatory attendance. The exercise group is there for you as a service to use if needed.</p>
+      </section>
+
+      <section>
+        <h2>Course - Exam</h2>
+        <p>Sign up for the exam in Oodi. Passing the exam is mandatory, exam is graded fail, pass, pass +1. </p>
+        <p>Exam times: 18.12.2014 9.00-12.00 and 16.02.2015 13.00-16.00</p>
+      </section>
+
+      <section>
+        <h2>Course - Project</h2>
+        <p>During spring of 2015 there is a course project that is completed in groups of 3 people.</p>
+        <p>In the project you will create in teams a web service. The project topic and framework is set.</p>
+        <p>The project grading is as follows: fail, +1, +2, +3 to course grade. Note that this will contribute the most for your final grade, that is an indication where the largest work load is.</p>
+        <p>We'll talk more about this later.</p>
+      </section>
+
+      <section>
+        <h2>Course - Grading</h2>
+        <p>Your final grade will the sum of your grades as follows:</p>
+        <ul>
+          <li>Exercises: fail, pass, +1</li>
+          <li>Exam: fail, pass, +1</li>
+          <li>Project: fail, +1, +2, +3</li>
+        </ul>
+        <p>Example:</p>
+        <table>
+          <tr><th>Area</th><th>Result</th><th>Effect on Grade</th></tr>
+          <tr><td>Exercises</td><td>Six rounds completed</td><td> +0</td></tr>
+          <tr><td>Exam</td><td>Pass with +1</td><td> +1</td></tr>
+          <tr><td>Project</td><td>Completed with 2</td><td> +2</td></tr>
+          <tr><td>Course</td><td></td><td><strong>3</strong></td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Exercises</h2>
+        <p>Exercises are done in <a href="https://plus.cs.hut.fi/">A+</a></p>
+        <p>There are two types of exercises: multiple choice questions and git-exercises.</p>
+        <p>Multiple choice questions are answered in A+.</p>
+        <p>All other exercises apart from multiple choice ones are completed using <code>git</code> and submitted by entering your repository <code>URL</code> to A+.</p>
+      </section>
+      
+      <section>
+        <h2>Very Brief Introduction to Version Control Systems</h2>
+        <blockquote>"Can you email me the current home page html-file...?"</blockquote>
+<pre><code class="md">$ cd public_html
+$ ls
+
+May 15 20:24 index_old.html
+Jul 14 23:10 index_NEW_LOGO.html
+Jul 14 22:44 index_html_v1_final.html
+Sep 12 09:44 index_old_OLD.html
+Oct 14 22:44 index_html_v1_final_FINAL.html
+Nov 15 16:10 index_html_old_v1_FINAL_OCTOBER_DRAFT.html
+</code></pre>
+        <p>This is web <em>software development</em> course... And any software development without version control is not worth calling software development.</p>
+        
+      </section>
+
+      <section>
+        <h2>GIT</h2>
+        <p><img src="img/git.png" alt="git"></p>
+        <p>Git can be downloaded from <a href="http://git-scm.com">http://git-scm.com</a>. There is also a <a href="http://git-scm.com/book/en">freely available book</a> on the site. Sections 2.2, 2.3, 2.4, and 2.5 cover most of what is needed on the course.</p>
+      </section>
+      
+      <section>
+        <h2>GIT on This Course</h2>
+        <p>You will first <code>fork</code> (once) the official material repository. Then you will <code>clone</code> it to your local computer. You work on exercises and <code>commit</code> your work locally. Then you will <code>push</code> those commits to your GitLab repository (and at this point you can submit your work in A+ to be graded).</p>
+        <p>Exercise instructions for the first round can be found in A+ and in the course repository.</p>
+        <p>The rest of the rounds will have <em>instructions only in the repository</em>.</p>
+        <p>Instructions to get you started with the course workflow are in A+ in the exercises <a href="https://plus.cs.hut.fi/exercise/644/">Exercise 01 - Getting Started With GitLab</a> and <a href="https://plus.cs.hut.fi/exercise/643/">Exercise 02 - Getting Started With Git</a>.</p>
+      </section>
+
+      <section>
+        <h2>Overview of First Exercise</h2>
+        <ol>
+          <li>Get Niksula user account (if you don't have one)</li>
+          <li>Login to: <a href="https://git.niksula.hut.fi">https://git.niksula.hut.fi</a></li>
+          <li>Fork project: Lassi Haaranen / wsd-material</li>
+          <li>Set your forked project to private and add wsd-agent as project member with at least <em>Reporter</em> access</li>
+          <li>Login to A+: <a href="https://plus.cs.hut.fi/">https://plus.cs.hut.fi/</a></li>
+          <li>Submit the exercise by submitting your project URL</li>
+        </ol>
+        
+        <p>For more detailed instructions go to: <a href="https://plus.cs.hut.fi/">https://plus.cs.hut.fi/</a></p>
+      </section>
+      <section>
+      <h2>Overview of Second Exercise</h2>
+        <ol>
+          <li>Install git (if not already installed) to your computer</li>
+          <li>Generate and set your SSH key to GitLab</li>
+          <li>Clone your wsd-material project to your local computer</li>
+          <li>Solve the exercise as detailed in the description</li>
+          <li>Add your changes, commit them and then push your commit to GitLab</li>
+          <li>Submit Exercise to A+</li>
+        </ol>
+        <p>For more detailed instructions go to: <a href="https://plus.cs.hut.fi/">https://plus.cs.hut.fi/</a></p>
+      </section>
+
+      <section class="general_topic">
+        <h2>DEMO: Solving <br> the first two exercises</h2>
+      </section>
+
+      <section>
+        <h2>Third Exercise</h2>
+        <p>If your browser is relatively up to date this exercise can be completed without any additional browser extensions.</p>
+        <p>The idea is to get you acquainted with browser tools to inspect web pages.</p>
+        <p>It is a good idea to load the page with the browser tools open, so request and response content is stored.</p>
+        <p>If you do not have a recent browser, download one as soon as you can. It has been tested with recent versions of Chrome, Firefox, IE10+, and Opera. And Safari works too, but you need to manually enable the developer tools first.</p>
+      </section>
+
+      <section>
+        <h2>Contents of The Course Repository</h2>
+        <p><img src="img/course_material.png" alt="Course material organization"></p>
+        <p>This material will update throughout the course. More information on how to get the latest material will be discussed in future lectures.</p>
+      </section>
+
+      <section>
+        <h2>Course - How to Get Help</h2>
+        <p class="dense">This course uses Piazza, which is a question &amp; answer site. Post problems there, and help out fellow students with answers. You can also the course staff there with private messages.</p>
+        <p style="float: left;"><img src="img/aplus_piazza_link.png" alt="Piazza Link"></p>
+        <p style="float: right;"><a href="https://piazza.com/aalto.fi/other/csec3210/home">https://piazza.com/aalto.fi/other/csec3210/home</a></p>
+        <p style="text-align: right;" class="dense">Preferred way to ask questions and get help is through Piazza (link on the left sidebar). Notice that if you log into Piazza your name and email address is transferred there. You can read <a href="https://piazza.com/legal/privacy">Piazza's privacy policy here</a>.</p>
+        <p class="dense" style="clear: both;">You can also get help in the exercise groups. Additionally there is an (unofficial) course IRC channel #wsd (IRCnet).</p>
+
+      </section>
+
+      <section>
+        <h2>Extra! Extra! Earn More Points!</h2>
+        <p class="dense">There are couple of ways to get extra points for the exam (valid only for December 2014 and February 2015 exams).</p>
+        <p class="dense">There are three main ways to gather extra points:  <code>Lecture Activity</code>, <code>Piazza Activity</code>, and <code>Slide Corrections</code>. There are maximum amount of extra points you can collect from each category. Extra points are worth 0.1 exam points.</p>
+        <ul>
+          <li class="dense" style="font-size: 90%"><code>Lecture Activity</code>, max 20 points, 2 for each lecture participated. Starting from tomorrow, bring laptop/smart phone/tablet to participate.</li>
+          <li class="dense" style="font-size: 90%"><code>Piazza Activity</code> are active in Piazza by posting good questions and answers some extra points will be awarded. Max 10 points.</li>
+          <li class="dense" style="font-size: 90%"><code>Correcting Slides</code>, if you find a clear <em>mistake</em> in the slides and submit a pull request that corrects it (remember clear commit message) and if it gets merged, 5 extra points will be awarded. Maximum of 10 points. Note: <em>I will be picky!</em></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Very Quick Recap</h2>
+        <p>Get started with exercises in <a href="https://plus.cs.hut.fi">A+</a></p>
+        <p>Ask questions about the course in <a href="https://piazza.com/aalto.fi/other/csec3210/home">Piazza</a></p>
+        <p>Attend lectures on Tuesdays at 14:15-1600 in TU1 (TUAS Building) and on Wednesdays at 12:15-14:00 in T1 (CS Building)</p>
+        <p>Extra help is provided in the exercise group on Wednesdays at 14:15-16:00 in T7 (CS building)</p>
+        <p>Extra points for the exam are available if you participate in <code>lecture activities</code>, <code>Piazza activity</code>, and <code>slide corrections</code></p>
+      </section>
+      </div>
+    </div>
+
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    
+    </script>
+
+  </body>
+</html>
