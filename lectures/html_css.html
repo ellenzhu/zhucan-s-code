@@ -359,7 +359,7 @@ which we'll see in a moment.&lt;/p&gt;</code></pre>
           <h2>About White Space</h2>
           <p>
             Multiple white space characters (space, tab, line break) in an HTML document are
-            collapsed into single white space. All the following will produce the same output:
+            collapsed into a single white space. All the following will produce the same output:
           </p>
           <pre><code id="white_space_example" contenteditable>&lt;p&gt;White space example&lt;/p&gt;
 
@@ -689,7 +689,7 @@ h1 + p { font-weight: bold; }</code></pre>
         <section>
           <h2>Pseudo-elements</h2>
           <p>There are also pseudo-elements, which can be appended to a selector. They affect specific parts of the document. e.g. <code>p::first-line</code> will affect the first line of paragraphs.</p>
-          <p>In CSS3 (css has versions too) double colons are used to distuingish them from pseudo-classes (coming up next).</p>
+          <p>In CSS3 (css has versions too) double colons are used to distinguish them from pseudo-classes (coming up next).</p>
           <p>All of the pseudo-elements are: </p>
           <ul>
             <li><code>::after</code></li>
@@ -770,7 +770,7 @@ a.special_link:hover { background-color: white; }</code></pre>
                   </tr>
                 </tbody>
           </table>
-          <p class="dense">This has the very important implication that if I, as a user, decide to override all font-families with comic-sans and note it as !important then all of your hard work selecting fonts will be in vein!</p>
+          <p class="dense">This has the very important implication that if I, as a user, decide to override all font-families with comic-sans and note it as !important then all of your hard work selecting fonts will be in vain!</p>
 
         </section>
 
@@ -794,9 +794,9 @@ a.special_link:hover { background-color: white; }</code></pre>
 
         <section>
           <h2>CSS Declarations</h2>
-          <p>Declarations can be used to control outlook of the page in many ways:  font properties, colors &amp; backgrounds, text formatting, position &amp;, layout, etc.</p>
+          <p>Declarations can be used to control the outlook of the page in many ways:  font properties, colors &amp; backgrounds, text formatting, position &amp;, layout, etc.</p>
           <p>In addition to these, images can be added to the page from CSS (often used, for instance, in backgrounds).</p>
-          <p>There is even <code>content</code> property that can be used to insert content to the page. Consider options carefully before using this.</p>
+          <p>There is even a <code>content</code> property that can be used to insert content to the page. Consider options carefully before using this.</p>
           <pre><code>/* Will insert the word Chapter and a
    space before any text inside h1-element */
 h1::before  { content: "Chapter "; }</code></pre>
@@ -806,7 +806,7 @@ h1::before  { content: "Chapter "; }</code></pre>
         <section>
           <h2>CSS - Inherit</h2>
           <p><code>inherit</code>-value in declarations means that the value is the same as it is in the parent element.</p>
-          <p>It is allowed value for every CSS property.</p>
+          <p>It is an allowed value for every CSS property.</p>
           <p>For this reason, future slides will omit mentioning <code>inherit</code> separately since it is always allowed.</p>
           <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inherit">MDN inherit</a></p>
 
@@ -872,7 +872,7 @@ element { color: hsla(0, 100%, 50%, 0.5) }</code></pre>
           <h2>CSS - Font Size</h2>
           <p>There are various ways for defining <code>font-size</code></p>
           <ul>
-            <li>Absotule sizes:
+            <li>Absolute sizes:
               <ul><li><code>xx-smal, x-smal, small, medium, large, x-large, xx-large</code></li></ul>
             </li>
             <li>Relative sizes:
@@ -960,7 +960,7 @@ h2 { border-width: 3px; border-style: solid; border-color: #FF0000; }</code></pr
         <section>
           <h2>CSS - Inline &amp; Block</h2>
           <p>Elements are divided into inline and block elements. Inline elements, such as <code>span</code> and <code>a</code> flow "like text" from left to right without line breaks.</p>
-          <p>Block elements (such as <code>div</code> and <code>p</code>) enhabit the entire space of parent element (remember box model from couple slides ago?). Typically there is a new line inserted before and after them.</p>
+          <p>Block elements (such as <code>div</code> and <code>p</code>) inhabit the entire space of parent element (remember box model from couple slides ago?). Typically there is a new line inserted before and after them.</p>
           <p>Elements can be changed from inline to block by <code>display</code> declarations.</p>
           <pre><code>/* Would insert line breaks before and 
 after links with the class menu_item */
