@@ -37,7 +37,7 @@
       ok(typeof rotate !== "undefined", "Is function rotate defined?");
       ok(jQuery.isFunction(rotate), "Is rotate a function?");
       a = [1, 2, 3, 4];
-      rotate(a, 1);
+      rotate(a);
       deepEqual(a, [4, 1, 2, 3], "Testing provided example case");
       rotate(a, -1);
       deepEqual(a, [1, 2, 3, 4], "Testing provided example case");
