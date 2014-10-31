@@ -42,9 +42,10 @@ frequencies('foo foo bar foo   bar buz', ['foo', 'bar'])
 </pre>
 	<p>should return <code>{"bar": 2, "foo": 3}</code>.</p>
 
-	<h4>rotate(array, steps)</h4>
+	<h4>rotate(array[, steps])</h4>
 	<p>Rotate all elements in the array.
         Second argument of the function is used to define how many steps the list is rotated.
+        It is optional, and defaults to 1.
         For example, if steps had the value 1, then all the list items would be moved to the right from their current
         position by one position except the last item, which would be moved to the first position of the list and
         thus we say that we rotate the list.</p>
