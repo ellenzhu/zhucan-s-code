@@ -137,7 +137,7 @@
           <pre><code>&lt;script src="my_script.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   console.log("Hello console");
-  alert("Alert")
+  alert("Alert");
 &lt;/script&gt; </code></pre>
           <p class="extra">Actually there is a third way as well... but it is something that should not be used. The curious can Google <a href="http://www.google.com/search?q=inline+javascript">inline javascript</a></p>
         </section>
@@ -221,11 +221,11 @@ someNumbers.length; //8</code></pre>
           <p>Functions are <a href="http://en.wikipedia.org/wiki/First-class_function">first class citizens</a> in JavaScript.</p>
           <p>Method-functions are invoked with dot notation: <code>myObject.doSomething()</code>. Global functions are invoced with the function's name and parameters in parenthesis.</p>           
           <pre><code>function add(a,b) {
-  return a + b
+  return a + b;
 }
 
 function addOne(a) {
-  return add(a,1)
+  return add(a,1);
 }
 
 console.log(add(1,3));  //4
@@ -242,7 +242,7 @@ function square(x) {
   return x*x;
 }
 
-add(1,2)          // 3
+add(1,2);         // 3
 square(7);        // 49
 square(add(1,2)); // 9
 
@@ -269,7 +269,7 @@ myNumbers.map(
 //Takes a number and returns it squared
 var squareNumber = function(num) {
   return num*num;
-}
+};
 var squaredAnon = myNumbers.map(
   function(x) { return x*x; } // This function doesn't have a name
 ); //returns [1,4,9,25]
@@ -310,7 +310,7 @@ var hexNumber = 0xFF; // 255
             <li><code>-</code> Subtraction</li>
             <li><code>/</code> Division</li>
             <li><code>*</code> Multiplication</li>
-            <li><code>%</code> Remainder (the is no modulo)</li>
+            <li><code>%</code> Remainder (there is no modulo)</li>
             <li><code>++</code> Increment</li>
             <li><code>--</code> Decrement</li>
             <li><code>-</code> Unary negation</li>
@@ -324,7 +324,7 @@ var hexNumber = 0xFF; // 255
           <pre><code>var text = 'This is fine.';
 var anotherText = "And so is this.";</code></pre>
           <p>Characters can be escaped with backslash:</p>
-          <pre><code>var someQuote = "He said: \"It's a fine day\"."
+          <pre><code>var someQuote = "He said: \"It's a fine day\".";
 console.log(someQuote); //prints: He said: "It's a fine day".</code></pre>
           <p>They have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">number of useful methods</a> and a <code>length</code> property:</p>
           <pre><code class="js">var someText = 'This is my text';
@@ -376,7 +376,7 @@ someText.toUpperCase(); //"THIS IS MY TEXT"</code></pre>
     break;
   case 6:
     console.log("It's six");
-    break
+    break;
   default:
     console.log("It's something other than 6 or 7");
 }</code></pre>
