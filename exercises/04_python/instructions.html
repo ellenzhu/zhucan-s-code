@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 4: Python</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 4: Python</h1>
+<ol>
+	<li><a href="#questionnaire">Python Basics Questionnaire</a></li>
+	<li><a href="#functions">Python Functions</a></li>
+	<li><a href="#classes">Python Classes</a></li>
+  <li><a href="#json">File Loads, Classes, and JSON</a></li>
+</ol>
+</div>
+
+<div class="content" id="questionnaire">
+<h1>1. Python Basics Questionnaire</h1>
+<p>Enter correct answers in the form at A-plus.</p>
+</div>
+
+<div class="content" id="functions">
+<h1>2. Python Functions</h1>
+
+<p>In this exercise, you are asked to implement a function called <code>keyword_usage</code>. The function takes two arguments where the first argument is a string and the second one is a list of strings. The returned value is a <code>tuple</code> of same length as the second argument with boolean values indicating if the items in the second argument are present as words in the first argument. Whitespace is used to separate words in the text and puctuations are part of the words (the default <code>string.split</code> behavior). <br>For example:</p>
+<pre>
+&gt;&gt;&gt; from keyword_usage import keyword_usage
+&gt;&gt;&gt; res = keyword_usage('Dive  Into  Python',  ['Python',  'python', 'scala'])
+&gt;&gt;&gt; res
+(True,  False,  False)
+</pre>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/04_python/keyword_usage.py</code>
+and implement the specified function. You should test your code by running <code>python3</code>
+in the same directory and trying the example above. The grader will try also other values
+and maybe you should do so too.</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+</div>
+
+<div class="content" id="classes">
+<h1>3. Python Classes</h1>
+
+<p>In this exercise, you should define two classes: <code>Point</code> and <code>Circle</code>.
+The following example illustrates how the classes should behave:</p>
+<pre>
+&gt;&gt;&gt; from geometry import Point, Circle
+&gt;&gt;&gt; p1  = Point(0,0)
+&gt;&gt;&gt; p2  = Point(2,4)
+&gt;&gt;&gt; p1.distance_from(p2)
+4.4721359549995796
+&gt;&gt;&gt; circle  = Circle(p2,4)
+&gt;&gt;&gt; circle.is_inside(p1)
+False
+&gt;&gt;&gt; circle.is_inside(Point(2,2))
+True
+</pre>
+<p>Points are defined by giving the x and y coordinates. The distance between two points can be calculated by using the <code>distance_from</code> method. <code>Points</code> should have publicly available at least the following properties <code>x</code>, <code>y</code> and <code>distance_from</code></p>
+<p><code>Circles</code> are defined by giving the <code>center</code> point and the <code>radius</code>. Circle has the method <code>is_inside</code> that answers if the given point is inside the circle or not. <code>Circles</code> should have publicly available at least the following properties <code>center</code>, <code>radius</code> and <code>is_inside</code>.</p>
+
+<h3>Where to start</h3>
+<p>Create a new file <code>exercises/04_python/geometry.py</code>
+and implement the specified classes.</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new file and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.</p>
+</div>
+
+<div class="content" id="json">
+  <h1>4. File Loads, Classes, and JSON</h1>
+  <p>This exercise deals with JSON-formatted data that is loaded from files. We are using external data, the <a href="http://labrosa.ee.columbia.edu/millionsong/lastfm">Million Song Dataset</a>. From their page you can download a <a href="http://labrosa.ee.columbia.edu/millionsong/sites/default/files/lastfm/lastfm_subset.zip">download subset of the data</a> (.zip, ~ 13 MB) and extract it to exercises/04_python/</p>
+  <p class="warning">You do not need to add subset to your repository it is just convenient to have when testing your solution. In a matter of fact, adding the dataset to your repository will just slow grading down for you. If the untracked files bothers you, you can add the folder to .gitignore, for more details see <a href="https://help.github.com/articles/ignoring-files/">GitHub's article on ignoring files</a>.</p>
+  
+  <p>In the extracted directory 'lastfm_subset' you will find a hierarchy of subdirectories, e.g. <code>lastfm_subset/A/M/G/</code> that contain a number of .json files as such: <code>TRAMGAZ128F148D4C3.json, TRAMGJJ128F421487E.json, ... , TRAMGZR128F429AF94.json</code>. These JSON formatted files have information about a song, e.g. <code>TRAHQDQ128F421F629.json</code> (found in <code>lastfm_subset/A/H/Q/</code>) contains: </p>
+  <pre>{  
+  "artist":"Sam Fan Thomas",
+  "timestamp":"2011-08-04 20:13:44.510970",
+  "similars":[  
+    ["TRTCJDC128F427EDB9", 1],
+    ["TRATSNE128F427EDB6", 0.80318100000000003],
+    ["TRZXWAY128F422AD07", 0.0076908000000000002],
+    ["TRGTRZZ128F422AD0A", 0.0068965600000000004],
+    ["TRFHSHO128F427ED67", 0.0022482800000000001],
+    ["TRDXALH128F425CF9A", 0.00075191699999999995]
+  ],
+  "tags":[  
+    ["Makossa", "100"],
+    ["indigenous music", "100"]
+  ],
+  "track_id":"TRAHQDQ128F421F629",
+  "title":"Sabina"
+}</pre>
+  <p>The <code>track_id</code> always corresponds to the filename. Furthermore, the track_id tells where that particular file is found on the directory structure. TR <code>A</code> <code>M</code> <code>G</code> ZR128F429AF94 means that that particular song is found at lastfm_subset/<code>A</code>/<code>M</code>/<code>G</code>/ directory. You can assume that the <code>track_id</code> always starts with <code>TR</code> followed by three capital letters (A-Z) that will tell where the file is found.</p>
+
+  <p><img src="img/song_file_structure.png" alt="Directory structure of the exercise"></p>
+
+  <p>These tracks have two fields which can have multiple values (or none): tags and similars. Tags refer to labels <a href="http://www.last.fm/">last.fm</a> users have assigned to the song. Similars contain a list of track_ids to songs that have been deemed similar by algorithmic magic.</p>
+
+  <p>Your task is to write a class called <code>Song</code> in <code>song.py</code> file. It takes one argument, the track_id of a song as a string. E.g. <code>some_song = Song('TRAWHKS128F9330619')</code></p>
+
+  <h3>An instance of the Song class should...</h3>
+  <ul>
+    <li>
+      ...have the same values for the following attributes as they are defined in the .json file: <code>some_song.artist</code>, <code>some_song.title</code>, <code>some_song.timestamp</code>, and <code>some_song.track_id</code>. If loading the .json file fails, those attributes should have the following values:
+      <ul>
+        <li>some_song.artist = "file"</li>
+        <li>some_song.title = "not found"</li>
+        <li>some_song.timestamp = "-1"</li>
+        <li>some_song.track_id = "given_id" # should be whatever track_id was given</li>
+      </ul>
+    </li>
+    <li>...have a <code>.get_tags([limit])</code> method. It should return a list of tags in the song that are equal or higher than the limit given. The limit is optional and should default to 0 (i.e. get all tags). Note it should only return the tag names in the list.</li>
+    <li>...have a <code>.get_similars([limit])</code> method. It should return a list of track ids in the song that are equal or higher than the limit given. The limit is optional and should default to 0 (i.e. get all similar songs).</li>
+    <li>...have a <code>.shared_tags(other_song_instance)</code> method, that will return a tuple containing all the tags that these two songs have in common. Note, that each tag should be included only once.</li>
+    <li>...have a <code>.combined_tags(other_song_instance)</code> method, that will return a tuple containing all the tags that these two songs have. Note, that each tag should be included only once.</li>
+  </ul>
+
+
+  <h3>Sample Behavior</h3>
+  <p>Here is a an annotated example, of the behavior of Song:</p>
+  <pre>
+&gt;&gt;&gt; <strong>from song import Song</strong>
+&gt;&gt;&gt; <strong>some_song = Song('TRAWHKS128F9330619')</strong> # create a new Song instance some_Song
+&gt;&gt;&gt; <strong>some_song.get_tags()</strong> # Get all the tags for the song
+['piano', 'Piano - pleasant']
+&gt;&gt;&gt; <strong>some_song.get_tags(90)</strong> # Get subset of tags based on their score
+['piano']
+&gt;&gt;&gt; <strong>some_song.get_similars()</strong> # Get all the track_ids of similar songs
+['TRZKEHI128F93306C7', 'TRLNBWD128E0783584', ... 45 track_ids ..., 'TRMFVJD128F4258DCC']
+&gt;&gt;&gt; <strong>some_song.get_similars(0.9)</strong> # Get similar track_ids that are at least 0.90 similar
+['TRZKEHI128F93306C7']
+&gt;&gt;&gt; <strong>other_song = Song('TRANXZZ128F4230613')</strong> # create another Song instance
+&gt;&gt;&gt; <strong>other_song.get_tags()</strong> # Get all tags for this song
+['piano', 'new age', 'relaxing', 'beautiful']
+&gt;&gt;&gt; <strong>other_song.shared_tags(some_song)</strong> # Find out what tags these both songs have
+('piano',)
+&gt;&gt;&gt; <strong>other_song.combined_tags(some_song)</strong> # Find out the combined tags of these both
+('new age', 'beautiful', 'relaxing', 'piano', 'Piano - pleasant')
+
+  </pre>  
+
+  <h3>Where to start</h3>
+  <p>You should first <a href="http://labrosa.ee.columbia.edu/millionsong/lastfm">get familiar</a> and <a href="http://labrosa.ee.columbia.edu/millionsong/sites/default/files/lastfm/lastfm_subset.zip">download</a> the dataset and extract it to exercises/04_python/ and create a <code>song.py</code>.</p>
+
+  <p>If you already don't know it, familiarize yourself with <a href="http://json.org/">JSON format</a>, note that there is a <a href="https://docs.python.org/3.3/library/json.html">Python library for handling JSON data</a></p>
+
+  <p>You can assume that on the grader there will be a similar directory hierarchy <code>lastfm_subset/LETTER/LETTER/LETTER/*.json</code> in the place where your <code>song.py</code> will reside.</p>
+
+  <h3>Bonus tips</h3>
+  <p><code>shared_tags</code> and <code>combined_tags</code> methods can be created in many ways but <a href="https://docs.python.org/3.1/tutorial/datastructures.html#sets">Python sets</a> might be worth looking into.
+  It might also be useful to create helper functions for finding particular cases, such as which two songs share some tags, but not all etc. It is not strictly needed or graded but it might help.</p>
+
+  <h3>Submitting Your Project to A+</h3>
+  <p>Add, commit and push your new file and possible changes to the Git as in round 1.
+  Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check is <code>exercises/04_python/song.py</code>.</p>
+  <p>You can assume that on the grader there will be a similar directory hierarchy <code>lastfm_subset/LETTER/LETTER/LETTER/*.json</code> in the place where your <code>song.py</code> will reside.</p>
+
+</div>
+
+</body></html>
