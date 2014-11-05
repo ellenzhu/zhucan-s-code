@@ -549,6 +549,20 @@ with open('events.html', 'r') as f:
         <p>Contents of the file can by read by <code>.read(size)</code>, <code>.readline()</code>, and <code>.readlines()</code> refer to the <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Python Docs on files</a> for those and more</p>
       </section>
 
+      <section>
+        <h2>Handling Errors</h2>
+        <p>Python has <code>try...except...[else]</code> structure for handling errors.</p>
+        <pre><code>for arg in sys.argv[1:]:
+  try:
+    f = open(arg, 'r')
+  except IOError:
+    print('cannot open', arg)
+  else:
+    print(arg, 'has', len(f.readlines()), 'lines')
+    f.close()</code></pre>
+        <p>See <a href="https://docs.python.org/3/tutorial/errors.html#handling-exceptions">Python docs on Handling Exceptions</a> and <a href="https://docs.python.org/3/library/exceptions.html#bltin-exceptions">list of built-in exceptions</a>.</p>
+      </section>
+
       </div>
     </div>
 
