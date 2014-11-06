@@ -18,4 +18,4 @@ $("#javascript_end").html("[WAITING]...this far we haven't reached the end... Ma
 
 //some helpful debug code
 
-$("#javascript_end").html("[OK] The end of your javascript file was reached. (meaning there were no huge errors) Hopefully your code works too! ")
+$("#javascript_end").html("[OK] The end of your javascript file was reached. (meaning there were no huge errors) Hopefully your code works too! ");
