@@ -128,8 +128,8 @@ Finally, just copy and paste your GitLab project's URL to A-plus.</p>
     </li>
     <li>...have a <code>.get_tags([limit])</code> method. It should return a list of tags in the song that are equal or higher than the limit given. The limit is optional and should default to 0 (i.e. get all tags). Note it should only return the tag names in the list.</li>
     <li>...have a <code>.get_similars([limit])</code> method. It should return a list of track ids in the song that are equal or higher than the limit given. The limit is optional and should default to 0 (i.e. get all similar songs).</li>
-    <li>...have a <code>.shared_tags(other_song_instance)</code> method, that will return a tuple containing all the tags that these two songs have in common. Note, that each tag should be included only once.</li>
-    <li>...have a <code>.combined_tags(other_song_instance)</code> method, that will return a tuple containing all the tags that these two songs have. Note, that each tag should be included only once.</li>
+    <li>...have a <code>.shared_tags(other_song_instance)</code> method, that will return a tuple containing all the tag names that these two songs have in common. Note, that each name should be included only once.</li>
+    <li>...have a <code>.combined_tags(other_song_instance)</code> method, that will return a tuple containing all the tag names that these two songs have. Note, that each name should be included only once.</li>
   </ul>
 
 
