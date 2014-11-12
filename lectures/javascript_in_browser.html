@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>JavaScript in Browser</title>
+
+    <meta name="description" content="JavaScript in Browser">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+      
+      <section class="general_topic">
+        <h1>WSD 2014</h1>
+        <h2>JavaScript in Browser</h2>
+        <small>Lassi Haaranen</small>
+      </section>
+      
+      <section>
+        <section class="general_topic">
+          <h2>Interlude: Events</h2>
+          <p>A Tale of Two Programs</p>
+        </section>
+        <section>
+          <h2>Tale of Two Similar Snippets</h2>
+          <p>In Python</p>
+          <pre><code># Python snippet: prints "Hello World!" five times
+for i in range(5):
+  print("Hello World!")</code></pre>
+          <p>...at the same time in JavaScript-land:</p>
+          <pre><code>// JavaScript snippet,
+// prints "Hello World!" to console five times
+for(var x=0; x &lt; 5; x++) {
+  console.log("Hello World!");
+}</code></pre>
+          <p>These are the same.</p>
+        </section>
+
+        <section>
+          <h2>Another Tale of Two Similar Snippets</h2>
+          <p>Outputs of these two programs are same, yet they are not alike. What is the difference?</p>
+          <pre><code># Python snippet: prints "Hello World!" five times
+from time import sleep
+
+def hello(): #define a function
+  print("Hello World!")
+
+for i in range(5):
+  sleep(2) # Sleep for two seconds
+  hello()</code></pre>
+          <pre><code>// JavaScript snippet,
+// prints "Hello World!" to console five times
+
+function hello() { //define a function
+  console.log("Hello World!");
+}
+
+for(var x=0; x &lt; 5; x++) {
+  setTimeout(hello, 2000); // Delay for 2 seconds (2000 ms)
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Moral of The Story</h2>
+          <p>Two similar looking snippets might be fundamentally different</p>
+          <p>There is something interesting going on with JavaScript in browsers.</p>
+          <p>Make sure you check <a href="../examples/events.html">examples/events.html</a> and that you understand <em>why it is behaving in that way</em>. Pay special attention to what is happening and <em>when you click one of the buttons.</em>.</p>
+
+        </section>
+        <section>
+          <h2>Important Points that are not Immediately Obvious</h2>
+          <p>This is not a language comparison. JavaScript runs in browser, Python runs elsewhere</p>
+          <p>Browsers have an event loop. This is a nice thing, but you first need to wrap your head around it.</p>
+          <p>Finally, you can do event based programming on Python as well. It was just an easy way to have a blocking sleep.</p>
+          <p class="extra">For curious about <a href="https://twistedmatrix.com/trac/">event-driven Python web development</a></p>
+        </section>
+      </section> <!-- Interlude ends -->
+      <section data-background="#302433">
+        <section>
+          <h2>(A)Synchronous Communication</h2>
+          <h3>Synchronous</h3>
+          <p>Alice has a question. Alice phones Bob. Bob answers the question. Alice has the answer.</p>
+          <p>But what is Bob isn't available?</p>
+          <h3>Asynchronous</h3>
+          <p>Alice has a question. Alice sends Bob an sms. Some time later Bob sends the answer back as SMS. Alice has the answer.</p>        
+        </section>
+
+        <section>
+          <h2>Synchronous Communication</h2>
+          <p>Traditionally when user does something (e.g. clicks a link) a whole new page is loaded. Would this work with Facebook chat if after every message you would reload the whole page?</p>
+          <p>It does not make sense to load the whole page, if only a small part of it needs to be updated. It just wastes time and bandwith.</p>
+        </section>
+
+        <section>
+          <h2>Miracle of Ajax</h2>
+          <p>Jesse James Garret came up with the idea of Ajax (Asynchronous Javascript And XML) based on some technology Microsoft built in the late 90's.</p>
+          <p>In essence, it allows the browser to send/receive data without loading the whole page. Major benefits of this are: 
+          <ul>
+            <li>user can still use the page whilst data is exchanged</li>
+            <li>updating only parts of the page (DOM)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Ajax</h2>
+          <p>Under the hood a typical Ajax request looks something like:</p>
+          <ul>
+            <li>some action causes a need for data to be sent/fetched from the server</li>
+            <li>XMLHttpRequestObject is created</li>
+            <li>request is made using that object (server starts processing the request)</li>
+            <li>XMLHttpRequestObjects receives server's response and fires an event that it's ready</li>
+            <li>Event handler handles the reponse (e.g. inserts new data to a table)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Ajax and Libraries</h2>
+          <p>Always use a library to handle Ajax requests. Browser implementations have slight differences and XHR is too low level for typical cases.</p>
+          <p>jQuery to the rescue:</p>
+          <pre><code>// Fetch data from request_url and insert that to #examplediv
+  $('#examplediv').load('request_url');
+
+  // Filtering is also possible, 
+  // this only inserts divs from the response
+  $('#examplediv').load('request_url div');
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Ajax Data Format</h2>
+          <p>Originally <code>XML</code> was defined as the data format... but XML is quite heavy and has its problems, so now commonly <code>JSON/plaintext/HTML</code> is used.</p>
+          <pre><code>$.ajax({
+    type: "POST",
+    url: "some.php",
+    data: { name: "John", location: "Boston" }
+  })
+    .done(function( msg ) {
+      alert( "Data Saved: " + msg );
+    });</code></pre>
+          <p>From <a href="http://api.jquery.com/jquery.ajax/#entry-examples">jQuery Ajax Examples</a></p>
+
+        </section>
+
+
+        <section>
+          <h2>Ajax, jQuery and Form example</h2>
+          <p>From <a href="http://api.jquery.com/submit/">http://api.jquery.com/submit/</a>:</p>
+          <pre><code>&lt;form id="target" action="destination.html"&gt;
+    &lt;input type="text" value="Hello there"&gt;
+    &lt;input type="submit" value="Go"&gt;
+  &lt;/form&gt;
+  &lt;div id="other"&gt;
+    Trigger the handler
+  &lt;/div&gt;</code></pre>
+  <pre><code>$( "#target" ).submit(function( event ) {
+    alert( "Handler for .submit() called." );
+    event.preventDefault();
+  });
+
+  $( "#other" ).click(function() {
+    $( "#target" ).submit();
+  });</code></pre>
+          <p>The code is also in <a href="../examples/jquery_form.html">examples/jquery_form.html</a></p>
+        </section>
+
+        <section class="genera_topic">
+          <h2>DEMO: Ajax</h2>
+        </section>
+
+        <section>
+          <h2>Same-Origin Policy</h2>
+          <blockquote>"The same-origin policy restricts how a document or script loaded from one origin can interact with a resource from another origin." <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">MDN</a></blockquote>
+          <p>Why aren't my fancy Ajax calls working?</p>
+          <p>Same-origin policy restricts where code can be in contact. Which is only the server that contained the code. Also note, that <code>file://</code> protocol doesn't work.</p>
+          <p>Pro-tip: Use Python's simple HTTP server for quick and dirty testing:</p>
+          <pre><code>python3 -m http.server</code></pre>
+        </section>
+        
+        <section>
+          <h2>JSON with Padding (JSONP)</h2>
+          <p>The Same-Origin policy also restricts getting/posting JSON data. There is a way around this that is essentially a hack.</p>
+          <p><code>script</code>-elements <code>src</code> attribute is not subject to Same-Origin policy. A script is loaded like this with additional callback provided in the URL.</p>
+          <pre style="width: 105%;"><code>&lt;script src="http://some-jsonp-service.com/some_data?callback=my_cb"&gt;
+  &lt;/script&gt;</code></pre>
+          <p>The server returns the data (<code>{'foo': 'bar'}</code>)'wrapped' in a callback function that was requested:</p>
+          <pre><code>my_cb({'foo': 'bar'});</code></pre>
+          <p>And in your code you've defined some function <code>my_cb</code> that will then process the data.</p>
+          <p>See <a href="http://json-p.org/">json-p.org</a> and relevant <a href="http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about">SO question</a></p>
+        </section>
+
+        <section>
+          <h2>CORS</h2>
+          <p>JSON with Padding has some obvious security implications (only load data from servers you trust). Another, more modern, way to achieve the same functionality is also used:</p>
+          <blockquote>"The Cross-Origin Resource Sharing standard works by adding new HTTP headers that allow servers to describe the set of origins that are permitted to read that information using a web browser." <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">MDN CORS</a></blockquote>
+        </section>
+
+        <section>
+          <h2>Window.postMessage</h2>
+          <p>Window.postMessage is one more way that cross-origin communication is possible.</p>
+          <p>More information on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">MDN window.postMessage</a>.</p>
+          <h3>DEMO: Let's try that</h3>
+        </section>
+
+        <section>
+          <h2>jQuery UI</h2>
+          <blockquote>
+            "jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library." <a href="http://jqueryui.com/">jQuery UI</a>
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>Closures</h2>
+          <p>An example of emulating private variables with closures:</p>
+          <pre><code>var makeCounter = function() {
+    var privateCounter = 0;
+    function changeBy(val) {
+      privateCounter += val;
+    }
+    return {
+      increment: function() {
+        changeBy(1);
+      },
+      decrement: function() {
+        changeBy(-1);
+      },
+      value: function() {
+        return privateCounter;
+      }
+    }  
+  };</code></pre>
+          <p>Example from <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Closures">MDN Closures</a> articlte.</p>
+        </section>
+
+        <section>
+          <h2>Hoisting</h2>
+          <p>JavaScript does <em>hoisting</em> to variables. Consider the following example from <a href="http://thecomputersarewinning.com/post/a-dangerous-example-of-javascript-hoisting/">A Dangerous Example of Javascript Hoisting</a>, what will get printed?
+          <pre><code>var n = 1;
+   
+  function printSomething() {
+      console.log(n);
+      var n = 2;
+      console.log(n);
+  }
+  printSomething();</code></pre>
+          <pre class="fragment"><code>// Function definition gets transformed to this
+  function printSomething() {
+    var n;
+    console.log(n);
+    n = 2;
+    console.log(n);
+  } </code></pre>
+        </section>
+
+        <section>
+          <h2>Exceptions</h2>
+          <p>JavaScript has exceptions with the syntax <code>try ... catch(e)</code>. In Python exceptions are raised and in JavaScript they are <code>throw</code>n.</p>
+          <pre><code>function doThings() { 
+    'use strict';
+    console.log('trying'); 
+    throw({ 
+      name: 'Oopsie Error',
+      description: 'Intentionally throwing an error'
+    }); 
+  }
+
+
+  try {
+    doThings(); 
+  } catch(e) {
+    console.log('Somethin went wrong', e.name, e.description);
+  }</code></pre>
+        </section>
+
+        <section>
+          <h2>Server-side JavaScript</h2>
+          <p>In recent years JavaScript running on the server side has become quite popular.</p>
+          <p>For those interested Wikipedia has <a href="http://en.wikipedia.org/wiki/Comparison_of_server-side_JavaScript_solutions">a long list of server-side JavaScript solutions</a>.</p>
+          <p>Perhaps the best known of these is <a href="http://nodejs.org/">Node.js</a> and even though we are not using it as the course framework, it is well worth looking into.</p>
+        </section>
+
+        <section>
+          <h2>ECMAScript 6 (Harmony)</h2>
+          <p>ECMAScript 6 is in the works and will bring new features and changes to JavaScript.</p>
+          <p><em>Do not use ES6 in production code</em>, it is not finalized (and subject to change) and not all browsers support it!</p>
+          <p>ES6 will (maybe) bring things such as:</p>
+            <ul>
+              <li><code>let</code> keyword to define blockscope variables</li>
+              <li>default parameters to functions</li>
+              <li>classes</li>
+              <li><code>const</code> keyword to defined constants</li>
+              <li>... and much more</li>
+            </ul>
+          <p class="extra">You can browse the <a href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts">specification drafts for EcmaScript 6</a> to see what is happening.</p>
+        </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
