@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main page</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  <script>
+  $(document).ready(function () {
+    window.addEventListener("message", function(evt) {
+      if(evt.origin === "http://www.google.com") {
+        console.log(evt);
+      } else {
+        alert("Intruder alert!");
+      }
+    });
+  });
+
+
+  </script>
+</head>
+<body>
+<h2>Hello</h2>
+<iframe src="child.html"></iframe>
+
+</body>
+</html>
