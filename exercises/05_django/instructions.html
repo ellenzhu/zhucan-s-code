@@ -182,8 +182,11 @@ without adding an action name to the end.
 </p>
 
 <p>The webshop application includes some unit tests. It is a good
-idea to run these before submitting.</p>
+idea to run these before submitting. (From now on we do not separate with
+different environments: instead of writing <code>python3</code> on Windows Git Bash write
+the full path <code>/C/Python34/python</code> or add python to environment variable PATH)</p>
 <pre>
+$ cd wsd-material/exercises/05_django/firstdjango
 $ python3 manage.py test webshop
 Creating test database for alias 'default'...
 .s.ssss.sss
@@ -248,10 +251,20 @@ Finally, just copy and paste your GitLab project's URL to A-plus. The file we wi
 <h3>How to Test Your Models</h3>
 <p>
 First of all, before you can use your models in Django, you need to
-run <code>python3 manage.py migrate</code> to create and initialize your
-database. Remember also that, every time you make changes to your
-models' field, you need to update your database schema with
-the <code>migrate</code>.
+<a href="https://docs.djangoproject.com/en/1.7/topics/migrations/">migrate</a>
+the model changes to your database schema. Open up the terminal and run.
+</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ python3 manage.py makemigrations webshop
+$ python3 manage.py migrate
+</pre>
+<strong>The above needs to be done every time after the models have been changed!</strong>
+</p>
+
+<p class="warning">
+It is also possible to delete the file <code>db.sqlite3</code> and create a new database
+using the <code>migrate</code> command.
 </p>
 
 <p>
