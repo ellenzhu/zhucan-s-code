@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>More Django</title>
+
+    <meta name="description" content="More Django">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #142915;
+        background-color: #142915;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h2>More Django</h2>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+
+      <section>
+        <h2>Models and Their Fields</h2>
+        <p>Defining basic models is similar to defining a normal class. But with special variable types, such as:</p>
+        <ul>
+          <li><code>CharField</code> needs at least <code>max-length</code> as parameter</li>
+          <li><code>TextField</code></li>
+          <li><code>EmailField</code> <em>Note</em> set the max_length to 254</li>
+          <li><code>IntegerField</code></li>
+          <li><code>FileField</code></li>
+        </ul>
+         <p>Django documentation has a handy <a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/">Model field refence</a>.</p>
+      </section>
+
+      <section>
+        <h2>Models and Relations</h2>
+        <p>Many-to-one relationship in Models is defined by <code>ForeignKey</code>. It requies the name of the class that the model is related as a first parameter.</p>
+        <pre><code>from django.db import models
+
+class Car(models.Model):
+    manufacturer = models.ForeignKey('Manufacturer')
+    # ...
+
+class Manufacturer(models.Model):
+    # ...
+    pass</code></pre>
+        <p>Example from <a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#foreignkey">Django Docs ForeignKey</a>.</p>
+        <p>Similarly many-to-many relations are created with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#manytomanyfield">ManyToManyField</a></code> and one-to-one relations with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#onetoonefield">OneToOneField</a></code>.</p>
+      </section>
+
+      <section>
+        <h2>Models and Methods</h2>
+        <p class=dense>It is a good idea to place as much of your data related business logic to the models as possible. Treat it similarly to normal object-oriented programming.</p>
+        <p class="dense">One of the 'magic methods' in Python is <code>__str__</code> that you should define in models, this determines how they are represented in Django Admin, for instance.</p>
+        <pre><code>from django.db import models
+
+class Person(models.Model):
+  fname = models.CharField(max_length=50)
+  middle = models.CharField(max_length=50)
+  lname = models.CharField(max_length=50)
+
+  def __str__(self):
+    return "{} {}.".format(self.fname, self.lname[0])
+</code></pre>
+
+  <pre style="width: 105%;"><code># After importing Person in manage.py shell
+&gt;&gt;&gt; djikstra = Person(fname="Edsger", middle="Wybe", lname="Dijkstra")
+&gt;&gt;&gt; djikstra
+&lt;Person: Edsger D.&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>Models and Methods Example</h2>
+        <p>An example of defining logic in models:</p>
+        <pre><code>import datetime
+from django.db import models
+from django.utils import timezone
+
+class Question(models.Model):
+  # ...
+  def was_published_recently(self):
+    recent = timezone.now() - datetime.timedelta(days=1)
+    return self.pub_date >= recent</code></pre>
+        <p>Example from Django tutorial, more information in <a href="https://docs.djangoproject.com/en/1.7/topics/db/models/#model-methods">Django Docs model methods</a>.</p>        
+      </section>
+
+      <section>
+        <h2>Field Options</h2>
+        <p>Some of the most important field options:</p>
+        <ul>
+          <li><code>null=True</code> allows empty value in database</li> 
+          <li><code>blank=True</code> allows emptry value</li>
+          <li><code>primary_key</code> makes this field the primary key (normally this is created automatically yor you)</li>
+          <li><code>unique</code> requires that this value is unique in this model</li>
+        </ul>
+        <pre><code>class Person(models.Model):
+  name = models.CharField(max_length=250)
+  email = models.EmailField(max_length=254, blank=True)</code></pre>
+        <p>Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/db/models/#field-options">Field options</a>.</p>
+      </section>
+
+      <section>
+        <h2>Models and <code>manage.py</code></h2>
+        <pre style="width: 105%"><code class="md">python3 manage.py help makemigrations
+Usage: manage.py makemigrations [options] [app_label [app_label ...]]
+Creates new migration(s) for apps.
+
+python3 manage.py help migrate
+Usage: manage.py migrate [options] [app_label] [migration_name]
+Updates database schema. Manages both apps
+with migrations and those without.
+
+$ python3 manage.py help sqlall        
+Usage: manage.py sqlall [options] &lt;app_label app_label ...&gt;
+Prints the CREATE TABLE, custom SQL and CREATE INDEX SQL statements 
+for the given model module name(s).
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Accessing Models</h2>
+        <p class="dense">Models can be accessed through <code>SomeModel.objects</code>, some examples:</p>
+        <pre style="width: 105%;"><code class="python"># Returns one instance or raises errors
+instance = SomeModel.objects.get(field_name = desired_value)
+
+# Get all the instances of some model (QuerySet)
+all_instances = SomeModel.objects.all()
+
+# Get some instances of some model (QuerySet)
+some_instances = SomeModel.objects.filter(field_name = desired_value)</code></pre>
+        <p class="dense">After you've created/changed an instance you need to <code>save()</code> to write the changes to the database. For removing database entries there is a  <code>delete()</code>. </p>
+        <pre style="width: 95%;"><code># pk is a shortcut to referring to primary key
+project = Project.objects.get(pk=87645) # Get a specific project
+project.status = 'completed' # Change something
+project.save() # Save changes</code></pre>
+      </section>
+
+      <section>
+        <h2>QuerySets</h2>
+        <p>QuerySets are lists (ordered) of objects from a particular model. They are only evaluated (access the database) when it is actually needed. Some examples: </p>
+        <pre style="width: 110%;"><code>all_books = Books.objects.all()
+len(all_books) # this will hit the databse
+
+# Will get books published this year, ordered by 
+# author field (ascending) and title (descending)
+new_books = Books.objects.filter(year=2014).order_by('author', '-title')
+
+# old_books will be all the books, except 
+# those found in new_books QuerySet
+old_books = all_books.exclude(new_books)
+
+# They can be iterated
+for book in new_books:
+  print(book.author)
+</code></pre>
+        <p>See Django Docs on <a href="https://docs.djangoproject.com/en/1.7/topics/db/queries/">making queries</a> and <a href="https://docs.djangoproject.com/en/1.7/ref/models/querysets/">QuerySet API</a>.</p>
+      </section>
+
+      <section>
+        <h2>Shortcuts</h2>
+        <p>Django provides convenient <a href="https://docs.djangoproject.com/en/1.7/topics/http/shortcuts/">shortcuts</a> to accomplish common tasks:</p>
+        <ul>
+          <li><code>get_object_or_404(...)</code> calls get as usual but raises Http404 if not found</li>
+          <li><code>get_list_or_404(...)</code> calls <code>filter()</code> and raises Http404 if resulting set is empty</li>
+          <li><code>render(request, template, [, dict])</code> renders given context/dict with the template and returns HttpResponse</li>
+          <li><code>redirect(to)</code> to can be view name, hardcoded url or an object with <code>.get_absolute_url()</code> method</li>
+        </ul>
+        
+        
+      </section>
+
+      <section>
+        <h2>Views</h2>
+        <p>Views in Django take an <code>HttpRequest</code> object and return an <code>HttpResonse</code> object.</p>
+        <pre><code>from django.http import HttpResponse
+import datetime
+
+def current_datetime(request):
+    now = datetime.datetime.now()
+    html = "&lt;html&gt;&lt;body&gt;It is now %s.&lt;/body&gt;&lt;/html&gt;" % now
+    return HttpResponse(html)</code></pre>
+
+        <p>Example from Django docs <a href="https://docs.djangoproject.com/en/1.7/topics/http/views/">Views</a>.</p>
+      </section>
+
+      <section>
+        <h2>Views Example</h2>
+        <p>If an item that was requested was not found, the view can raise a Http404 error. <code>render_to_response</code> is a convenient way of returning a rendered template with data as a reponse.</p>
+        <pre style="width: 105%;"><code>from django.http import Http404
+from django.shortcuts import render_to_response
+from polls.models import Poll
+
+def detail(request, poll_id):
+    try:
+        p = Poll.objects.get(pk=poll_id)
+    except Poll.DoesNotExist:
+        raise Http404
+    return render_to_response('polls/detail.html', {'poll': p})</code></pre>
+        <p>Example from Django docs <a href="https://docs.djangoproject.com/en/1.7/topics/http/views/#the-http404-exception">Views</a>.</p>
+      </section>
+
+      <section>
+        <h2>Request and Response in Django</h2>
+        <blockquote>"When a page is requested, Django creates an HttpRequest object that contains metadata about the request. Then Django loads the appropriate view, passing the HttpRequest as the first argument to the view function. Each view is responsible for returning an HttpResponse object." <a href="https://docs.djangoproject.com/en/1.7/ref/request-response/">Django Docs</a></blockquote>
+      </section>
+
+      <section>
+        <h2> Request and Response</h2>
+        <p><img style="width: 80%;" src="img/django_req_res.png" alt="Request and response in Django"></p>
+      </section>
+
+      <section>
+        <h2>HttpRequest Object</h2>
+        <p>The <code>HttpRequest</code> object contains metadata about the request. Most of the metadata is set by user's browser, but middleware might process/create some data as well, for instance session information.</p>
+        <pre><code># In some view...
+ # path for the request, not including domain
+print(request.path) # e.g. "/myblog/add_comment"
+
+if request.method == 'GET':
+  ... # e.g. show the add comment form
+elif request.method == 'POST':
+  ... # write a new comment 
+
+# Similarly  
+if request.user.is_authenticated():
+    ... # User is logged in, act accordingly
+else:
+    ... # User has not been authenticated
+</code></pre>
+      </section>
+
+      <section>
+        <h2>HttpRequest Object</h2>
+        <p>GET/POST parameters can be accessed with <code>HttpRequest.GET</code> and <code>HttpRequest.POST</code> which will return a <a href="https://docs.djangoproject.com/en/1.7/ref/request-response/#querydict-objects">QueryDict</a>.</p>
+        <p>Other convenient methods:</p>
+        <ul>
+          <li><code>.is_ajax()</code> returns True/False depending on whether request was made with XMLHttpRequest.</li>
+          <li><code>.is_secure()</code> returns True/False depending on whether request was made with HTTPS.</li>
+          <li><code>.get_full_path()</code> returns the path and parameters</li>
+          <li><code>.get_host()</code> return the host, e.g. "127.0.0.1:8000"</li>
+          <li><code>.user.is_authenticated</code> whether the user makign the request has been authenticated.</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>HttpResponse Object</h2>
+        <blockquote>"In contrast to HttpRequest objects, which are created automatically by Django, HttpResponse objects are your responsibility. Each view you write is responsible for instantiating, populating and returning an HttpResponse." <a href="https://docs.djangoproject.com/en/1.7/ref/request-response/#httpresponse-objects">Response Objects</a>.</blockquote>
+        <pre style="width: 113%;"><code>#Examples from Django docs
+&gt;&gt;&gt; from django.http import HttpResponse
+&gt;&gt;&gt; response = HttpResponse("Here's the text of the Web page.")
+&gt;&gt;&gt; response = HttpResponse("Text only, please.", content_type="text/plain")
+
+&gt;&gt;&gt; response = HttpResponse()
+&gt;&gt;&gt; response.write("&lt;p&gt;Here's the text of the Web page.&lt;/p&gt;")
+&gt;&gt;&gt; response.write("&lt;p&gt;Here's another paragraph.&lt;/p&gt;")        
+
+&gt;&gt;&gt; from django.http import JsonResponse
+&gt;&gt;&gt; response = JsonResponse({'foo': 'bar'})
+&gt;&gt;&gt; response.content
+'{"foo": "bar"}'
+</code></pre>
+      </section>
+
+      <section>
+        <h2>HttpResponse Subclasses</h2>
+        <p>HttpResponse has subclasses for various situations:</p>
+        <ul>
+          <li><code>HttpResponseRedirect</code> will return code 302</li>
+          <li><code>HttpResponseNotFound</code> like normal HttpResponse but with code 404</li>
+          <li><code>HttpResponseForbidden</code> like normal HttpResponse but with code 403</li>
+          <li><code>HttpResponseServerError</code> like normal HttpResponse but with code 500</li>
+          <li>etc...</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Templates and Inheritance</h2>
+        <p>Template inheritance allows you to build 'skeleton' templates that have predefined <code>blocks</code> that will be populated by other templates.</p>
+
+        <p>See the <a href="https://docs.djangoproject.com/en/1.7/topics/templates/">documentation</a> and especially the section on <a href="https://docs.djangoproject.com/en/1.7/topics/templates/#template-inheritance">template inheritance</a>.</p>
+      </section>
+
+      <section>
+        <h2>Template Inhertance Example</h2>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+{% block menu %} {% endblock %}
+&lt;h2&gt;Latest posts:&lt;h2&gt;
+{% block latest_posts %} {% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <pre><code>{% extends "base.html" %}
+
+{% block latest_posts %}
+  {% for post in posts %}
+    &lt;h3&gt;{{post.title}} 
+      &lt;small&gt;Published {{post.published}}&lt;/small&gt;
+    &lt;/h3&gt;
+    &lt;p&gt;{{post.body}}&lt;/p&gt;
+  {% endfor %}
+{% endblock %}</code></pre>
+      </section>
+
+
+      <section>
+        <h2>URL Conf</h2>
+        <p>URL configuration is just mapping between URL patterns and Django Views. Patterns are given with regular expressions and the views are Python functions that you create.</p>
+        <pre><code>from django.conf.urls import patterns, url
+
+from . import views
+
+# Parenthesis around values capture them
+urlpatterns = patterns('',
+    url(r'^articles/2003/$', views.special_case_2003),
+    url(r'^articles/(\d{4})/$', views.year_archive),
+    url(r'^articles/(\d{4})/(\d{2})/$', views.month_archive),
+    url(r'^articles/(\d{4})/(\d{2})/(\d+)/$', views.article_detail),
+)</code></pre>
+        <p>Example from: <a href="https://docs.djangoproject.com/en/1.7/topics/http/urls/">Django docs Urls</a>.</p>
+        <p class="extra">Tim Berners-Lee on <a href="http://www.w3.org/Provider/Style/URI">Cool URIs Don't Change</a>.</p>
+      </section>
+
+      <section>
+        <h2>DEMO: Django</h2>
+      </section>
+
+      </div>
+    </div>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
