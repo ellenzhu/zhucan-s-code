@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for post in latest %}
+    <h2>{{post.title}}</h2>
+    <p>{{post.text_body}}</p>
+    <a href="/post/detail/{{post.id}}">read more</a>
+  {% endfor %}
+{% endblock %}
