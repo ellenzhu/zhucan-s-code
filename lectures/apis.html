@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>APIs</title>
+
+    <meta name="description" content="APIs">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #002b36;
+        background-color: #002b36;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h2>APIs</h2>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+      <section>
+        <h2>API Introduction</h2>
+        <p>Not all web applications are meant directly for people. Different web services provide useful information primarily aimed for other applications to consume. Some examples are thins like authentication, stock data, weater reports, Twitter feeds, etc.</p>
+        <p>These programmatic interfaces might not have a GUI but instead are meant to be used by other programs on client-side as well as on server-side.</p>
+        <p>Typically they are created in a way, where the consumer use different operating systems or languages.</p>
+      </section>
+
+      <section>
+        <h2>Web Services</h2>
+        <p>Most commonly they transfer the data through <code>HTTP</code>.</p>
+        <p>Three of commonly used options for web services:</p>
+        <ul>
+          <li><code>SOAP</code> Simple Object Access Protocol</li>
+          <li><code>XML-RPC</code> XML (encoded) Remote Procedure Call</li>
+          <li><code>REST</code> Representational State Transfer (probably most common nowadays?)</li>
+        </ul>
+
+      </section>
+
+      <section>
+        <h2>SOAP</h2>
+        <p>Simple Object Access Protocol (SOAP) is an XML-based messaging protocol where client sends requests encoded in XML and gets reponses back as XML. It can use other protocols in addition to HTTP, such as <code>SMTP</code>.</p>
+        <p class="dense">Web Services Description Language (<code>WSDL</code>) is XML-based language used to describe the data/functionaly offered by a web service. It's commonly used with SOAP.</p>
+        <p>You should not need to write SOAP yourself, let API/Toolkit handle that for you.</p>
+      </section>
+
+      <section>
+        <h2>SOAP Example</h2>
+        <p>A call in some system like this:</p>
+        <pre><code>...getFirstName("tteekkar")
+        </code></pre>
+        <p>Would be expressed in SOAP like this:</p>
+        <pre style="width:95%;"><code>&lt;SOAP-ENV:Envelope
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+  SOAP-ENV:encodingStyle= 
+  "http://schemas.xmlsoap.org/soap/encoding/"&gt;
+  &lt;SOAP-ENV:Body&gt;
+    &lt;mtd:GetFirstName xmlns:mtd="an URI"
+      &lt;username xsi:type="xsd:string"&gt;
+        tteekkar
+      &lt;/username&gt;
+    &lt;/mtd:GetFirstName&gt;
+  &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>XML-RPC</h2>
+        <p>Remote Procedure Call (<code>RPC</code>) generally refers to collections of techniques to call a procedure typically on another computer. XML-RPC is a specification that is SOAPs predecessor.</p>
+        <p>Procedure calls and parameters as well as and responses are encoded in XML. It's simpler that SOAP and doesn't have a WSDL.</p>
+      </section>
+
+      <section>
+        <h2>Representational State Transfer</h2>
+        <p class="dense">In RPCs the focus is on method. In Representational State Transfer (<code>REST</code>) the focus is on <em>resources</em> that can be accessed and acted upon in a standard way.</p>
+        <p class=""><a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a> described REST in his dissertation 'Architectural Styles and the Design of Network-based Software Architectures'.</p>
+        <p class="dense">Anything that is important enough to be separately refenced/ modified/retrieved is a resource that has a reference. Universal Resource Identifier (<code>URI</code>) is the reference. They should be constructed in an intuitive (human readable) manner and reflecting the underlying data structure.</p>
+      </section>
+
+      <section>
+        <h2>Programmable Web</h2>
+        <p>The web is full of different APIs, a good site to start looking for what is out there is <a href="http://www.programmableweb.com/">programmableweb.com</a>.</p>
+        <p>As an example <a href="http://api.nytimes.com/svc/mostpopular/v2/mostshared/Sports/7.json?api-key=sample-key">New York Times' Most shared sports items from past 7 days</a>.</p>
+      </section>
+
+      <section>
+        <h2>RESTful Web Services</h2>
+        <p><em>Resources</em> are any type of data that can be pointed to with a hyperlink: images, documents, web services, etc.</p>
+        <p>Data is encoded in a way that it can represent the state of the resource and resources are refenreced by URIs.</p>
+        <p>REST is a pattern, a way of doing things that is not formally codified.</p>
+        <p class="extra">The REST portion of this lecture is influenced by <a href="https://www.youtube.com/watch?v=mZ8_QgJ5mbs">Beautiful REST &amp; JSON APIs by Les Hazlewood</a> (definitely worth watching if you need to create an API).</p>
+      </section>
+
+      <section>
+        <h2>REST Buzzword Bingo</h2>
+
+        <p>Scalability, Generality, Independence, Latency (caching), Security, Encapsulation, Separation of concerns, Statelessness, Uniform interface</p>
+        
+      </section>
+
+      <section>
+        <h2>REST and JSON</h2>
+        <p>REST APIs often use JSON since it offers many benefits:</p>
+        <ul>
+          <li>ubiquity</li>
+          <li>simplicity</li>
+          <li>readibility</li>
+          <li>flexibility</li>
+          <li>etc...</li>
+        </ul>
+        <p>However, XML/plaintext/html etc. is also used.</p>
+      </section>
+
+      <section>
+        <h2>REST: Resources</h2>
+        <p>In RPC resources can be thought of as <em>verbs</em>. In REST, resources should be <em>nouns</em>.</p>
+        <p>Broadly speaking there are two types of resources:</p>
+        <ul>
+          <li><code>Collection resource</code> e.g. <code>/blogposts/2014</code> These link and list multiple instance resources. And they might also have their own attributes (e.g. 'first', 'latest')</li>
+          <li><code>Instance resource</code> e.g. <code>/blogposts/rant-about-rest</code> These resources describe one instance of something</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Resources Example</h2>
+        <p>Example of an instance resource:</p>
+        <pre><code>// from: http://some-library-service/isbn/978-0596517748
+{
+  "title": "JavaScript: The Good Parts",
+  "author": "Douglas Crockford",
+  "published": "2008",
+  "isbn": "978-0596517748"
+  "href": "http://some-library-service/isbn/978-0596517748"
+}</code></pre>
+
+      <pre><code>// from: http:/some-library-service/keyword/javascript
+{
+  "keywords": ["javascript"],
+  "books": [ 
+    {
+      "href": "http://some-library-service/isbn/978-0596517748",
+      "isbn": "978-0596517748"
+    }, {
+      "href": "http://some-library-service/isbn/978-1933988696",
+      "isbn": "978-1933988696"
+    },
+    ...
+  ]
+}</code></pre>
+        
+      </section>
+
+      <section>
+        <h2>REST: Statelessness</h2>
+        <p>Any individual request should be understandable without knowledge of any preceding requests.</p>
+        <p>This also means that requests can be interpreted and acted upon individually, which makes parallel processing easier.</p>
+        <p>All required data needs to be present in the request itself.</p>
+      </section>
+
+      <section>
+        <h2>REST: Addressability</h2>
+        <p>Addressability (every resource has a unique identifier) gives the major benefit of using resources in unforseen ways.</p>
+
+        <p>Related to this it is a good idea to <em>version</em> your APIs, for example:</p>
+
+        <pre><code>http://my-cool-site.com/api/v1/some/stuff</code></pre>
+        <p>The future is unknown, and you might need to change the API for one reason or another. Versioning enables you to leave the old behavior in place so those programs that depend on that version will not be broken.</p>
+      </section>
+
+      <section>
+        <h2>REST: Connectedness</h2>
+        <p>Idea of connectedness is that resources link to other resources</p>
+        <p>Following links traverses the API uncovering more information and structure.</p>
+      </section>
+
+      <section>
+        <h2>REST: Uniform Interface</h2>
+        <p>All the resources share a common uniform interface. Instead of doing something (URLs as a "method") set something (URLs as "variables").</p>
+        <p>Four main constrains of uniform interface:</p>
+        <p>Take advantage of <code>HTTP</code> "verbs":</p>
+        <ul>
+          <li><code>GET</code> fetch resource</li>
+          <li><code>PUT</code> create/replace resource</li>
+          <li><code>DELETE</code> remove resouce</li>
+          <li><code>POST</code> add/modify resource</li>
+        </ul>
+        <p>POST is not <em>idempotent</em>, so it can be used for partial updates.</p>
+      </section>
+      <section>
+        <h2>Uniform Interface Principles</h2>
+        <ul>
+          <li>Identification of Resources: Request identifies the resource, data could be returned in number of formats.</li>
+          <li>Manipulation of through representations: If a client has the resources, it knows enough to modify/manipulate it</li>
+          <li>Self-descriptive messages: Each message contains enough information on how to process is (what is its mime-type etc.)</li>
+          <li>HATEOAS</li>
+        </ul>
+        <p>Wikipedia has a nice article about <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
+      </section>
+
+      <section>
+        <h2>HATEOS</h2>
+        <p>Hypertext As The Engine Of Application State (<code>HATEOS</code>).</p>
+        <blockquote>"Clients make state transitions only through actions that are dynamically identified within hypermedia by the server (e.g., by hyperlinks within hypertext). Except for simple fixed entry points to the application, a <em>client does not assume that any particular action is available for any particular resources beyond those described in representations previously received from the server</em>." <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Uniform_interface">Wikipedia - REST</a> (emphasis mine)</blockquote>
+        
+      </section>
+
+      <section>
+        <h2>REST: Good Ideas</h2>
+        <p><em>API versioning</em>. You might need to change it in the future. If you version you will not break existing API consumers.</p>
+        <pre><code>some-domain.com/api/v1/resources/item/775</code></pre>
+        <p><em>Standard timeformats</em>. Don't invent your own format for expressing times, <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> is a better option.</p>
+        <pre><code>"time": "D2014/07/08T11:23pm" // Do NOT do this
+"time": "2014-11-13T17:45:11.647Z" //Do this</code></pre>
+        <p><em>Pagination</em>. Use offset and limit, and use them consistently.</p>
+        <pre><code>/api/v1/books/2014/?offset=50&amp;limit=25</code></pre>
+      </section>
+
+      <section>
+        <h2>REST: Reference Expansion</h2>
+        <p>Reference expansion (a.k.a. link expansion or entity expansion) is also a good idea: <code>some/resource?expand=attribute+other_attribute</code>.</p>
+        <pre style="width: 100%;"><code>// from: http:/some-library-service/keyword/javascript?expand=title
+{
+  "keywords": ["javascript"],
+  "books": [ 
+    {
+      "href": "http://some-library-service/isbn/978-0596517748",
+      "isbn": "978-0596517748",
+      "title": "JavaScript: The Good Parts"
+    }, {
+      "href": "http://some-library-service/isbn/978-1933988696",
+      "isbn": "978-1933988696"
+      "title": "Secrets of the JavaScript Ninja"
+    },
+    ...
+  ]
+}</code></pre>
+      </section>
+
+      <section>
+        <h2>REST Many-to-Many</h2>
+        <p>Many-to-many mappings should be <em>resources</em> as well.</p>
+        <p>For example, consider API describing groups and projects that can have many-to-many relations.</p>
+        <pre><code>/* A relationship between a group and a project */
+{
+  "group": {
+    "id": 7,
+    "href": "http://..."
+  },
+  "project": {
+    "id": 3,
+    "href": "http://..."
+  },
+  "createdBy": "someUserId",
+  "created": "2014-10-28"
+}</code></pre>
+        <p class="fragment">Deleting this resource will only remove the link, groups and projects will stay intact.</p>
+      </section>
+
+      <section>
+        <h2>REST Security</h2>
+        <p>Avoid session based authentication, keeping up with the principle of statelessness prefer to authenticate every request. Also prefer API Keys (like in GitLab) instead of username/password.</p>
+        <p>Authorize based on the content of the resource, not URLs which might change.</p>
+        <p><a href="http://en.wikipedia.org/wiki/OAuth">OAuth</a> is a good option.</p>
+      </section>
+
+      <section>
+        <h2>REST APIs and Django</h2>
+        <blockquote>"Tastypie is a webservice API framework for Django. It provides a convenient, yet powerful and highly customizable abstraction for creating REST-style interfaces." <a href="http://tastypieapi.org/">Tastypie</a></blockquote>
+        <p>&nbsp;</p>
+        <blockquote>"Django REST framework is a powerful and flexible toolkit that makes it easy to build Web APIs." <a href="http://www.django-rest-framework.org/">Django REST Framework</a></blockquote>
+        <p></p>
+      </section>
+
+      <section>
+        <h2>WebSockets</h2>
+        <blockquote>"WebSockets is an advanced technology that makes it possible to open an interactive communication session between the user's browser and a server. With this API, you can <em>send messages to a server and receive event-driven responses without having to poll the server for a reply.</em>" <a href="https://developer.mozilla.org/en/docs/WebSockets">MDN - WebSockets</a> (emphasis mine)</blockquote>
+        <p>WebSockets can also be used to create APIs that do not need to be polled.</p>
+        <p><a href="https://www.websocket.org/demos.html">websocket.org demos</a></p>
+      </section>
+
+      <section>
+        <h2>HTTP and Caching</h2>
+        <p><code>HTTP</code> has built-in support for caching. HTTP headers contain metadata about fetched resources and can be used to make condifitonal requests.</p>
+        <p>Conditional GET requests are only executed, when a certain condition is fulfilled, e.g. <em>If-Modified-Since</em> is only executed if a resource has been modified since the given date.</p>
+        <p>Images, JS libraries, CSS files, static pages, etch. should stay in cache as long as possible. Similarly, on rapidly changing pages caching should be disabled or expire fast.</p>
+        <p>Caching is also really beneficial for REST APIs.</p>
+      </section>
+      
+      <section>
+        <h2>Caching Metadata</h2>
+        <p><em>ETag</em> is calculated from the resource contents. If it has not changed, the resource hasn't changed either.</p>
+        <p><em>Expires</em> informs when the resource is expires and should be fetched again.</p>
+        <p><em>Last-modified</em> informs when the resource was last modified on the server.</p>
+      </section>
+
+      <section>
+        <h2>API Etiquette</h2>
+        <p>Almost all APIs have some sort of usage policy. Typically the number of requests you make in a given time frame is limited, e.g. maximum of 10 requests in a minute.</p>
+        <p>Before you start utilizing some API in your web app, make sure you adhere to the usage policies.</p>
+
+      </section>
+
+      <section>
+        <h2>DEMO</h2>
+      </section>
+
+
+
+
+
+
+      </div>
+    </div>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
