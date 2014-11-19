@@ -247,6 +247,14 @@ Finally, just copy and paste your GitLab project's URL to A-plus. The file we wi
 	<li>forgetting the self-parameter when defining methods</li>
 	<li>forgetting to use self when referencing instance variables</li>
 </ul>
+
+<p class="warning">
+Students familar with concurrency issues in database systems may recognize the potential for a race condition in the way
+that the <code>sell()</code> method updates the <tt>quantity</tt> field. While this is not an issue in this exercise when limited to single concurrent request, you should note that Django provides mechanisms such as 
+<a href="https://docs.djangoproject.com/en/1.7/topics/db/transactions/">database transactions</a> or more specialized
+<a href="https://docs.djangoproject.com/en/1.7/ref/models/instances/#updating-attributes-based-on-existing-fields">update expressions</a>
+which would be required in an implementation of <code>sell()</code> designed to handle multiple concurrent requests.
+</p>
 	
 <h3>How to Test Your Models</h3>
 <p>
