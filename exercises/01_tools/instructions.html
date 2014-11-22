@@ -60,15 +60,24 @@
     You can also test if git is installed by just typing <code>git</code> in terminal.
   </p>
 
-  <p>If you do not have git already installed on your computer where you
-   intend to work you can download git for various platforms from the 
-   official site: <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>.</p>
+  <p>If you do not have git already installed on your computer, where you
+   intend to work, you can download git for various platforms from the 
+   official site: <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>.
+   The Windows installation package includes Git Bash that you should use to run
+   the terminal commands given through out the course instructions.</p>
 
-  <p>There are also graphical tools for git, such as <a href="http://www.eclipse.org/egit/">EGit for Eclipse</a> that you can use but no support for these is provided.</p>
+  <p>There are also graphical tools for git, such as <a href="http://www.eclipse.org/egit/">EGit for Eclipse</a>
+  that you can use but no support for these are provided.</p>
 
   <h3>2. Generate and set SSH key</h3>
   <p>To enable cloning your project the your local computer you need to add a SSH key to your GitLab profile. </p>
-  <p>Follow the instructions on <a href="https://git.niksula.hut.fi/help/ssh">how to generate a SSH key</a> and then add that key to GitLab (found at <a href="https://git.niksula.hut.fi/profile">https://git.niksula.hut.fi/profile</a>)</p>
+  <p>Follow the instructions on <a href="https://git.niksula.hut.fi/help/ssh">how to generate a SSH key</a>
+  and then add that key to GitLab (found at <a href="https://git.niksula.hut.fi/profile">https://git.niksula.hut.fi/profile</a>)</p>
+  <pre>
+$ ssh-keygen -t rsa
+# (you should type enter to all questions)
+$ cat .ssh/rsa_id.pub
+# (use window menu or right click to mark and copy the key in Git Bash)</pre>
 
   <h3>3. Cloning a project</h3>
   <p>Now you are ready to clone your project on your local machine. 
@@ -76,7 +85,8 @@
     <code>git clone git@git.niksula.hut.fi:YOUR_USER_NAME/wsd-material.git</code><br>
     this will authenticate you on the server with the SSH key you created in the
     previous step and create a folder with the name of wsd-material where the 
-    contents of your repository from your server are cloned.
+    contents of your repository from your server are cloned. If you did not change
+    directories in Git Bash look for <code>C:\Users\&lt;username&gt;\wsd-material</code>.
   <pre>
     $ <strong>git clone git@git.niksula.hut.fi:YOUR_USER_NAME/wsd-material.git</strong>
     
