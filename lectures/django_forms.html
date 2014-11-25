@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Django Forms</title>
+
+    <meta name="description" content="Django Forms">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #142915;
+        background-color: #142915;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h2>Django Forms</h2>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+      <section>
+        <h2>Forms</h2>
+        <p>HTML Forms are one of the main ways of getting input from users in a web application. A simple form:</p>
+        <pre><code>&lt;form method="POST" action="/register_user"&gt;
+  &lt;input type="text" name="username"&gt;
+  &lt;input type="password" name="password"&gt;
+  &lt;input type="password" name="password_again"&gt;
+  &lt;input type="submit" name="submit" value="Register"&gt;
+&lt;/form&gt;</code></pre>
+        <p>For more details, see <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms">MDN Forms reference</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form">MDN Structuring forms</a>.</p>
+      </section>
+
+      <section>
+        <h2>Forms and Methods</h2>
+        <p>The two HTTP methods for sending forms are <code>GET</code> and <code>POST</code>. The normal rules apply, only use GET for actions that do not cause side effects on the server, e.g. search form could use GET:</p>
+        <pre><code>&lt;form method="GET" action="/search/"&gt;
+  &lt;input type="text" name="q"&gt; 
+  &lt;input type="submit" name="submit" value="Search"&gt;
+&lt;/form&gt;&lt;/code&gt;&lt;/pre&gt;</code></pre>
+        <p>This would result in something like: <code>my-site.com/search?q=bananas</code>.</p>
+      </section>
+
+      <section>
+        <h2>Django and Forms</h2>
+        <p>Django has a library for handling forms. It handles generation of form tags (in templates) and validates data from forms (on the server side <code>.is_valid()</code>). If the data is not valid it errors will be stored and returned to the template.</p>
+        <p>Django's forms resemble Django's models and in fact, you can create forms based on your models as well.</p>
+        <p>Forms define a structure for data fields and these fields can have validity restrictions, as is the case with models.</p>
+      </section>
+
+      <section>
+        <h2>Example Form</h2>
+        <p>An example form to ask for users name (characters) and age (integer):</p>
+        <pre><code>from django import forms
+class ExampleForm(forms.Form):
+  name = forms.CharField(max_length=100, label="Your name")
+  age = forms.IntegerField(max_value=150, label="Your age")</code></pre>
+      <p>The field constructors define what kind of data is valid and what are acceptable values for that field. The <code>label</code> will be used for HTML label element.</p> 
+      </section>
+
+      <section>
+        <h2>Field arguments</h2>
+        <p>Some field constructor parameters:</p>
+        <ul>
+          <li><code>label</code> label for the field</li>
+          <li><code>initial</code> initial value for this field</li>
+          <li><code>widget</code> what widget is to be used for rendering this field</li>
+          <li><code>required</code> this field needs to always be filled</li>
+          <li>etc...</li>
+        </ul>
+        <p>See Django docs for <a href="https://docs.djangoproject.com/en/1.7/ref/forms/fields/#core-field-arguments">list of all field arguments</a>.</p>
+      </section>
+
+      <section>
+        <h2>Widgets</h2>
+        <blockquote>"A widget is Django’s representation of a HTML input element. The widget handles the rendering of the HTML, and the extraction of data from a GET/POST dictionary that corresponds to the widget." <a href="https://docs.djangoproject.com/en/1.7/ref/forms/widgets/">Django Docs on Widgets</a></blockquote>
+        <p>Some widgets (see docs for all built-in widgets):</p>
+        <ul>
+          <li><code>TextInput</code> -> <code>&lt;input type="text" ...&gt;</code></li>
+          <li><code>URLInput</code> -> <code>&lt;input type="url" ...&gt;</code></li>
+          <li><code>HiddenInput</code> -> <code>&lt;input type="hidden" ...&gt;</code></li>
+          <li><code>SplitDateTimeWidget</code> Combined DateInput and TimeInput widget</li>
+        </ul>
+        <p>The names of the widget classes should are self-explanatory.</p>
+      </section>
+
+      <section>
+        <h2>Forms and Views</h2>
+        <p>Typically same view that publishes a form also processes it:</p>
+        <pre><code>from django.shortcuts import render
+from django.http import HttpResponseRedirect
+
+def form_example(request):
+  if request.method == 'POST': # 
+    # create form instance, populate it by data from POST
+    form = ExampleForm(request.POST) 
+    if form.is_valid():
+      # If the form is valid act accordingly
+      ...
+      # and redirect
+      return HttpResponseRedirect('/thanks/')
+  elif request.method == "GET": 
+    # GET was used, instantiate empty form
+    form = NameForm()
+
+  return render(request, 'example.html', {'form': form})</code></pre> 
+      </section>
+
+      <section>
+        <h2>Bound and Unbound Forms</h2>
+        <p>Django uses the term <em>bound form</em> for a form that has had some data bound to it. E.g, when the handling a form in the view after a POST request.</p>
+        <p>Conversely, a form that has not had any user data bound to it is called <em>unbound form</em>. When an unbound form is rendered in a template it won't have any values filled (apart from initial values set).</p>
+        <p>Forms have an <code>.is_bound()</code> method that you can use to test whether that form has any data bound to it.</p>
+      </section>
+
+      <section>
+        <h2>Forms and Templates</h2>
+        <p>The whole form can be rendered in a template in three ways:</p>
+        <ul>
+          <li><code>{{my_form.as_table}}</code> form using <code>&lt;table&gt;</code> elements</li>
+          <li><code>{{my_form.as_ul}}</code> form using <code>&lt;ul&gt;</code> elements</li>
+          <li><code>{{my_form.as_p}}</code> form using <code>&lt;p&gt;</code> elements</li>
+        </ul>
+        <p>Note that using <code>as_table</code> and <code>as_ul</code> will not create the enclosing <code>&lt;table&gt;</code> and <code>&lt;ul&gt;</code> elements, so you need to provide them.</p>
+        <p>These are fast ways of rendering the template. It is also possible to layout all the form elements manually in a template to gain full control how it is displayed.</p>
+      </section>
+
+      <section>
+        <h2>Forms as HTML</h2>
+        <p>Using previous example as: <code>form = ExampleForm()</code>:</p>
+        <pre style="width: 110%;"><code>&lt;p&gt; &lt;!-- form.as_p() --&gt;
+  &lt;label for="id_name"&gt;Your name:&lt;/label&gt; 
+  &lt;input id="id_name" maxlength="100" name="name" type="text" /&gt;
+&lt;/p&gt;&lt;p&gt;
+  &lt;label for="id_age"&gt;Your age:&lt;/label&gt; 
+  &lt;input id="id_age" max="150" name="age" type="number" /&gt;
+&lt;/p&gt;</code></pre>
+        <pre style="width: 110%;"><code>&lt;tr&gt; &lt;!-- form.as_table() --&gt;
+  &lt;th&gt;&lt;label for="id_name"&gt;Your name:&lt;/label&gt;&lt;/th&gt;
+  &lt;td&gt;&lt;input id="id_name" maxlength="100" name="name" type="text" /&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+  &lt;th&gt;&lt;label for="id_age"&gt;Your age:&lt;/label&gt;&lt;/th&gt;
+  &lt;td&gt;&lt;input id="id_age" max="150" name="age" type="number" /&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+    <pre style="width: 110%;"><code>&lt;li&gt; &lt;!-- form.as_ul() --&gt;
+  &lt;label for="id_name"&gt;Your name:&lt;/label&gt; 
+  &lt;input id="id_name" maxlength="100" name="name" type="text" /&gt;
+&lt;/li&gt;&lt;li&gt;
+  &lt;label for="id_age"&gt;Your age:&lt;/label&gt;
+  &lt;input id="id_age" max="150" name="age" type="number" /&gt;
+&lt;/li&gt;'</code></pre>
+      </section>
+
+      <section>
+        <h2>Form Template Example</h2>
+        <p>Based on what HTML the forms provide, there are some things that you do need to create manually. Namely the actual <code>form</code> element and a way to <code>submit</code> it. A basic example of a form in a template.</p>
+        <pre><code>&lt;form action="/save_user/" method="post"&gt;
+  {% csrf_token %} &lt;!-- this will explained later --&gt;
+  &lt;table&gt;
+    {{ form.as_table }}
+  &lt;/table&gt;
+  &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>CSRF Protection</h2>
+        <p>Forms can be vulnerable to an attack called Cross Site Request Forgery (<code>CSRF</code>). The actual attack will be discussed later.</p>
+        <p>Django has CSRF-Middleware to protect againts this attack by means of submitting a <em>csrf-token</em> whenever a form is submitted. However, this must be added in the template, as in the previous example, with <code>{% csrf_token %}</code>.</p>
+      </section>
+
+      <section>
+        <h2>Form Validation</h2>
+        <p class="dense">When data has been bound to a form <code>.is_valid()</code> can be called, to see whether the input is valid. If there are errors, they can be accessed from <code>my_form.errors</code> as field/error message pairs. The validation process runs through several steps:</p>
+        <ul style="font-size: 90%;" class="dense">
+          <li><code>.to_python()</code> matches field values with Python's data types</li>
+          <li><code>.validate()</code> field-specific validation</li>
+          <li><code>.run_validators()</code> runs all field's validators and aggregates results</li>
+          <li><code>.clean()</code> (Field) responsible of running to_python, validate and run_validators in correct order, stores values to <code>cleaned_data</code> dict</li>
+          <li><code>.clean_&lt;fieldname&gt;</code> any further cleaning/validation that you define</li>
+          <li><code>.clean()</code> (Form) form wide validation, if some validation requires access to multiple fields, put them here</li>
+        </ul>
+        <p>For more details see Django docs <a href="https://docs.djangoproject.com/en/1.7/ref/forms/validation/">on form validation</a>.</p>
+      </section>
+
+      <section>
+        <h2>Cleaned Data</h2>
+        <p>The data of the form will get stored in <code>cleaned_data</code> dict that you can access in a Form class: <code>self.cleaned_data['age']</code>.</p>
+        <p>To run your own validation on the data, define methods as <code>clean_&lt;fieldname&gt;</code> where you fetch your data from the cleaned_data and run any checks that are required. As an example:</p>
+        <pre><code># in ExampleForm class:
+def clean_age(self):
+  check_age = self.cleaned_data['age']
+  if check_age &lt; 18
+    raise forms.ValidationError('You are underage')
+  if check_age &gt; 120
+    raise forms.ValidationError('You are overage')</code></pre>
+      </section>
+
+      <section>
+        <h2>Another Template Example</h2>
+        <p>Another example of a template, with manual placing. Note the errors which will be displayed if there are some:</p>
+        <pre><code>&lt;form method="POST" action="."&gt;
+  {% csrf_token %}      
+  &lt;li>&lt;label for="age">Age:&lt;/label&gt;
+   {{ my_form.age.errors }}
+   {{ my_form.age }}
+  &lt;/li&gt;
+  &lt;input type="submit" value="Send" /&gt;
+&lt;/form&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>ModelForms</h2>
+        <p>It is often the case that you want forms that are based on your models. Django provides a conventient class <code>ModelForm</code> for this. These forms can prepopulate fields based on what is in the database</p>
+        <pre style="width: 105%;"><code>&gt;&gt;&gt; from django.forms import ModelForm
+&gt;&gt;&gt; from myapp.models import Article
+
+# Create the form class.
+&gt;&gt;&gt; class ArticleForm(ModelForm):
+...     class Meta:
+...         model = Article
+...         fields = ['pub_date', 'headline', 'content', 'reporter']
+
+# Creating a form to add an article.
+&gt;&gt;&gt; form = ArticleForm()
+
+# Creating a form to change an existing article.
+&gt;&gt;&gt; article = Article.objects.get(pk=1)
+&gt;&gt;&gt; form = ArticleForm(instance=article)</code></pre>
+        <p>Example from Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/forms/modelforms/">ModelForms</a>.</p>
+      </section>
+
+
+
+      <section>
+        <h2>User Management</h2>
+        <p>Django provides built-in views for handling common scenarios with handling users, such as registartion, login, password change etc.</p>
+        <p>Additionally, Django has a <code>User</code> model that can be used and extended to suit your needs.</p>
+        <p class="dense">Instead of writing your own logic for registration/login etc., use these built-in views. Major reason for using Django's own is security, unless you are really experienced with security and user management, you are more likely to get it wrong with your own solution.</p>
+        <p>Additional benefit is, that using built-in functionality is a lot faster and easier. Again, see Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/auth/">User authentication</a>.</p>
+      </section>
+
+      <section>
+        <h2>Extending User class</h2>
+        <p>You can extend the User class by creating a new model, that has a one-to-one relationship with User:</p>
+        <pre><code>from django.contrib.auth.models import User
+
+class Employee(models.Model):
+    user = models.OneToOneField(User)
+    department = models.CharField(max_length=100)</code></pre>
+        <p>You can then get access to related infromation on a user:</p>
+        <pre><code>uuser = User.objects.get(username='fsmith')
+freds_department = user.employee.department</code></pre>
+        <p>Example from <a href="https://docs.djangoproject.com/en/1.7/topics/auth/customizing/#extending-the-existing-user-model">Django docs</a>.</p>
+      </section>
+
+      <section>
+        <h2>User Login</h2>
+        <p>To provide a way for users to login, you need to set up an url for a login view in <code>urls.py</code>:</p>
+        <pre><code>...
+url(r'^login/$', 'django.contrib.auth.views.login'),
+...</code></pre>
+        <p>By default this view looks for a template in 'register/login.html'. You can configure this by passing the url configuration a dictionary, as such:<pre><code>url(r'^login/$',
+  'django.contrib.auth.views.login', 
+  {'template_name': 'login_template.html'}),</code></pre>
+      </section>
+
+      <section>
+        <h2>User Login Template</h2>
+        <p>You do need to create a template for the login. It will get a variable called <code>form</code>:</p>
+        <pre><code>{% block login %}
+  &lt;form method="POST" action="/login/"&gt;
+    {% csrf_token %}
+    {{form.as_p}}
+    &lt;input type="submit" value="Login"&gt;
+  &lt;/form&gt;
+{% endblock%}</code></pre>
+      </section>
+
+      <section>
+        <h2>User Registration</h2>
+        <p>For registration of new users, you need to create a view that handles it. An easy way to do this is to use a <code>ModelForm</code> that ties to Django's default <code>User</code> in <code>forms.py</code>:</p>
+        <pre><code>from django import forms
+from django.contrib.auth.models import User
+class UserForm(forms.ModelForm):
+  # use password widget so password isn't shown
+  password = forms.CharField(widget=forms.PasswordInput())
+  
+  class Meta:
+    model = User # We want to use User model ...
+    # ... and the form should have the following fields
+    fields = ('username', 'email', 'password')</code></pre>
+        <p>This needs a view, so we'll add to <code>urls.py</code> the following line:</p>
+        <pre><code>url(r'^register/$', 'myblog.views.register'),</code></pre>
+        <p>... and write the view (next slide).</p>
+
+      </section>
+
+      <section>
+        <h2>Registration View Example</h2>
+        <p class="dense">If this view is accessed with POST, it tries to create a new user and if successful it will redirect. If it's called with GET an unbound form will be returned. If creating a new user is not successful it will return bound form with errors explaining what went wrong.</p>
+        <pre><code>from django.shortcuts import render
+from myblog.forms import UserForm
+
+def register(request):
+  if request.method == 'POST':
+    user_form = UserForm(data=request.POST)
+    if user_form.is_valid():
+      user = user_form.save()
+      user.set_password(user.password)
+      user.save()
+      return redirect('home_page')
+  else:
+    user_form = UserForm()
+  
+  return render(request,
+          'registration/register.html',
+          {'form': user_form })</code></pre>
+      </section>
+
+      <section>
+        <h2>Logging out</h2>
+        <p>A ready made view for logging out exists as well, to provide a logout link, just add to <code>urls.py</code>:</p>
+        <pre><code>url(r'^logout/$', 'django.contrib.auth.views.logout'),</code></pre>
+        <p>And provide a link to <code>'/logout/'</code>.</p>
+      </section>
+
+      <section>
+        <h2><code>@login_required</code> decorator</h2>
+        <p class="dense">To write views that are only accessible to users that have logged in, you can use a convenient <code>@login_required</code> decorator on your view:</p>
+        <pre><code>@login_required(login_url='/login/')
+def write_blogpost(request):
+    ...</code></pre>
+        <p class="dense">You can now assume in <code>write_blogpost</code> that a user has been succesfully authenticated.</p>
+        <p class="dense">The <code>login_url</code> parameter is optional, and it tells the URL that the user should be redirected if they are not logged in. The url for the view will be passed as a parameter on the redirect, e.g. <code>'/login/?next=/write_blogpost/'</code>.</p>
+        <p>See Django docs for <a href="https://docs.djangoproject.com/en/1.7/topics/auth/default/#django.contrib.auth.decorators.login_required">login_required decorator</a>.</p>
+      </section>
+
+      <section>
+        <h2>DEMO: Django Forms</h2>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
