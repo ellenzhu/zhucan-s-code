@@ -106,7 +106,7 @@
       <section>
         <h2>HTTP Basic</h2>
         <p class="dense">A basic way of providing a username with password with a request. Again, it will be unencrypted if HTTPS is not used. A basic example: </p>
-        <pre><code class="md">https://lassi@secret_pw@www.some-site.com</code></pre>
+        <pre><code class="md">https://lassi:secret_pw@www.some-site.com</code></pre>
         <p class="dense">The authorization will be valid until the browser is closed. The flow of the authentication:</p>
         <ol class="dense">
           <li>Client requests a protected resource</li>
@@ -143,7 +143,7 @@
       <section>
         <h2>Shared Authentication</h2>
         <p>"Let someone else worry about authentication."</p>
-        <p>The basic idea is, that user has credentials to some system and those credentials can be shared with other systems. You've all seens "log in with Facebook" or "log in with Google" buttons.</p>
+        <p>The basic idea is, that user has credentials to some system and those credentials can be shared with other systems. You've all seen "log in with Facebook" or "log in with Google" buttons.</p>
         <p>A common one, used in Aalto as well, is <a href="https://shibboleth.net/">Shibboleth</a>. Another popular scheme is <a href="http://oauth.net/">OAuth</a>.</p>
       </section>
 
@@ -180,7 +180,7 @@
           <p>Basic defense against this is to validate and sanitize user input (HTML/CSS/JavaScript). Sanitizing HTML might not be that straightforward. Again, it is a good idea to rely on experts, and use some service/application that does this for you.</p>
           <p><a href="https://developers.google.com/caja/">Google's Caja</a> is one example:</p>
           <blockquote>"The Caja Compiler is a tool for making third party HTML, CSS and JavaScript safe to embed in your website."</blockquote>
-          <p>Django Templates also automatically escapes data.</p>
+          <p>Django Templates also automatically escape data.</p>
         </section>
 
         <section>
@@ -196,7 +196,7 @@
 
         <section>
           <h2>Session Fixation</h2>
-          <p>The idea in a session fixation is that an attacker will first log into a site and acquire a session id. Then this id is fed to the victim somehow (e.g. email, xss). Victim then logs in and the attacker has full access to the victims resources.</p>
+          <p>The idea in a session fixation is that an attacker will first log into a site and acquire a session id. Then this id is fed to the victim somehow (e.g. email, xss). Victim then logs in and the attacker has full access to the victim's resources.</p>
           <p>Wikipedia has nice descriptive examples of <a href="http://en.wikipedia.org/wiki/Session_fixation#A_simple_attack_scenario">session fixation</a>.</p>
         </section>
 
@@ -211,12 +211,12 @@
           <h2>Clickjacking</h2>
           <p>Clickjacking refers to tricking a user clicking something they did not know they were clicking. Typically there is another website with opaque set to 0 on top of the one that the user sees.</p>
           <p>Clicks go first to the invisible one, unbeknownst to the user, and only after that to the site that the user sees. This is commonly used to "steal" likes on Facebook etc. If the user is already logged into Facebook s/he probably won't even notice liking something.</p>
-          <p>A <a href="http://coding.pressbin.com/files/86-clickjacking_demo.html">demo of clickjacking</a> and <a href="http://coding.pressbin.com/86/How-Facebook-click-jacking-scams-work/">explanation of it.</a>.</p>
+          <p>A <a href="http://coding.pressbin.com/files/86-clickjacking_demo.html">demo of clickjacking</a> and <a href="http://coding.pressbin.com/86/How-Facebook-click-jacking-scams-work/">explanation of it</a>.</p>
         </section>
 
         <section>
-          <h2>Cross-Site Forgery Request</h2>  
-          <p>The idea behind Cross Site Request Forgery (CSRF) is that a victim has already authenticated to site A and after that visits a malicious site B. The site B contains a link malicious link to site A which executes some unwanted action. The link might be e.g. in some <code>img</code> element <code>src</code> attribute which will be automatically followed.</p>
+          <h2>Cross-Site Request Forgery</h2>  
+          <p>The idea behind Cross Site Request Forgery (CSRF) is that a victim has already authenticated to site A and after that visits a malicious site B. The site B contains a malicious link to site A which executes some unwanted action. The link might be e.g. in some <code>img</code> element <code>src</code> attribute which will be automatically followed.</p>
           <pre style=""><code>Mallory: Hello Alice! Look here:
 &lt;img 
   src="http://bank.example.com/
@@ -227,7 +227,7 @@
 
         <section>
           <h2>CSRF</h2>
-          <p>Previous slides example had a GET request with side effects, which is already inheretly bad idea. But CSRF can also be POST requests (possibly also using JavaScript to do it).</p>
+          <p>Previous slides example had a GET request with side effects, which is already inherently a bad idea. But CSRF can also be POST requests (possibly also using JavaScript to do it).</p>
         </section>
 
         <section>
@@ -276,7 +276,7 @@
         </section>
 
         <section>
-          <h2>Directory Travelsal Example</h2>
+          <h2>Directory Traversal Example</h2>
           <p>Consider example from Wikipedia:</p>
           <pre><code>&lt;?php
 $template = 'red.php';
