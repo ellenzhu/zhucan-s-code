@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Exercise template{% endblock %}</title>
+        <style type="text/css">
+            body {
+                font-size: 13px;
+                font-family: arial, helvetica, sans-serif;
+                max-width: 750px;
+            }
+            #continentMenu {
+                list-style: none;
+                padding: 0;
+            }
+            #continentMenu li {
+                display: inline;
+                margin-right: 15px;
+            }
+            #tableContainer {
+                min-height: 400px;
+            }
+            #countryTable td {
+                padding-right: 10px;
+            }
+            .codesample {
+                max-height: 150px;
+                overflow: auto;
+                margin-left: 20px;
+                border: solid silver 1px;
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% url 'countrydata.views.render_javascript' %}"></script>
+    </head>
+    <body>
+        {% block content %}
+        You must use the template tag <code>block</code> with a block name <code>content</code> in your own templates to put content to this area.
+        {% endblock %}
+    </body>
+</html>

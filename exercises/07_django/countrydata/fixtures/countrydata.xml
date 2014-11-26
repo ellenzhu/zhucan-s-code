@@ -1,0 +1,2039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="1" model="countrydata.continent">
+        <field type="CharField" name="name">Africa</field>
+        <field type="CharField" name="code">af</field>
+    </object>
+    <object pk="2" model="countrydata.continent">
+        <field type="CharField" name="name">North America</field>
+        <field type="CharField" name="code">na</field>
+    </object>
+    <object pk="3" model="countrydata.continent">
+        <field type="CharField" name="name">Oceania</field>
+        <field type="CharField" name="code">oc</field>
+    </object>
+    <object pk="4" model="countrydata.continent">
+        <field type="CharField" name="name">Antarctica</field>
+        <field type="CharField" name="code">an</field>
+    </object>
+    <object pk="5" model="countrydata.continent">
+        <field type="CharField" name="name">Asia</field>
+        <field type="CharField" name="code">as</field>
+    </object>
+    <object pk="6" model="countrydata.continent">
+        <field type="CharField" name="name">Europe</field>
+        <field type="CharField" name="code">eu</field>
+    </object>
+    <object pk="7" model="countrydata.continent">
+        <field type="CharField" name="name">South America</field>
+        <field type="CharField" name="code">sa</field>
+    </object>
+    <object pk="1" model="countrydata.country">
+        <field type="CharField" name="name">Andorra</field>
+        <field type="CharField" name="capital">Andorra la Vella</field>
+        <field type="CharField" name="code">ad</field>
+        <field type="PositiveIntegerField" name="population">84000</field>
+        <field type="PositiveIntegerField" name="area">468</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="2" model="countrydata.country">
+        <field type="CharField" name="name">United Arab Emirates</field>
+        <field type="CharField" name="capital">Abu Dhabi</field>
+        <field type="CharField" name="code">ae</field>
+        <field type="PositiveIntegerField" name="population">4975593</field>
+        <field type="PositiveIntegerField" name="area">82880</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="3" model="countrydata.country">
+        <field type="CharField" name="name">Afghanistan</field>
+        <field type="CharField" name="capital">Kabul</field>
+        <field type="CharField" name="code">af</field>
+        <field type="PositiveIntegerField" name="population">29121286</field>
+        <field type="PositiveIntegerField" name="area">647500</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="4" model="countrydata.country">
+        <field type="CharField" name="name">Antigua and Barbuda</field>
+        <field type="CharField" name="capital">St. Johns</field>
+        <field type="CharField" name="code">ag</field>
+        <field type="PositiveIntegerField" name="population">86754</field>
+        <field type="PositiveIntegerField" name="area">443</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="5" model="countrydata.country">
+        <field type="CharField" name="name">Anguilla</field>
+        <field type="CharField" name="capital">The Valley</field>
+        <field type="CharField" name="code">ai</field>
+        <field type="PositiveIntegerField" name="population">13254</field>
+        <field type="PositiveIntegerField" name="area">102</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="6" model="countrydata.country">
+        <field type="CharField" name="name">Albania</field>
+        <field type="CharField" name="capital">Tirana</field>
+        <field type="CharField" name="code">al</field>
+        <field type="PositiveIntegerField" name="population">2986952</field>
+        <field type="PositiveIntegerField" name="area">28748</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="7" model="countrydata.country">
+        <field type="CharField" name="name">Armenia</field>
+        <field type="CharField" name="capital">Yerevan</field>
+        <field type="CharField" name="code">am</field>
+        <field type="PositiveIntegerField" name="population">2968000</field>
+        <field type="PositiveIntegerField" name="area">29800</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="8" model="countrydata.country">
+        <field type="CharField" name="name">Netherlands Antilles</field>
+        <field type="CharField" name="capital">Willemstad</field>
+        <field type="CharField" name="code">an</field>
+        <field type="PositiveIntegerField" name="population">136197</field>
+        <field type="PositiveIntegerField" name="area">960</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="9" model="countrydata.country">
+        <field type="CharField" name="name">Angola</field>
+        <field type="CharField" name="capital">Luanda</field>
+        <field type="CharField" name="code">ao</field>
+        <field type="PositiveIntegerField" name="population">13068161</field>
+        <field type="PositiveIntegerField" name="area">1246700</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="10" model="countrydata.country">
+        <field type="CharField" name="name">Antarctica</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">aq</field>
+        <field type="PositiveIntegerField" name="population">0</field>
+        <field type="PositiveIntegerField" name="area">14000000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">4</field>
+    </object>
+    <object pk="11" model="countrydata.country">
+        <field type="CharField" name="name">Argentina</field>
+        <field type="CharField" name="capital">Buenos Aires</field>
+        <field type="CharField" name="code">ar</field>
+        <field type="PositiveIntegerField" name="population">41343201</field>
+        <field type="PositiveIntegerField" name="area">2766890</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="12" model="countrydata.country">
+        <field type="CharField" name="name">American Samoa</field>
+        <field type="CharField" name="capital">Pago Pago</field>
+        <field type="CharField" name="code">as</field>
+        <field type="PositiveIntegerField" name="population">57881</field>
+        <field type="PositiveIntegerField" name="area">199</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="13" model="countrydata.country">
+        <field type="CharField" name="name">Austria</field>
+        <field type="CharField" name="capital">Vienna</field>
+        <field type="CharField" name="code">at</field>
+        <field type="PositiveIntegerField" name="population">8205000</field>
+        <field type="PositiveIntegerField" name="area">83858</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="14" model="countrydata.country">
+        <field type="CharField" name="name">Australia</field>
+        <field type="CharField" name="capital">Canberra</field>
+        <field type="CharField" name="code">au</field>
+        <field type="PositiveIntegerField" name="population">21515754</field>
+        <field type="PositiveIntegerField" name="area">7686850</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="15" model="countrydata.country">
+        <field type="CharField" name="name">Aruba</field>
+        <field type="CharField" name="capital">Oranjestad</field>
+        <field type="CharField" name="code">aw</field>
+        <field type="PositiveIntegerField" name="population">71566</field>
+        <field type="PositiveIntegerField" name="area">193</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="16" model="countrydata.country">
+        <field type="CharField" name="name">Åland Islands</field>
+        <field type="CharField" name="capital">Mariehamn</field>
+        <field type="CharField" name="code">ax</field>
+        <field type="PositiveIntegerField" name="population">26711</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="17" model="countrydata.country">
+        <field type="CharField" name="name">Azerbaijan</field>
+        <field type="CharField" name="capital">Baku</field>
+        <field type="CharField" name="code">az</field>
+        <field type="PositiveIntegerField" name="population">8303512</field>
+        <field type="PositiveIntegerField" name="area">86600</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="18" model="countrydata.country">
+        <field type="CharField" name="name">Bosnia and Herzegovina</field>
+        <field type="CharField" name="capital">Sarajevo</field>
+        <field type="CharField" name="code">ba</field>
+        <field type="PositiveIntegerField" name="population">4590000</field>
+        <field type="PositiveIntegerField" name="area">51129</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="19" model="countrydata.country">
+        <field type="CharField" name="name">Barbados</field>
+        <field type="CharField" name="capital">Bridgetown</field>
+        <field type="CharField" name="code">bb</field>
+        <field type="PositiveIntegerField" name="population">285653</field>
+        <field type="PositiveIntegerField" name="area">431</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="20" model="countrydata.country">
+        <field type="CharField" name="name">Bangladesh</field>
+        <field type="CharField" name="capital">Dhaka</field>
+        <field type="CharField" name="code">bd</field>
+        <field type="PositiveIntegerField" name="population">156118464</field>
+        <field type="PositiveIntegerField" name="area">144000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="21" model="countrydata.country">
+        <field type="CharField" name="name">Belgium</field>
+        <field type="CharField" name="capital">Brussels</field>
+        <field type="CharField" name="code">be</field>
+        <field type="PositiveIntegerField" name="population">10403000</field>
+        <field type="PositiveIntegerField" name="area">30510</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="22" model="countrydata.country">
+        <field type="CharField" name="name">Burkina Faso</field>
+        <field type="CharField" name="capital">Ouagadougou</field>
+        <field type="CharField" name="code">bf</field>
+        <field type="PositiveIntegerField" name="population">16241811</field>
+        <field type="PositiveIntegerField" name="area">274200</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="23" model="countrydata.country">
+        <field type="CharField" name="name">Bulgaria</field>
+        <field type="CharField" name="capital">Sofia</field>
+        <field type="CharField" name="code">bg</field>
+        <field type="PositiveIntegerField" name="population">7148785</field>
+        <field type="PositiveIntegerField" name="area">110910</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="24" model="countrydata.country">
+        <field type="CharField" name="name">Bahrain</field>
+        <field type="CharField" name="capital">Manama</field>
+        <field type="CharField" name="code">bh</field>
+        <field type="PositiveIntegerField" name="population">738004</field>
+        <field type="PositiveIntegerField" name="area">665</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="25" model="countrydata.country">
+        <field type="CharField" name="name">Burundi</field>
+        <field type="CharField" name="capital">Bujumbura</field>
+        <field type="CharField" name="code">bi</field>
+        <field type="PositiveIntegerField" name="population">9863117</field>
+        <field type="PositiveIntegerField" name="area">27830</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="26" model="countrydata.country">
+        <field type="CharField" name="name">Benin</field>
+        <field type="CharField" name="capital">Porto-Novo</field>
+        <field type="CharField" name="code">bj</field>
+        <field type="PositiveIntegerField" name="population">9056010</field>
+        <field type="PositiveIntegerField" name="area">112620</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="27" model="countrydata.country">
+        <field type="CharField" name="name">Saint Barthélemy</field>
+        <field type="CharField" name="capital">Gustavia</field>
+        <field type="CharField" name="code">bl</field>
+        <field type="PositiveIntegerField" name="population">8450</field>
+        <field type="PositiveIntegerField" name="area">21</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="28" model="countrydata.country">
+        <field type="CharField" name="name">Bermuda</field>
+        <field type="CharField" name="capital">Hamilton</field>
+        <field type="CharField" name="code">bm</field>
+        <field type="PositiveIntegerField" name="population">65365</field>
+        <field type="PositiveIntegerField" name="area">53</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="29" model="countrydata.country">
+        <field type="CharField" name="name">Brunei</field>
+        <field type="CharField" name="capital">Bandar Seri Begawan</field>
+        <field type="CharField" name="code">bn</field>
+        <field type="PositiveIntegerField" name="population">395027</field>
+        <field type="PositiveIntegerField" name="area">5770</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="30" model="countrydata.country">
+        <field type="CharField" name="name">Bolivia</field>
+        <field type="CharField" name="capital">La Paz</field>
+        <field type="CharField" name="code">bo</field>
+        <field type="PositiveIntegerField" name="population">9947418</field>
+        <field type="PositiveIntegerField" name="area">1098580</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="31" model="countrydata.country">
+        <field type="CharField" name="name">Bonaire, Saint Eustatius and Saba</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">bq</field>
+        <field type="PositiveIntegerField" name="population">18012</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="32" model="countrydata.country">
+        <field type="CharField" name="name">Brazil</field>
+        <field type="CharField" name="capital">Brasília</field>
+        <field type="CharField" name="code">br</field>
+        <field type="PositiveIntegerField" name="population">201103330</field>
+        <field type="PositiveIntegerField" name="area">8511965</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="33" model="countrydata.country">
+        <field type="CharField" name="name">Bahamas</field>
+        <field type="CharField" name="capital">Nassau</field>
+        <field type="CharField" name="code">bs</field>
+        <field type="PositiveIntegerField" name="population">301790</field>
+        <field type="PositiveIntegerField" name="area">13940</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="34" model="countrydata.country">
+        <field type="CharField" name="name">Bhutan</field>
+        <field type="CharField" name="capital">Thimphu</field>
+        <field type="CharField" name="code">bt</field>
+        <field type="PositiveIntegerField" name="population">699847</field>
+        <field type="PositiveIntegerField" name="area">47000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="35" model="countrydata.country">
+        <field type="CharField" name="name">Bouvet Island</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">bv</field>
+        <field type="PositiveIntegerField" name="population">0</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">4</field>
+    </object>
+    <object pk="36" model="countrydata.country">
+        <field type="CharField" name="name">Botswana</field>
+        <field type="CharField" name="capital">Gaborone</field>
+        <field type="CharField" name="code">bw</field>
+        <field type="PositiveIntegerField" name="population">2029307</field>
+        <field type="PositiveIntegerField" name="area">600370</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="37" model="countrydata.country">
+        <field type="CharField" name="name">Belarus</field>
+        <field type="CharField" name="capital">Minsk</field>
+        <field type="CharField" name="code">by</field>
+        <field type="PositiveIntegerField" name="population">9685000</field>
+        <field type="PositiveIntegerField" name="area">207600</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="38" model="countrydata.country">
+        <field type="CharField" name="name">Belize</field>
+        <field type="CharField" name="capital">Belmopan</field>
+        <field type="CharField" name="code">bz</field>
+        <field type="PositiveIntegerField" name="population">314522</field>
+        <field type="PositiveIntegerField" name="area">22966</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="39" model="countrydata.country">
+        <field type="CharField" name="name">Canada</field>
+        <field type="CharField" name="capital">Ottawa</field>
+        <field type="CharField" name="code">ca</field>
+        <field type="PositiveIntegerField" name="population">33679000</field>
+        <field type="PositiveIntegerField" name="area">9984670</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="40" model="countrydata.country">
+        <field type="CharField" name="name">Cocos [Keeling] Islands</field>
+        <field type="CharField" name="capital">West Island</field>
+        <field type="CharField" name="code">cc</field>
+        <field type="PositiveIntegerField" name="population">628</field>
+        <field type="PositiveIntegerField" name="area">14</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="41" model="countrydata.country">
+        <field type="CharField" name="name">Congo [DRC]</field>
+        <field type="CharField" name="capital">Kinshasa</field>
+        <field type="CharField" name="code">cd</field>
+        <field type="PositiveIntegerField" name="population">70916439</field>
+        <field type="PositiveIntegerField" name="area">2345410</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="42" model="countrydata.country">
+        <field type="CharField" name="name">Central African Republic</field>
+        <field type="CharField" name="capital">Bangui</field>
+        <field type="CharField" name="code">cf</field>
+        <field type="PositiveIntegerField" name="population">4844927</field>
+        <field type="PositiveIntegerField" name="area">622984</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="43" model="countrydata.country">
+        <field type="CharField" name="name">Congo [Republic]</field>
+        <field type="CharField" name="capital">Brazzaville</field>
+        <field type="CharField" name="code">cg</field>
+        <field type="PositiveIntegerField" name="population">3039126</field>
+        <field type="PositiveIntegerField" name="area">342000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="44" model="countrydata.country">
+        <field type="CharField" name="name">Switzerland</field>
+        <field type="CharField" name="capital">Berne</field>
+        <field type="CharField" name="code">ch</field>
+        <field type="PositiveIntegerField" name="population">7581000</field>
+        <field type="PositiveIntegerField" name="area">41290</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="45" model="countrydata.country">
+        <field type="CharField" name="name">Ivory Coast</field>
+        <field type="CharField" name="capital">Yamoussoukro</field>
+        <field type="CharField" name="code">ci</field>
+        <field type="PositiveIntegerField" name="population">21058798</field>
+        <field type="PositiveIntegerField" name="area">322460</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="46" model="countrydata.country">
+        <field type="CharField" name="name">Cook Islands</field>
+        <field type="CharField" name="capital">Avarua</field>
+        <field type="CharField" name="code">ck</field>
+        <field type="PositiveIntegerField" name="population">21388</field>
+        <field type="PositiveIntegerField" name="area">240</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="47" model="countrydata.country">
+        <field type="CharField" name="name">Chile</field>
+        <field type="CharField" name="capital">Santiago</field>
+        <field type="CharField" name="code">cl</field>
+        <field type="PositiveIntegerField" name="population">16746491</field>
+        <field type="PositiveIntegerField" name="area">756950</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="48" model="countrydata.country">
+        <field type="CharField" name="name">Cameroon</field>
+        <field type="CharField" name="capital">Yaoundé</field>
+        <field type="CharField" name="code">cm</field>
+        <field type="PositiveIntegerField" name="population">19294149</field>
+        <field type="PositiveIntegerField" name="area">475440</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="49" model="countrydata.country">
+        <field type="CharField" name="name">China</field>
+        <field type="CharField" name="capital">Beijing</field>
+        <field type="CharField" name="code">cn</field>
+        <field type="PositiveIntegerField" name="population">1330044000</field>
+        <field type="PositiveIntegerField" name="area">9596960</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="50" model="countrydata.country">
+        <field type="CharField" name="name">Colombia</field>
+        <field type="CharField" name="capital">Bogotá</field>
+        <field type="CharField" name="code">co</field>
+        <field type="PositiveIntegerField" name="population">44205293</field>
+        <field type="PositiveIntegerField" name="area">1138910</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="51" model="countrydata.country">
+        <field type="CharField" name="name">Costa Rica</field>
+        <field type="CharField" name="capital">San José</field>
+        <field type="CharField" name="code">cr</field>
+        <field type="PositiveIntegerField" name="population">4516220</field>
+        <field type="PositiveIntegerField" name="area">51100</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="52" model="countrydata.country">
+        <field type="CharField" name="name">Serbia and Montenegro</field>
+        <field type="CharField" name="capital">Belgrade</field>
+        <field type="CharField" name="code">cs</field>
+        <field type="PositiveIntegerField" name="population">10829175</field>
+        <field type="PositiveIntegerField" name="area">102350</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="53" model="countrydata.country">
+        <field type="CharField" name="name">Cuba</field>
+        <field type="CharField" name="capital">Havana</field>
+        <field type="CharField" name="code">cu</field>
+        <field type="PositiveIntegerField" name="population">11423000</field>
+        <field type="PositiveIntegerField" name="area">110860</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="54" model="countrydata.country">
+        <field type="CharField" name="name">Cape Verde</field>
+        <field type="CharField" name="capital">Praia</field>
+        <field type="CharField" name="code">cv</field>
+        <field type="PositiveIntegerField" name="population">508659</field>
+        <field type="PositiveIntegerField" name="area">4033</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="55" model="countrydata.country">
+        <field type="CharField" name="name">Curacao</field>
+        <field type="CharField" name="capital">Willemstad</field>
+        <field type="CharField" name="code">cw</field>
+        <field type="PositiveIntegerField" name="population">141766</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="56" model="countrydata.country">
+        <field type="CharField" name="name">Christmas Island</field>
+        <field type="CharField" name="capital">Flying Fish Cove</field>
+        <field type="CharField" name="code">cx</field>
+        <field type="PositiveIntegerField" name="population">1500</field>
+        <field type="PositiveIntegerField" name="area">135</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="57" model="countrydata.country">
+        <field type="CharField" name="name">Cyprus</field>
+        <field type="CharField" name="capital">Nicosia</field>
+        <field type="CharField" name="code">cy</field>
+        <field type="PositiveIntegerField" name="population">1102677</field>
+        <field type="PositiveIntegerField" name="area">9250</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="58" model="countrydata.country">
+        <field type="CharField" name="name">Czech Republic</field>
+        <field type="CharField" name="capital">Prague</field>
+        <field type="CharField" name="code">cz</field>
+        <field type="PositiveIntegerField" name="population">10476000</field>
+        <field type="PositiveIntegerField" name="area">78866</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="59" model="countrydata.country">
+        <field type="CharField" name="name">Germany</field>
+        <field type="CharField" name="capital">Berlin</field>
+        <field type="CharField" name="code">de</field>
+        <field type="PositiveIntegerField" name="population">81802257</field>
+        <field type="PositiveIntegerField" name="area">357021</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="60" model="countrydata.country">
+        <field type="CharField" name="name">Djibouti</field>
+        <field type="CharField" name="capital">Djibouti</field>
+        <field type="CharField" name="code">dj</field>
+        <field type="PositiveIntegerField" name="population">740528</field>
+        <field type="PositiveIntegerField" name="area">23000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="61" model="countrydata.country">
+        <field type="CharField" name="name">Denmark</field>
+        <field type="CharField" name="capital">Copenhagen</field>
+        <field type="CharField" name="code">dk</field>
+        <field type="PositiveIntegerField" name="population">5484000</field>
+        <field type="PositiveIntegerField" name="area">43094</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="62" model="countrydata.country">
+        <field type="CharField" name="name">Dominica</field>
+        <field type="CharField" name="capital">Roseau</field>
+        <field type="CharField" name="code">dm</field>
+        <field type="PositiveIntegerField" name="population">72813</field>
+        <field type="PositiveIntegerField" name="area">754</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="63" model="countrydata.country">
+        <field type="CharField" name="name">Dominican Republic</field>
+        <field type="CharField" name="capital">Santo Domingo</field>
+        <field type="CharField" name="code">do</field>
+        <field type="PositiveIntegerField" name="population">9823821</field>
+        <field type="PositiveIntegerField" name="area">48730</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="64" model="countrydata.country">
+        <field type="CharField" name="name">Algeria</field>
+        <field type="CharField" name="capital">Algiers</field>
+        <field type="CharField" name="code">dz</field>
+        <field type="PositiveIntegerField" name="population">34586184</field>
+        <field type="PositiveIntegerField" name="area">2381740</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="65" model="countrydata.country">
+        <field type="CharField" name="name">Ecuador</field>
+        <field type="CharField" name="capital">Quito</field>
+        <field type="CharField" name="code">ec</field>
+        <field type="PositiveIntegerField" name="population">14790608</field>
+        <field type="PositiveIntegerField" name="area">283560</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="66" model="countrydata.country">
+        <field type="CharField" name="name">Estonia</field>
+        <field type="CharField" name="capital">Tallinn</field>
+        <field type="CharField" name="code">ee</field>
+        <field type="PositiveIntegerField" name="population">1291170</field>
+        <field type="PositiveIntegerField" name="area">45226</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="67" model="countrydata.country">
+        <field type="CharField" name="name">Egypt</field>
+        <field type="CharField" name="capital">Cairo</field>
+        <field type="CharField" name="code">eg</field>
+        <field type="PositiveIntegerField" name="population">80471869</field>
+        <field type="PositiveIntegerField" name="area">1001450</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="68" model="countrydata.country">
+        <field type="CharField" name="name">Western Sahara</field>
+        <field type="CharField" name="capital">El-Aaiun</field>
+        <field type="CharField" name="code">eh</field>
+        <field type="PositiveIntegerField" name="population">273008</field>
+        <field type="PositiveIntegerField" name="area">266000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="69" model="countrydata.country">
+        <field type="CharField" name="name">Eritrea</field>
+        <field type="CharField" name="capital">Asmara</field>
+        <field type="CharField" name="code">er</field>
+        <field type="PositiveIntegerField" name="population">5792984</field>
+        <field type="PositiveIntegerField" name="area">121320</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="70" model="countrydata.country">
+        <field type="CharField" name="name">Spain</field>
+        <field type="CharField" name="capital">Madrid</field>
+        <field type="CharField" name="code">es</field>
+        <field type="PositiveIntegerField" name="population">46505963</field>
+        <field type="PositiveIntegerField" name="area">504782</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="71" model="countrydata.country">
+        <field type="CharField" name="name">Ethiopia</field>
+        <field type="CharField" name="capital">Addis Ababa</field>
+        <field type="CharField" name="code">et</field>
+        <field type="PositiveIntegerField" name="population">88013491</field>
+        <field type="PositiveIntegerField" name="area">1127127</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="72" model="countrydata.country">
+        <field type="CharField" name="name">Finland</field>
+        <field type="CharField" name="capital">Helsinki</field>
+        <field type="CharField" name="code">fi</field>
+        <field type="PositiveIntegerField" name="population">5244000</field>
+        <field type="PositiveIntegerField" name="area">337030</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="73" model="countrydata.country">
+        <field type="CharField" name="name">Fiji</field>
+        <field type="CharField" name="capital">Suva</field>
+        <field type="CharField" name="code">fj</field>
+        <field type="PositiveIntegerField" name="population">875983</field>
+        <field type="PositiveIntegerField" name="area">18270</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="74" model="countrydata.country">
+        <field type="CharField" name="name">Falkland Islands</field>
+        <field type="CharField" name="capital">Stanley</field>
+        <field type="CharField" name="code">fk</field>
+        <field type="PositiveIntegerField" name="population">2638</field>
+        <field type="PositiveIntegerField" name="area">12173</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="75" model="countrydata.country">
+        <field type="CharField" name="name">Micronesia</field>
+        <field type="CharField" name="capital">Palikir</field>
+        <field type="CharField" name="code">fm</field>
+        <field type="PositiveIntegerField" name="population">107708</field>
+        <field type="PositiveIntegerField" name="area">702</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="76" model="countrydata.country">
+        <field type="CharField" name="name">Faroe Islands</field>
+        <field type="CharField" name="capital">Tórshavn</field>
+        <field type="CharField" name="code">fo</field>
+        <field type="PositiveIntegerField" name="population">48228</field>
+        <field type="PositiveIntegerField" name="area">1399</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="77" model="countrydata.country">
+        <field type="CharField" name="name">France</field>
+        <field type="CharField" name="capital">Paris</field>
+        <field type="CharField" name="code">fr</field>
+        <field type="PositiveIntegerField" name="population">64768389</field>
+        <field type="PositiveIntegerField" name="area">547030</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="78" model="countrydata.country">
+        <field type="CharField" name="name">Gabon</field>
+        <field type="CharField" name="capital">Libreville</field>
+        <field type="CharField" name="code">ga</field>
+        <field type="PositiveIntegerField" name="population">1545255</field>
+        <field type="PositiveIntegerField" name="area">267667</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="79" model="countrydata.country">
+        <field type="CharField" name="name">United Kingdom</field>
+        <field type="CharField" name="capital">London</field>
+        <field type="CharField" name="code">gb</field>
+        <field type="PositiveIntegerField" name="population">62348447</field>
+        <field type="PositiveIntegerField" name="area">244820</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="80" model="countrydata.country">
+        <field type="CharField" name="name">Grenada</field>
+        <field type="CharField" name="capital">St. Georges</field>
+        <field type="CharField" name="code">gd</field>
+        <field type="PositiveIntegerField" name="population">107818</field>
+        <field type="PositiveIntegerField" name="area">344</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="81" model="countrydata.country">
+        <field type="CharField" name="name">Georgia</field>
+        <field type="CharField" name="capital">Tbilisi</field>
+        <field type="CharField" name="code">ge</field>
+        <field type="PositiveIntegerField" name="population">4630000</field>
+        <field type="PositiveIntegerField" name="area">69700</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="82" model="countrydata.country">
+        <field type="CharField" name="name">French Guiana</field>
+        <field type="CharField" name="capital">Cayenne</field>
+        <field type="CharField" name="code">gf</field>
+        <field type="PositiveIntegerField" name="population">195506</field>
+        <field type="PositiveIntegerField" name="area">91000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="83" model="countrydata.country">
+        <field type="CharField" name="name">Guernsey</field>
+        <field type="CharField" name="capital">St Peter Port</field>
+        <field type="CharField" name="code">gg</field>
+        <field type="PositiveIntegerField" name="population">65228</field>
+        <field type="PositiveIntegerField" name="area">78</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="84" model="countrydata.country">
+        <field type="CharField" name="name">Ghana</field>
+        <field type="CharField" name="capital">Accra</field>
+        <field type="CharField" name="code">gh</field>
+        <field type="PositiveIntegerField" name="population">24339838</field>
+        <field type="PositiveIntegerField" name="area">239460</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="85" model="countrydata.country">
+        <field type="CharField" name="name">Gibraltar</field>
+        <field type="CharField" name="capital">Gibraltar</field>
+        <field type="CharField" name="code">gi</field>
+        <field type="PositiveIntegerField" name="population">27884</field>
+        <field type="PositiveIntegerField" name="area">6</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="86" model="countrydata.country">
+        <field type="CharField" name="name">Greenland</field>
+        <field type="CharField" name="capital">Nuuk</field>
+        <field type="CharField" name="code">gl</field>
+        <field type="PositiveIntegerField" name="population">56375</field>
+        <field type="PositiveIntegerField" name="area">2166086</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="87" model="countrydata.country">
+        <field type="CharField" name="name">Gambia</field>
+        <field type="CharField" name="capital">Banjul</field>
+        <field type="CharField" name="code">gm</field>
+        <field type="PositiveIntegerField" name="population">1593256</field>
+        <field type="PositiveIntegerField" name="area">11300</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="88" model="countrydata.country">
+        <field type="CharField" name="name">Guinea</field>
+        <field type="CharField" name="capital">Conakry</field>
+        <field type="CharField" name="code">gn</field>
+        <field type="PositiveIntegerField" name="population">10324025</field>
+        <field type="PositiveIntegerField" name="area">245857</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="89" model="countrydata.country">
+        <field type="CharField" name="name">Guadeloupe</field>
+        <field type="CharField" name="capital">Basse-Terre</field>
+        <field type="CharField" name="code">gp</field>
+        <field type="PositiveIntegerField" name="population">443000</field>
+        <field type="PositiveIntegerField" name="area">1780</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="90" model="countrydata.country">
+        <field type="CharField" name="name">Equatorial Guinea</field>
+        <field type="CharField" name="capital">Malabo</field>
+        <field type="CharField" name="code">gq</field>
+        <field type="PositiveIntegerField" name="population">1014999</field>
+        <field type="PositiveIntegerField" name="area">28051</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="91" model="countrydata.country">
+        <field type="CharField" name="name">Greece</field>
+        <field type="CharField" name="capital">Athens</field>
+        <field type="CharField" name="code">gr</field>
+        <field type="PositiveIntegerField" name="population">11000000</field>
+        <field type="PositiveIntegerField" name="area">131940</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="92" model="countrydata.country">
+        <field type="CharField" name="name">South Georgia and the South Sandwich Islands</field>
+        <field type="CharField" name="capital">Grytviken</field>
+        <field type="CharField" name="code">gs</field>
+        <field type="PositiveIntegerField" name="population">30</field>
+        <field type="PositiveIntegerField" name="area">3903</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">4</field>
+    </object>
+    <object pk="93" model="countrydata.country">
+        <field type="CharField" name="name">Guatemala</field>
+        <field type="CharField" name="capital">Guatemala City</field>
+        <field type="CharField" name="code">gt</field>
+        <field type="PositiveIntegerField" name="population">13550440</field>
+        <field type="PositiveIntegerField" name="area">108890</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="94" model="countrydata.country">
+        <field type="CharField" name="name">Guam</field>
+        <field type="CharField" name="capital">Hagåtña</field>
+        <field type="CharField" name="code">gu</field>
+        <field type="PositiveIntegerField" name="population">168564</field>
+        <field type="PositiveIntegerField" name="area">549</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="95" model="countrydata.country">
+        <field type="CharField" name="name">Guinea-Bissau</field>
+        <field type="CharField" name="capital">Bissau</field>
+        <field type="CharField" name="code">gw</field>
+        <field type="PositiveIntegerField" name="population">1565126</field>
+        <field type="PositiveIntegerField" name="area">36120</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="96" model="countrydata.country">
+        <field type="CharField" name="name">Guyana</field>
+        <field type="CharField" name="capital">Georgetown</field>
+        <field type="CharField" name="code">gy</field>
+        <field type="PositiveIntegerField" name="population">748486</field>
+        <field type="PositiveIntegerField" name="area">214970</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="97" model="countrydata.country">
+        <field type="CharField" name="name">Hong Kong</field>
+        <field type="CharField" name="capital">Hong Kong</field>
+        <field type="CharField" name="code">hk</field>
+        <field type="PositiveIntegerField" name="population">6898686</field>
+        <field type="PositiveIntegerField" name="area">1092</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="98" model="countrydata.country">
+        <field type="CharField" name="name">Heard Island and McDonald Islands</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">hm</field>
+        <field type="PositiveIntegerField" name="population">0</field>
+        <field type="PositiveIntegerField" name="area">412</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">4</field>
+    </object>
+    <object pk="99" model="countrydata.country">
+        <field type="CharField" name="name">Honduras</field>
+        <field type="CharField" name="capital">Tegucigalpa</field>
+        <field type="CharField" name="code">hn</field>
+        <field type="PositiveIntegerField" name="population">7989415</field>
+        <field type="PositiveIntegerField" name="area">112090</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="100" model="countrydata.country">
+        <field type="CharField" name="name">Croatia</field>
+        <field type="CharField" name="capital">Zagreb</field>
+        <field type="CharField" name="code">hr</field>
+        <field type="PositiveIntegerField" name="population">4491000</field>
+        <field type="PositiveIntegerField" name="area">56542</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="101" model="countrydata.country">
+        <field type="CharField" name="name">Haiti</field>
+        <field type="CharField" name="capital">Port-au-Prince</field>
+        <field type="CharField" name="code">ht</field>
+        <field type="PositiveIntegerField" name="population">9648924</field>
+        <field type="PositiveIntegerField" name="area">27750</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="102" model="countrydata.country">
+        <field type="CharField" name="name">Hungary</field>
+        <field type="CharField" name="capital">Budapest</field>
+        <field type="CharField" name="code">hu</field>
+        <field type="PositiveIntegerField" name="population">9930000</field>
+        <field type="PositiveIntegerField" name="area">93030</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="103" model="countrydata.country">
+        <field type="CharField" name="name">Indonesia</field>
+        <field type="CharField" name="capital">Jakarta</field>
+        <field type="CharField" name="code">id</field>
+        <field type="PositiveIntegerField" name="population">242968342</field>
+        <field type="PositiveIntegerField" name="area">1919440</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="104" model="countrydata.country">
+        <field type="CharField" name="name">Ireland</field>
+        <field type="CharField" name="capital">Dublin</field>
+        <field type="CharField" name="code">ie</field>
+        <field type="PositiveIntegerField" name="population">4622917</field>
+        <field type="PositiveIntegerField" name="area">70280</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="105" model="countrydata.country">
+        <field type="CharField" name="name">Israel</field>
+        <field type="CharField" name="capital">Jerusalem</field>
+        <field type="CharField" name="code">il</field>
+        <field type="PositiveIntegerField" name="population">7353985</field>
+        <field type="PositiveIntegerField" name="area">20770</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="106" model="countrydata.country">
+        <field type="CharField" name="name">Isle of Man</field>
+        <field type="CharField" name="capital">DouglasIsle of Man</field>
+        <field type="CharField" name="code">im</field>
+        <field type="PositiveIntegerField" name="population">75049</field>
+        <field type="PositiveIntegerField" name="area">572</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="107" model="countrydata.country">
+        <field type="CharField" name="name">India</field>
+        <field type="CharField" name="capital">New Delhi</field>
+        <field type="CharField" name="code">in</field>
+        <field type="PositiveIntegerField" name="population">1173108018</field>
+        <field type="PositiveIntegerField" name="area">3287590</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="108" model="countrydata.country">
+        <field type="CharField" name="name">British Indian Ocean Territory</field>
+        <field type="CharField" name="capital">Diego Garcia</field>
+        <field type="CharField" name="code">io</field>
+        <field type="PositiveIntegerField" name="population">4000</field>
+        <field type="PositiveIntegerField" name="area">60</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="109" model="countrydata.country">
+        <field type="CharField" name="name">Iraq</field>
+        <field type="CharField" name="capital">Baghdad</field>
+        <field type="CharField" name="code">iq</field>
+        <field type="PositiveIntegerField" name="population">29671605</field>
+        <field type="PositiveIntegerField" name="area">437072</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="110" model="countrydata.country">
+        <field type="CharField" name="name">Iran</field>
+        <field type="CharField" name="capital">Tehran</field>
+        <field type="CharField" name="code">ir</field>
+        <field type="PositiveIntegerField" name="population">76923300</field>
+        <field type="PositiveIntegerField" name="area">1648000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="111" model="countrydata.country">
+        <field type="CharField" name="name">Iceland</field>
+        <field type="CharField" name="capital">Reykjavík</field>
+        <field type="CharField" name="code">is</field>
+        <field type="PositiveIntegerField" name="population">308910</field>
+        <field type="PositiveIntegerField" name="area">103000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="112" model="countrydata.country">
+        <field type="CharField" name="name">Italy</field>
+        <field type="CharField" name="capital">Rome</field>
+        <field type="CharField" name="code">it</field>
+        <field type="PositiveIntegerField" name="population">58145000</field>
+        <field type="PositiveIntegerField" name="area">301230</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="113" model="countrydata.country">
+        <field type="CharField" name="name">Jersey</field>
+        <field type="CharField" name="capital">Saint Helier</field>
+        <field type="CharField" name="code">je</field>
+        <field type="PositiveIntegerField" name="population">90812</field>
+        <field type="PositiveIntegerField" name="area">116</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="114" model="countrydata.country">
+        <field type="CharField" name="name">Jamaica</field>
+        <field type="CharField" name="capital">Kingston</field>
+        <field type="CharField" name="code">jm</field>
+        <field type="PositiveIntegerField" name="population">2847232</field>
+        <field type="PositiveIntegerField" name="area">10991</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="115" model="countrydata.country">
+        <field type="CharField" name="name">Jordan</field>
+        <field type="CharField" name="capital">Amman</field>
+        <field type="CharField" name="code">jo</field>
+        <field type="PositiveIntegerField" name="population">6407085</field>
+        <field type="PositiveIntegerField" name="area">92300</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="116" model="countrydata.country">
+        <field type="CharField" name="name">Japan</field>
+        <field type="CharField" name="capital">Tokyo</field>
+        <field type="CharField" name="code">jp</field>
+        <field type="PositiveIntegerField" name="population">127288000</field>
+        <field type="PositiveIntegerField" name="area">377835</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="117" model="countrydata.country">
+        <field type="CharField" name="name">Kenya</field>
+        <field type="CharField" name="capital">Nairobi</field>
+        <field type="CharField" name="code">ke</field>
+        <field type="PositiveIntegerField" name="population">40046566</field>
+        <field type="PositiveIntegerField" name="area">582650</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="118" model="countrydata.country">
+        <field type="CharField" name="name">Kyrgyzstan</field>
+        <field type="CharField" name="capital">Bishkek</field>
+        <field type="CharField" name="code">kg</field>
+        <field type="PositiveIntegerField" name="population">5508626</field>
+        <field type="PositiveIntegerField" name="area">198500</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="119" model="countrydata.country">
+        <field type="CharField" name="name">Cambodia</field>
+        <field type="CharField" name="capital">Phnom Penh</field>
+        <field type="CharField" name="code">kh</field>
+        <field type="PositiveIntegerField" name="population">14453680</field>
+        <field type="PositiveIntegerField" name="area">181040</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="120" model="countrydata.country">
+        <field type="CharField" name="name">Kiribati</field>
+        <field type="CharField" name="capital">Tarawa</field>
+        <field type="CharField" name="code">ki</field>
+        <field type="PositiveIntegerField" name="population">92533</field>
+        <field type="PositiveIntegerField" name="area">811</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="121" model="countrydata.country">
+        <field type="CharField" name="name">Comoros</field>
+        <field type="CharField" name="capital">Moroni</field>
+        <field type="CharField" name="code">km</field>
+        <field type="PositiveIntegerField" name="population">773407</field>
+        <field type="PositiveIntegerField" name="area">2170</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="122" model="countrydata.country">
+        <field type="CharField" name="name">Saint Kitts and Nevis</field>
+        <field type="CharField" name="capital">Basseterre</field>
+        <field type="CharField" name="code">kn</field>
+        <field type="PositiveIntegerField" name="population">49898</field>
+        <field type="PositiveIntegerField" name="area">261</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="123" model="countrydata.country">
+        <field type="CharField" name="name">North Korea</field>
+        <field type="CharField" name="capital">Pyongyang</field>
+        <field type="CharField" name="code">kp</field>
+        <field type="PositiveIntegerField" name="population">22912177</field>
+        <field type="PositiveIntegerField" name="area">120540</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="124" model="countrydata.country">
+        <field type="CharField" name="name">South Korea</field>
+        <field type="CharField" name="capital">Seoul</field>
+        <field type="CharField" name="code">kr</field>
+        <field type="PositiveIntegerField" name="population">48422644</field>
+        <field type="PositiveIntegerField" name="area">98480</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="125" model="countrydata.country">
+        <field type="CharField" name="name">Kuwait</field>
+        <field type="CharField" name="capital">Kuwait City</field>
+        <field type="CharField" name="code">kw</field>
+        <field type="PositiveIntegerField" name="population">2789132</field>
+        <field type="PositiveIntegerField" name="area">17820</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="126" model="countrydata.country">
+        <field type="CharField" name="name">Cayman Islands</field>
+        <field type="CharField" name="capital">George Town</field>
+        <field type="CharField" name="code">ky</field>
+        <field type="PositiveIntegerField" name="population">44270</field>
+        <field type="PositiveIntegerField" name="area">262</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="127" model="countrydata.country">
+        <field type="CharField" name="name">Kazakhstan</field>
+        <field type="CharField" name="capital">Astana</field>
+        <field type="CharField" name="code">kz</field>
+        <field type="PositiveIntegerField" name="population">15340000</field>
+        <field type="PositiveIntegerField" name="area">2717300</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="128" model="countrydata.country">
+        <field type="CharField" name="name">Laos</field>
+        <field type="CharField" name="capital">Vientiane</field>
+        <field type="CharField" name="code">la</field>
+        <field type="PositiveIntegerField" name="population">6368162</field>
+        <field type="PositiveIntegerField" name="area">236800</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="129" model="countrydata.country">
+        <field type="CharField" name="name">Lebanon</field>
+        <field type="CharField" name="capital">Beirut</field>
+        <field type="CharField" name="code">lb</field>
+        <field type="PositiveIntegerField" name="population">4125247</field>
+        <field type="PositiveIntegerField" name="area">10400</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="130" model="countrydata.country">
+        <field type="CharField" name="name">Saint Lucia</field>
+        <field type="CharField" name="capital">Castries</field>
+        <field type="CharField" name="code">lc</field>
+        <field type="PositiveIntegerField" name="population">160922</field>
+        <field type="PositiveIntegerField" name="area">616</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="131" model="countrydata.country">
+        <field type="CharField" name="name">Liechtenstein</field>
+        <field type="CharField" name="capital">Vaduz</field>
+        <field type="CharField" name="code">li</field>
+        <field type="PositiveIntegerField" name="population">35000</field>
+        <field type="PositiveIntegerField" name="area">160</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="132" model="countrydata.country">
+        <field type="CharField" name="name">Sri Lanka</field>
+        <field type="CharField" name="capital">Colombo</field>
+        <field type="CharField" name="code">lk</field>
+        <field type="PositiveIntegerField" name="population">21513990</field>
+        <field type="PositiveIntegerField" name="area">65610</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="133" model="countrydata.country">
+        <field type="CharField" name="name">Liberia</field>
+        <field type="CharField" name="capital">Monrovia</field>
+        <field type="CharField" name="code">lr</field>
+        <field type="PositiveIntegerField" name="population">3685076</field>
+        <field type="PositiveIntegerField" name="area">111370</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="134" model="countrydata.country">
+        <field type="CharField" name="name">Lesotho</field>
+        <field type="CharField" name="capital">Maseru</field>
+        <field type="CharField" name="code">ls</field>
+        <field type="PositiveIntegerField" name="population">1919552</field>
+        <field type="PositiveIntegerField" name="area">30355</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="135" model="countrydata.country">
+        <field type="CharField" name="name">Lithuania</field>
+        <field type="CharField" name="capital">Vilnius</field>
+        <field type="CharField" name="code">lt</field>
+        <field type="PositiveIntegerField" name="population">3565000</field>
+        <field type="PositiveIntegerField" name="area">65200</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="136" model="countrydata.country">
+        <field type="CharField" name="name">Luxembourg</field>
+        <field type="CharField" name="capital">Luxembourg</field>
+        <field type="CharField" name="code">lu</field>
+        <field type="PositiveIntegerField" name="population">497538</field>
+        <field type="PositiveIntegerField" name="area">2586</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="137" model="countrydata.country">
+        <field type="CharField" name="name">Latvia</field>
+        <field type="CharField" name="capital">Riga</field>
+        <field type="CharField" name="code">lv</field>
+        <field type="PositiveIntegerField" name="population">2217969</field>
+        <field type="PositiveIntegerField" name="area">64589</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="138" model="countrydata.country">
+        <field type="CharField" name="name">Libya</field>
+        <field type="CharField" name="capital">Tripolis</field>
+        <field type="CharField" name="code">ly</field>
+        <field type="PositiveIntegerField" name="population">6461454</field>
+        <field type="PositiveIntegerField" name="area">1759540</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="139" model="countrydata.country">
+        <field type="CharField" name="name">Morocco</field>
+        <field type="CharField" name="capital">Rabat</field>
+        <field type="CharField" name="code">ma</field>
+        <field type="PositiveIntegerField" name="population">31627428</field>
+        <field type="PositiveIntegerField" name="area">446550</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="140" model="countrydata.country">
+        <field type="CharField" name="name">Monaco</field>
+        <field type="CharField" name="capital">Monaco</field>
+        <field type="CharField" name="code">mc</field>
+        <field type="PositiveIntegerField" name="population">32965</field>
+        <field type="PositiveIntegerField" name="area">2</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="141" model="countrydata.country">
+        <field type="CharField" name="name">Moldova</field>
+        <field type="CharField" name="capital">Chişinău</field>
+        <field type="CharField" name="code">md</field>
+        <field type="PositiveIntegerField" name="population">4324000</field>
+        <field type="PositiveIntegerField" name="area">33843</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="142" model="countrydata.country">
+        <field type="CharField" name="name">Montenegro</field>
+        <field type="CharField" name="capital">Podgorica</field>
+        <field type="CharField" name="code">me</field>
+        <field type="PositiveIntegerField" name="population">666730</field>
+        <field type="PositiveIntegerField" name="area">14026</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="143" model="countrydata.country">
+        <field type="CharField" name="name">Saint Martin</field>
+        <field type="CharField" name="capital">Marigot</field>
+        <field type="CharField" name="code">mf</field>
+        <field type="PositiveIntegerField" name="population">35925</field>
+        <field type="PositiveIntegerField" name="area">53</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="144" model="countrydata.country">
+        <field type="CharField" name="name">Madagascar</field>
+        <field type="CharField" name="capital">Antananarivo</field>
+        <field type="CharField" name="code">mg</field>
+        <field type="PositiveIntegerField" name="population">21281844</field>
+        <field type="PositiveIntegerField" name="area">587040</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="145" model="countrydata.country">
+        <field type="CharField" name="name">Marshall Islands</field>
+        <field type="CharField" name="capital">Majuro</field>
+        <field type="CharField" name="code">mh</field>
+        <field type="PositiveIntegerField" name="population">65859</field>
+        <field type="PositiveIntegerField" name="area">181</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="146" model="countrydata.country">
+        <field type="CharField" name="name">Macedonia</field>
+        <field type="CharField" name="capital">Skopje</field>
+        <field type="CharField" name="code">mk</field>
+        <field type="PositiveIntegerField" name="population">2061000</field>
+        <field type="PositiveIntegerField" name="area">25333</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="147" model="countrydata.country">
+        <field type="CharField" name="name">Mali</field>
+        <field type="CharField" name="capital">Bamako</field>
+        <field type="CharField" name="code">ml</field>
+        <field type="PositiveIntegerField" name="population">13796354</field>
+        <field type="PositiveIntegerField" name="area">1240000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="148" model="countrydata.country">
+        <field type="CharField" name="name">Myanmar [Burma]</field>
+        <field type="CharField" name="capital">Nay Pyi Taw</field>
+        <field type="CharField" name="code">mm</field>
+        <field type="PositiveIntegerField" name="population">53414374</field>
+        <field type="PositiveIntegerField" name="area">678500</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="149" model="countrydata.country">
+        <field type="CharField" name="name">Mongolia</field>
+        <field type="CharField" name="capital">Ulan Bator</field>
+        <field type="CharField" name="code">mn</field>
+        <field type="PositiveIntegerField" name="population">3086918</field>
+        <field type="PositiveIntegerField" name="area">1565000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="150" model="countrydata.country">
+        <field type="CharField" name="name">Macau</field>
+        <field type="CharField" name="capital">Macao</field>
+        <field type="CharField" name="code">mo</field>
+        <field type="PositiveIntegerField" name="population">449198</field>
+        <field type="PositiveIntegerField" name="area">254</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="151" model="countrydata.country">
+        <field type="CharField" name="name">Northern Mariana Islands</field>
+        <field type="CharField" name="capital">Saipan</field>
+        <field type="CharField" name="code">mp</field>
+        <field type="PositiveIntegerField" name="population">86000</field>
+        <field type="PositiveIntegerField" name="area">477</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="152" model="countrydata.country">
+        <field type="CharField" name="name">Martinique</field>
+        <field type="CharField" name="capital">Fort-de-France</field>
+        <field type="CharField" name="code">mq</field>
+        <field type="PositiveIntegerField" name="population">432900</field>
+        <field type="PositiveIntegerField" name="area">1100</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="153" model="countrydata.country">
+        <field type="CharField" name="name">Mauritania</field>
+        <field type="CharField" name="capital">Nouakchott</field>
+        <field type="CharField" name="code">mr</field>
+        <field type="PositiveIntegerField" name="population">3205060</field>
+        <field type="PositiveIntegerField" name="area">1030700</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="154" model="countrydata.country">
+        <field type="CharField" name="name">Montserrat</field>
+        <field type="CharField" name="capital">Plymouth</field>
+        <field type="CharField" name="code">ms</field>
+        <field type="PositiveIntegerField" name="population">9341</field>
+        <field type="PositiveIntegerField" name="area">102</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="155" model="countrydata.country">
+        <field type="CharField" name="name">Malta</field>
+        <field type="CharField" name="capital">Valletta</field>
+        <field type="CharField" name="code">mt</field>
+        <field type="PositiveIntegerField" name="population">403000</field>
+        <field type="PositiveIntegerField" name="area">316</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="156" model="countrydata.country">
+        <field type="CharField" name="name">Mauritius</field>
+        <field type="CharField" name="capital">Port Louis</field>
+        <field type="CharField" name="code">mu</field>
+        <field type="PositiveIntegerField" name="population">1294104</field>
+        <field type="PositiveIntegerField" name="area">2040</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="157" model="countrydata.country">
+        <field type="CharField" name="name">Maldives</field>
+        <field type="CharField" name="capital">Malé</field>
+        <field type="CharField" name="code">mv</field>
+        <field type="PositiveIntegerField" name="population">395650</field>
+        <field type="PositiveIntegerField" name="area">300</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="158" model="countrydata.country">
+        <field type="CharField" name="name">Malawi</field>
+        <field type="CharField" name="capital">Lilongwe</field>
+        <field type="CharField" name="code">mw</field>
+        <field type="PositiveIntegerField" name="population">15447500</field>
+        <field type="PositiveIntegerField" name="area">118480</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="159" model="countrydata.country">
+        <field type="CharField" name="name">Mexico</field>
+        <field type="CharField" name="capital">Mexico City</field>
+        <field type="CharField" name="code">mx</field>
+        <field type="PositiveIntegerField" name="population">112468855</field>
+        <field type="PositiveIntegerField" name="area">1972550</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="160" model="countrydata.country">
+        <field type="CharField" name="name">Malaysia</field>
+        <field type="CharField" name="capital">Kuala Lumpur</field>
+        <field type="CharField" name="code">my</field>
+        <field type="PositiveIntegerField" name="population">28274729</field>
+        <field type="PositiveIntegerField" name="area">329750</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="161" model="countrydata.country">
+        <field type="CharField" name="name">Mozambique</field>
+        <field type="CharField" name="capital">Maputo</field>
+        <field type="CharField" name="code">mz</field>
+        <field type="PositiveIntegerField" name="population">22061451</field>
+        <field type="PositiveIntegerField" name="area">801590</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="162" model="countrydata.country">
+        <field type="CharField" name="name">Namibia</field>
+        <field type="CharField" name="capital">Windhoek</field>
+        <field type="CharField" name="code">na</field>
+        <field type="PositiveIntegerField" name="population">2128471</field>
+        <field type="PositiveIntegerField" name="area">825418</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="163" model="countrydata.country">
+        <field type="CharField" name="name">New Caledonia</field>
+        <field type="CharField" name="capital">Nouméa</field>
+        <field type="CharField" name="code">nc</field>
+        <field type="PositiveIntegerField" name="population">216494</field>
+        <field type="PositiveIntegerField" name="area">19060</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="164" model="countrydata.country">
+        <field type="CharField" name="name">Niger</field>
+        <field type="CharField" name="capital">Niamey</field>
+        <field type="CharField" name="code">ne</field>
+        <field type="PositiveIntegerField" name="population">15878271</field>
+        <field type="PositiveIntegerField" name="area">1267000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="165" model="countrydata.country">
+        <field type="CharField" name="name">Norfolk Island</field>
+        <field type="CharField" name="capital">Kingston</field>
+        <field type="CharField" name="code">nf</field>
+        <field type="PositiveIntegerField" name="population">1828</field>
+        <field type="PositiveIntegerField" name="area">346</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="166" model="countrydata.country">
+        <field type="CharField" name="name">Nigeria</field>
+        <field type="CharField" name="capital">Abuja</field>
+        <field type="CharField" name="code">ng</field>
+        <field type="PositiveIntegerField" name="population">154000000</field>
+        <field type="PositiveIntegerField" name="area">923768</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="167" model="countrydata.country">
+        <field type="CharField" name="name">Nicaragua</field>
+        <field type="CharField" name="capital">Managua</field>
+        <field type="CharField" name="code">ni</field>
+        <field type="PositiveIntegerField" name="population">5995928</field>
+        <field type="PositiveIntegerField" name="area">129494</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="168" model="countrydata.country">
+        <field type="CharField" name="name">Netherlands</field>
+        <field type="CharField" name="capital">Amsterdam</field>
+        <field type="CharField" name="code">nl</field>
+        <field type="PositiveIntegerField" name="population">16645000</field>
+        <field type="PositiveIntegerField" name="area">41526</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="169" model="countrydata.country">
+        <field type="CharField" name="name">Norway</field>
+        <field type="CharField" name="capital">Oslo</field>
+        <field type="CharField" name="code">no</field>
+        <field type="PositiveIntegerField" name="population">4907000</field>
+        <field type="PositiveIntegerField" name="area">324220</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="170" model="countrydata.country">
+        <field type="CharField" name="name">Nepal</field>
+        <field type="CharField" name="capital">Kathmandu</field>
+        <field type="CharField" name="code">np</field>
+        <field type="PositiveIntegerField" name="population">28951852</field>
+        <field type="PositiveIntegerField" name="area">140800</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="171" model="countrydata.country">
+        <field type="CharField" name="name">Nauru</field>
+        <field type="CharField" name="capital">Yaren</field>
+        <field type="CharField" name="code">nr</field>
+        <field type="PositiveIntegerField" name="population">10065</field>
+        <field type="PositiveIntegerField" name="area">21</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="172" model="countrydata.country">
+        <field type="CharField" name="name">Niue</field>
+        <field type="CharField" name="capital">Alofi</field>
+        <field type="CharField" name="code">nu</field>
+        <field type="PositiveIntegerField" name="population">2166</field>
+        <field type="PositiveIntegerField" name="area">260</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="173" model="countrydata.country">
+        <field type="CharField" name="name">New Zealand</field>
+        <field type="CharField" name="capital">Wellington</field>
+        <field type="CharField" name="code">nz</field>
+        <field type="PositiveIntegerField" name="population">4252277</field>
+        <field type="PositiveIntegerField" name="area">268680</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="174" model="countrydata.country">
+        <field type="CharField" name="name">Oman</field>
+        <field type="CharField" name="capital">Muscat</field>
+        <field type="CharField" name="code">om</field>
+        <field type="PositiveIntegerField" name="population">2967717</field>
+        <field type="PositiveIntegerField" name="area">212460</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="175" model="countrydata.country">
+        <field type="CharField" name="name">Panama</field>
+        <field type="CharField" name="capital">Panama City</field>
+        <field type="CharField" name="code">pa</field>
+        <field type="PositiveIntegerField" name="population">3410676</field>
+        <field type="PositiveIntegerField" name="area">78200</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="176" model="countrydata.country">
+        <field type="CharField" name="name">Peru</field>
+        <field type="CharField" name="capital">Lima</field>
+        <field type="CharField" name="code">pe</field>
+        <field type="PositiveIntegerField" name="population">29907003</field>
+        <field type="PositiveIntegerField" name="area">1285220</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="177" model="countrydata.country">
+        <field type="CharField" name="name">French Polynesia</field>
+        <field type="CharField" name="capital">Papeete</field>
+        <field type="CharField" name="code">pf</field>
+        <field type="PositiveIntegerField" name="population">270485</field>
+        <field type="PositiveIntegerField" name="area">4167</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="178" model="countrydata.country">
+        <field type="CharField" name="name">Papua New Guinea</field>
+        <field type="CharField" name="capital">Port Moresby</field>
+        <field type="CharField" name="code">pg</field>
+        <field type="PositiveIntegerField" name="population">6064515</field>
+        <field type="PositiveIntegerField" name="area">462840</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="179" model="countrydata.country">
+        <field type="CharField" name="name">Philippines</field>
+        <field type="CharField" name="capital">Manila</field>
+        <field type="CharField" name="code">ph</field>
+        <field type="PositiveIntegerField" name="population">99900177</field>
+        <field type="PositiveIntegerField" name="area">300000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="180" model="countrydata.country">
+        <field type="CharField" name="name">Pakistan</field>
+        <field type="CharField" name="capital">Islamabad</field>
+        <field type="CharField" name="code">pk</field>
+        <field type="PositiveIntegerField" name="population">184404791</field>
+        <field type="PositiveIntegerField" name="area">803940</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="181" model="countrydata.country">
+        <field type="CharField" name="name">Poland</field>
+        <field type="CharField" name="capital">Warsaw</field>
+        <field type="CharField" name="code">pl</field>
+        <field type="PositiveIntegerField" name="population">38500000</field>
+        <field type="PositiveIntegerField" name="area">312685</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="182" model="countrydata.country">
+        <field type="CharField" name="name">Saint Pierre and Miquelon</field>
+        <field type="CharField" name="capital">Saint-Pierre</field>
+        <field type="CharField" name="code">pm</field>
+        <field type="PositiveIntegerField" name="population">7012</field>
+        <field type="PositiveIntegerField" name="area">242</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="183" model="countrydata.country">
+        <field type="CharField" name="name">Pitcairn Islands</field>
+        <field type="CharField" name="capital">Adamstown</field>
+        <field type="CharField" name="code">pn</field>
+        <field type="PositiveIntegerField" name="population">46</field>
+        <field type="PositiveIntegerField" name="area">47</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="184" model="countrydata.country">
+        <field type="CharField" name="name">Puerto Rico</field>
+        <field type="CharField" name="capital">San Juan</field>
+        <field type="CharField" name="code">pr</field>
+        <field type="PositiveIntegerField" name="population">3916632</field>
+        <field type="PositiveIntegerField" name="area">9104</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="185" model="countrydata.country">
+        <field type="CharField" name="name">Palestinian Territories</field>
+        <field type="CharField" name="capital">East Jerusalem</field>
+        <field type="CharField" name="code">ps</field>
+        <field type="PositiveIntegerField" name="population">3800000</field>
+        <field type="PositiveIntegerField" name="area">5970</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="186" model="countrydata.country">
+        <field type="CharField" name="name">Portugal</field>
+        <field type="CharField" name="capital">Lisbon</field>
+        <field type="CharField" name="code">pt</field>
+        <field type="PositiveIntegerField" name="population">10676000</field>
+        <field type="PositiveIntegerField" name="area">92391</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="187" model="countrydata.country">
+        <field type="CharField" name="name">Palau</field>
+        <field type="CharField" name="capital">Ngerulmud</field>
+        <field type="CharField" name="code">pw</field>
+        <field type="PositiveIntegerField" name="population">20303</field>
+        <field type="PositiveIntegerField" name="area">458</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="188" model="countrydata.country">
+        <field type="CharField" name="name">Paraguay</field>
+        <field type="CharField" name="capital">Asunción</field>
+        <field type="CharField" name="code">py</field>
+        <field type="PositiveIntegerField" name="population">6375830</field>
+        <field type="PositiveIntegerField" name="area">406750</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="189" model="countrydata.country">
+        <field type="CharField" name="name">Qatar</field>
+        <field type="CharField" name="capital">Doha</field>
+        <field type="CharField" name="code">qa</field>
+        <field type="PositiveIntegerField" name="population">840926</field>
+        <field type="PositiveIntegerField" name="area">11437</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="190" model="countrydata.country">
+        <field type="CharField" name="name">Réunion</field>
+        <field type="CharField" name="capital">Saint-Denis</field>
+        <field type="CharField" name="code">re</field>
+        <field type="PositiveIntegerField" name="population">776948</field>
+        <field type="PositiveIntegerField" name="area">2517</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="191" model="countrydata.country">
+        <field type="CharField" name="name">Romania</field>
+        <field type="CharField" name="capital">Bucharest</field>
+        <field type="CharField" name="code">ro</field>
+        <field type="PositiveIntegerField" name="population">21959278</field>
+        <field type="PositiveIntegerField" name="area">237500</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="192" model="countrydata.country">
+        <field type="CharField" name="name">Serbia</field>
+        <field type="CharField" name="capital">Belgrade</field>
+        <field type="CharField" name="code">rs</field>
+        <field type="PositiveIntegerField" name="population">7344847</field>
+        <field type="PositiveIntegerField" name="area">88361</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="193" model="countrydata.country">
+        <field type="CharField" name="name">Russia</field>
+        <field type="CharField" name="capital">Moscow</field>
+        <field type="CharField" name="code">ru</field>
+        <field type="PositiveIntegerField" name="population">140702000</field>
+        <field type="PositiveIntegerField" name="area">17100000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="194" model="countrydata.country">
+        <field type="CharField" name="name">Rwanda</field>
+        <field type="CharField" name="capital">Kigali</field>
+        <field type="CharField" name="code">rw</field>
+        <field type="PositiveIntegerField" name="population">11055976</field>
+        <field type="PositiveIntegerField" name="area">26338</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="195" model="countrydata.country">
+        <field type="CharField" name="name">Saudi Arabia</field>
+        <field type="CharField" name="capital">Riyadh</field>
+        <field type="CharField" name="code">sa</field>
+        <field type="PositiveIntegerField" name="population">25731776</field>
+        <field type="PositiveIntegerField" name="area">1960582</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="196" model="countrydata.country">
+        <field type="CharField" name="name">Solomon Islands</field>
+        <field type="CharField" name="capital">Honiara</field>
+        <field type="CharField" name="code">sb</field>
+        <field type="PositiveIntegerField" name="population">559198</field>
+        <field type="PositiveIntegerField" name="area">28450</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="197" model="countrydata.country">
+        <field type="CharField" name="name">Seychelles</field>
+        <field type="CharField" name="capital">Victoria</field>
+        <field type="CharField" name="code">sc</field>
+        <field type="PositiveIntegerField" name="population">88340</field>
+        <field type="PositiveIntegerField" name="area">455</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="198" model="countrydata.country">
+        <field type="CharField" name="name">Sudan</field>
+        <field type="CharField" name="capital">Khartoum</field>
+        <field type="CharField" name="code">sd</field>
+        <field type="PositiveIntegerField" name="population">43939598</field>
+        <field type="PositiveIntegerField" name="area">2505810</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="199" model="countrydata.country">
+        <field type="CharField" name="name">Sweden</field>
+        <field type="CharField" name="capital">Stockholm</field>
+        <field type="CharField" name="code">se</field>
+        <field type="PositiveIntegerField" name="population">9045000</field>
+        <field type="PositiveIntegerField" name="area">449964</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="200" model="countrydata.country">
+        <field type="CharField" name="name">Singapore</field>
+        <field type="CharField" name="capital">Singapur</field>
+        <field type="CharField" name="code">sg</field>
+        <field type="PositiveIntegerField" name="population">4701069</field>
+        <field type="PositiveIntegerField" name="area">6927</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="201" model="countrydata.country">
+        <field type="CharField" name="name">Saint Helena</field>
+        <field type="CharField" name="capital">Jamestown</field>
+        <field type="CharField" name="code">sh</field>
+        <field type="PositiveIntegerField" name="population">7460</field>
+        <field type="PositiveIntegerField" name="area">410</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="202" model="countrydata.country">
+        <field type="CharField" name="name">Slovenia</field>
+        <field type="CharField" name="capital">Ljubljana</field>
+        <field type="CharField" name="code">si</field>
+        <field type="PositiveIntegerField" name="population">2007000</field>
+        <field type="PositiveIntegerField" name="area">20273</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="203" model="countrydata.country">
+        <field type="CharField" name="name">Svalbard and Jan Mayen</field>
+        <field type="CharField" name="capital">Longyearbyen</field>
+        <field type="CharField" name="code">sj</field>
+        <field type="PositiveIntegerField" name="population">2550</field>
+        <field type="PositiveIntegerField" name="area">62049</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="204" model="countrydata.country">
+        <field type="CharField" name="name">Slovakia</field>
+        <field type="CharField" name="capital">Bratislava</field>
+        <field type="CharField" name="code">sk</field>
+        <field type="PositiveIntegerField" name="population">5455000</field>
+        <field type="PositiveIntegerField" name="area">48845</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="205" model="countrydata.country">
+        <field type="CharField" name="name">Sierra Leone</field>
+        <field type="CharField" name="capital">Freetown</field>
+        <field type="CharField" name="code">sl</field>
+        <field type="PositiveIntegerField" name="population">5245695</field>
+        <field type="PositiveIntegerField" name="area">71740</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="206" model="countrydata.country">
+        <field type="CharField" name="name">San Marino</field>
+        <field type="CharField" name="capital">San Marino</field>
+        <field type="CharField" name="code">sm</field>
+        <field type="PositiveIntegerField" name="population">31477</field>
+        <field type="PositiveIntegerField" name="area">612</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="207" model="countrydata.country">
+        <field type="CharField" name="name">Senegal</field>
+        <field type="CharField" name="capital">Dakar</field>
+        <field type="CharField" name="code">sn</field>
+        <field type="PositiveIntegerField" name="population">12323252</field>
+        <field type="PositiveIntegerField" name="area">196190</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="208" model="countrydata.country">
+        <field type="CharField" name="name">Somalia</field>
+        <field type="CharField" name="capital">Mogadishu</field>
+        <field type="CharField" name="code">so</field>
+        <field type="PositiveIntegerField" name="population">10112453</field>
+        <field type="PositiveIntegerField" name="area">637657</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="209" model="countrydata.country">
+        <field type="CharField" name="name">Suriname</field>
+        <field type="CharField" name="capital">Paramaribo</field>
+        <field type="CharField" name="code">sr</field>
+        <field type="PositiveIntegerField" name="population">492829</field>
+        <field type="PositiveIntegerField" name="area">163270</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="210" model="countrydata.country">
+        <field type="CharField" name="name">São Tomé and Príncipe</field>
+        <field type="CharField" name="capital">São Tomé</field>
+        <field type="CharField" name="code">st</field>
+        <field type="PositiveIntegerField" name="population">175808</field>
+        <field type="PositiveIntegerField" name="area">1001</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="211" model="countrydata.country">
+        <field type="CharField" name="name">El Salvador</field>
+        <field type="CharField" name="capital">San Salvador</field>
+        <field type="CharField" name="code">sv</field>
+        <field type="PositiveIntegerField" name="population">6052064</field>
+        <field type="PositiveIntegerField" name="area">21040</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="212" model="countrydata.country">
+        <field type="CharField" name="name">Sint Maarten</field>
+        <field type="CharField" name="capital">Philipsburg</field>
+        <field type="CharField" name="code">sx</field>
+        <field type="PositiveIntegerField" name="population">37429</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="213" model="countrydata.country">
+        <field type="CharField" name="name">Syria</field>
+        <field type="CharField" name="capital">Damascus</field>
+        <field type="CharField" name="code">sy</field>
+        <field type="PositiveIntegerField" name="population">22198110</field>
+        <field type="PositiveIntegerField" name="area">185180</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="214" model="countrydata.country">
+        <field type="CharField" name="name">Swaziland</field>
+        <field type="CharField" name="capital">Mbabane</field>
+        <field type="CharField" name="code">sz</field>
+        <field type="PositiveIntegerField" name="population">1354051</field>
+        <field type="PositiveIntegerField" name="area">17363</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="215" model="countrydata.country">
+        <field type="CharField" name="name">Turks and Caicos Islands</field>
+        <field type="CharField" name="capital">Cockburn Town</field>
+        <field type="CharField" name="code">tc</field>
+        <field type="PositiveIntegerField" name="population">20556</field>
+        <field type="PositiveIntegerField" name="area">430</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="216" model="countrydata.country">
+        <field type="CharField" name="name">Chad</field>
+        <field type="CharField" name="capital">NDjamena</field>
+        <field type="CharField" name="code">td</field>
+        <field type="PositiveIntegerField" name="population">10543464</field>
+        <field type="PositiveIntegerField" name="area">1284000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="217" model="countrydata.country">
+        <field type="CharField" name="name">French Southern Territories</field>
+        <field type="CharField" name="capital">Port-aux-Français</field>
+        <field type="CharField" name="code">tf</field>
+        <field type="PositiveIntegerField" name="population">140</field>
+        <field type="PositiveIntegerField" name="area">7829</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">4</field>
+    </object>
+    <object pk="218" model="countrydata.country">
+        <field type="CharField" name="name">Togo</field>
+        <field type="CharField" name="capital">Lomé</field>
+        <field type="CharField" name="code">tg</field>
+        <field type="PositiveIntegerField" name="population">6587239</field>
+        <field type="PositiveIntegerField" name="area">56785</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="219" model="countrydata.country">
+        <field type="CharField" name="name">Thailand</field>
+        <field type="CharField" name="capital">Bangkok</field>
+        <field type="CharField" name="code">th</field>
+        <field type="PositiveIntegerField" name="population">67089500</field>
+        <field type="PositiveIntegerField" name="area">514000</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="220" model="countrydata.country">
+        <field type="CharField" name="name">Tajikistan</field>
+        <field type="CharField" name="capital">Dushanbe</field>
+        <field type="CharField" name="code">tj</field>
+        <field type="PositiveIntegerField" name="population">7487489</field>
+        <field type="PositiveIntegerField" name="area">143100</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="221" model="countrydata.country">
+        <field type="CharField" name="name">Tokelau</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">tk</field>
+        <field type="PositiveIntegerField" name="population">1466</field>
+        <field type="PositiveIntegerField" name="area">10</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="222" model="countrydata.country">
+        <field type="CharField" name="name">East Timor</field>
+        <field type="CharField" name="capital">Dili</field>
+        <field type="CharField" name="code">tl</field>
+        <field type="PositiveIntegerField" name="population">1154625</field>
+        <field type="PositiveIntegerField" name="area">15007</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="223" model="countrydata.country">
+        <field type="CharField" name="name">Turkmenistan</field>
+        <field type="CharField" name="capital">Ashgabat</field>
+        <field type="CharField" name="code">tm</field>
+        <field type="PositiveIntegerField" name="population">4940916</field>
+        <field type="PositiveIntegerField" name="area">488100</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="224" model="countrydata.country">
+        <field type="CharField" name="name">Tunisia</field>
+        <field type="CharField" name="capital">Tunis</field>
+        <field type="CharField" name="code">tn</field>
+        <field type="PositiveIntegerField" name="population">10589025</field>
+        <field type="PositiveIntegerField" name="area">163610</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="225" model="countrydata.country">
+        <field type="CharField" name="name">Tonga</field>
+        <field type="CharField" name="capital">Nukualofa</field>
+        <field type="CharField" name="code">to</field>
+        <field type="PositiveIntegerField" name="population">122580</field>
+        <field type="PositiveIntegerField" name="area">748</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="226" model="countrydata.country">
+        <field type="CharField" name="name">Turkey</field>
+        <field type="CharField" name="capital">Ankara</field>
+        <field type="CharField" name="code">tr</field>
+        <field type="PositiveIntegerField" name="population">77804122</field>
+        <field type="PositiveIntegerField" name="area">780580</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="227" model="countrydata.country">
+        <field type="CharField" name="name">Trinidad and Tobago</field>
+        <field type="CharField" name="capital">Port of Spain</field>
+        <field type="CharField" name="code">tt</field>
+        <field type="PositiveIntegerField" name="population">1228691</field>
+        <field type="PositiveIntegerField" name="area">5128</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="228" model="countrydata.country">
+        <field type="CharField" name="name">Tuvalu</field>
+        <field type="CharField" name="capital">Funafuti</field>
+        <field type="CharField" name="code">tv</field>
+        <field type="PositiveIntegerField" name="population">10472</field>
+        <field type="PositiveIntegerField" name="area">26</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="229" model="countrydata.country">
+        <field type="CharField" name="name">Taiwan</field>
+        <field type="CharField" name="capital">Taipei</field>
+        <field type="CharField" name="code">tw</field>
+        <field type="PositiveIntegerField" name="population">22894384</field>
+        <field type="PositiveIntegerField" name="area">35980</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="230" model="countrydata.country">
+        <field type="CharField" name="name">Tanzania</field>
+        <field type="CharField" name="capital">Dodoma</field>
+        <field type="CharField" name="code">tz</field>
+        <field type="PositiveIntegerField" name="population">41892895</field>
+        <field type="PositiveIntegerField" name="area">945087</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="231" model="countrydata.country">
+        <field type="CharField" name="name">Ukraine</field>
+        <field type="CharField" name="capital">Kiev</field>
+        <field type="CharField" name="code">ua</field>
+        <field type="PositiveIntegerField" name="population">45415596</field>
+        <field type="PositiveIntegerField" name="area">603700</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="232" model="countrydata.country">
+        <field type="CharField" name="name">Uganda</field>
+        <field type="CharField" name="capital">Kampala</field>
+        <field type="CharField" name="code">ug</field>
+        <field type="PositiveIntegerField" name="population">33398682</field>
+        <field type="PositiveIntegerField" name="area">236040</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="233" model="countrydata.country">
+        <field type="CharField" name="name">U.S. Minor Outlying Islands</field>
+        <field type="CharField" name="capital"></field>
+        <field type="CharField" name="code">um</field>
+        <field type="PositiveIntegerField" name="population">0</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="234" model="countrydata.country">
+        <field type="CharField" name="name">United States</field>
+        <field type="CharField" name="capital">Washington</field>
+        <field type="CharField" name="code">us</field>
+        <field type="PositiveIntegerField" name="population">310232863</field>
+        <field type="PositiveIntegerField" name="area">9629091</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="235" model="countrydata.country">
+        <field type="CharField" name="name">Uruguay</field>
+        <field type="CharField" name="capital">Montevideo</field>
+        <field type="CharField" name="code">uy</field>
+        <field type="PositiveIntegerField" name="population">3477000</field>
+        <field type="PositiveIntegerField" name="area">176220</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="236" model="countrydata.country">
+        <field type="CharField" name="name">Uzbekistan</field>
+        <field type="CharField" name="capital">Tashkent</field>
+        <field type="CharField" name="code">uz</field>
+        <field type="PositiveIntegerField" name="population">27865738</field>
+        <field type="PositiveIntegerField" name="area">447400</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="237" model="countrydata.country">
+        <field type="CharField" name="name">Vatican City</field>
+        <field type="CharField" name="capital">Vatican City</field>
+        <field type="CharField" name="code">va</field>
+        <field type="PositiveIntegerField" name="population">921</field>
+        <field type="PositiveIntegerField" name="area">1</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="238" model="countrydata.country">
+        <field type="CharField" name="name">Saint Vincent and the Grenadines</field>
+        <field type="CharField" name="capital">Kingstown</field>
+        <field type="CharField" name="code">vc</field>
+        <field type="PositiveIntegerField" name="population">104217</field>
+        <field type="PositiveIntegerField" name="area">389</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="239" model="countrydata.country">
+        <field type="CharField" name="name">Venezuela</field>
+        <field type="CharField" name="capital">Caracas</field>
+        <field type="CharField" name="code">ve</field>
+        <field type="PositiveIntegerField" name="population">27223228</field>
+        <field type="PositiveIntegerField" name="area">912050</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">7</field>
+    </object>
+    <object pk="240" model="countrydata.country">
+        <field type="CharField" name="name">British Virgin Islands</field>
+        <field type="CharField" name="capital">Road Town</field>
+        <field type="CharField" name="code">vg</field>
+        <field type="PositiveIntegerField" name="population">21730</field>
+        <field type="PositiveIntegerField" name="area">153</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="241" model="countrydata.country">
+        <field type="CharField" name="name">U.S. Virgin Islands</field>
+        <field type="CharField" name="capital">Charlotte Amalie</field>
+        <field type="CharField" name="code">vi</field>
+        <field type="PositiveIntegerField" name="population">108708</field>
+        <field type="PositiveIntegerField" name="area">352</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="242" model="countrydata.country">
+        <field type="CharField" name="name">Vietnam</field>
+        <field type="CharField" name="capital">Hanoi</field>
+        <field type="CharField" name="code">vn</field>
+        <field type="PositiveIntegerField" name="population">89571130</field>
+        <field type="PositiveIntegerField" name="area">329560</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="243" model="countrydata.country">
+        <field type="CharField" name="name">Vanuatu</field>
+        <field type="CharField" name="capital">Port Vila</field>
+        <field type="CharField" name="code">vu</field>
+        <field type="PositiveIntegerField" name="population">221552</field>
+        <field type="PositiveIntegerField" name="area">12200</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="244" model="countrydata.country">
+        <field type="CharField" name="name">Wallis and Futuna</field>
+        <field type="CharField" name="capital">MatâUtu</field>
+        <field type="CharField" name="code">wf</field>
+        <field type="PositiveIntegerField" name="population">16025</field>
+        <field type="PositiveIntegerField" name="area">274</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="245" model="countrydata.country">
+        <field type="CharField" name="name">Samoa</field>
+        <field type="CharField" name="capital">Apia</field>
+        <field type="CharField" name="code">ws</field>
+        <field type="PositiveIntegerField" name="population">192001</field>
+        <field type="PositiveIntegerField" name="area">2944</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">3</field>
+    </object>
+    <object pk="246" model="countrydata.country">
+        <field type="CharField" name="name">Kosovo</field>
+        <field type="CharField" name="capital">Pristina</field>
+        <field type="CharField" name="code">xk</field>
+        <field type="PositiveIntegerField" name="population">1800000</field>
+        <field type="PositiveIntegerField" name="area">0</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">6</field>
+    </object>
+    <object pk="247" model="countrydata.country">
+        <field type="CharField" name="name">Yemen</field>
+        <field type="CharField" name="capital">San‘a’</field>
+        <field type="CharField" name="code">ye</field>
+        <field type="PositiveIntegerField" name="population">23495361</field>
+        <field type="PositiveIntegerField" name="area">527970</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">5</field>
+    </object>
+    <object pk="248" model="countrydata.country">
+        <field type="CharField" name="name">Mayotte</field>
+        <field type="CharField" name="capital">Mamoudzou</field>
+        <field type="CharField" name="code">yt</field>
+        <field type="PositiveIntegerField" name="population">159042</field>
+        <field type="PositiveIntegerField" name="area">374</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="249" model="countrydata.country">
+        <field type="CharField" name="name">South Africa</field>
+        <field type="CharField" name="capital">Pretoria</field>
+        <field type="CharField" name="code">za</field>
+        <field type="PositiveIntegerField" name="population">49000000</field>
+        <field type="PositiveIntegerField" name="area">1219912</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="250" model="countrydata.country">
+        <field type="CharField" name="name">Zambia</field>
+        <field type="CharField" name="capital">Lusaka</field>
+        <field type="CharField" name="code">zm</field>
+        <field type="PositiveIntegerField" name="population">13460305</field>
+        <field type="PositiveIntegerField" name="area">752614</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+    <object pk="251" model="countrydata.country">
+        <field type="CharField" name="name">Zimbabwe</field>
+        <field type="CharField" name="capital">Harare</field>
+        <field type="CharField" name="code">zw</field>
+        <field type="PositiveIntegerField" name="population">11651858</field>
+        <field type="PositiveIntegerField" name="area">390580</field>
+        <field to="countrydata.continent" name="continent" rel="ManyToOneRel">1</field>
+    </object>
+</django-objects>
