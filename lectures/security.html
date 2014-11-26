@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Security</title>
+
+    <meta name="description" content="Security">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #002b36;
+        background-color: #002b36;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h2>Security</h2>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+      <section>
+        <h2>Security</h2>
+        <p>This is by no means an exhaustive guide to security.</p>
+        <p>Security is not a state of an application, it's a process.</p>
+        <p>Web applications have particular security concerns.</p>
+      </section>
+
+      <section>
+        <h2>Web Application Security</h2>
+        <p>Cenzic informs in their 2014 security report that <em>96 % of web applications have vulnerabilities</em>.</p>
+        <p>Vulnerabilities by their share:</p>
+        <ul>
+          <li>25 % Cross-Site Scripting (XSS)</li>
+          <li>23 % Information Leakage</li>
+          <li>15 % Authentication and Authorization</li>
+          <li>13 % Session Management</li>
+          <li>11 % Other</li>
+          <li>7 % SQL Injection</li>
+          <li>6 % Cross-Site Request Forgery</li>
+        </ul>
+        <p>You can download the <a href="https://www2.trustwave.com/test-the-rest-vulnerability-report.html">full report</a> (requires filling in some details).</p>
+      </section>
+
+      <section>
+        <h2>HTTP Cookies</h2>
+        <blockquote>"When receiving an HTTP request, a server can send a <code>Set-Cookie</code> header with the response. Afterward, the cookie value is sent along with every request made to the same server in the form of a Cookie HTTP header. Additionally, an expiration delay can be specified. Restrictions to a specific domain and path can be specified as well." <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">MDN on cookies</a></blockquote>
+        <p>Often used for session/login management.</p>
+      </section>
+
+      <section>
+        <h2>HTTPS</h2>
+        <p>HTTP is not encrypted, so data sent over plain HTTP can easily be eavesdropped (especially on open Wi-Fi networks).</p>
+        <p><code>HTTPS</code> refers to HTTP Secure, which is HTTP over <code>TLS/SSL</code> so it is encrypted.</p>
+        <p>For most web applications switching from HTTP to HTTPS does not require any code modification. Mixing HTTP and HTTPS is a potential security risk and many browsers will give a warning if it is attempted.</p>
+        <p>Cookies can be marked as 'secure' so they are not sent over HTTP.</p>
+      </section>
+
+      <section>
+        <h2>Authentication and Authorization</h2>
+        <p><em>Authentication</em> is establishing the identity of the user. <em>Authorization</em> is about establishing the rights of the (identified) user.</p>
+        <p>HTTP has corresponding error codes:</p>
+          <ul>
+            <li><code>401 Unauthorized</code> "You did not <em>authenticate</em> correctly." 401 will contain WWW-Authenticate header that tells how to authenticate.</li>
+            <li><code>403 Forbidden</code> You are authenticated, but you do not have the rights to do that.</li>
+          </ul>
+        <p class="extra">For more details see <a href="http://danielirvine.com/blog/2011/07/18/understanding-403-forbidden/">Daniel Irvine on Understanding 403 Forbidden</a>.</p>
+      </section>
+
+      <section>
+        <h2>HTTP Basic</h2>
+        <p class="dense">A basic way of providing a username with password with a request. Again, it will be unencrypted if HTTPS is not used. A basic example: </p>
+        <pre><code class="md">https://lassi@secret_pw@www.some-site.com</code></pre>
+        <p class="dense">The authorization will be valid until the browser is closed. The flow of the authentication:</p>
+        <ol class="dense">
+          <li>Client requests a protected resource</li>
+          <li>401 response with a header <code>WWW-Authenticate</code>, e.g. <code>WWW-Authenticate: Basic realm="my secret stuff"</code></li>
+          <li>Client constructs a string "username:password" which is encoded with <a href="http://en.wikipedia.org/wiki/Base64">Base64</a></li>
+          <li>Authorization method and a space is put in the header before the encoded string, e.g. <pre><code>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></pre></li>
+        </ol>
+        <p>More on <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basic_access_authentication">MDN Basic Access Authentication</a>.</p>
+
+
+      </section>
+
+      <section>
+        <h2>HTTP Digest</h2>
+        <p>HTTP Digest adds encryption to HTTP Basic authentication. The server sends a extra single use value <code>nonce</code>. Nonce and other values are joined together and MD5 sum is calculated and sent back. The server then does the same and compares hashed values. If they match, access is granted.</p>
+        <p>Wikipedia has a <a href="http://en.wikipedia.org/wiki/Digest_access_authentication#Example_with_explanation">detailed example of Digest authentication</a>.</p>
+      </section>
+
+      <section>
+        <h2>Drawbacks of HTTP Basic and Digest</h2>
+        <p>Basic and Digest authentication has no method of logging out.</p>
+        <p>Password is needed with both which is not good for services (see API lecture).</p>
+        <p>And finally, there is no way to control the look and feel of the authentication. It will always be styled in the way that that particular browser displays the dialog.</p>
+      </section>
+
+      <section>
+        <h2>Form-Based Login</h2>
+        <p>When HTTPS is used HTML forms can be used for authentication. The login information will be sent over POST and typically the server will give an authentication/session cookie on successful login.</p>
+        <p>On subsequent requests that cookie can be used to authenticate. And logging out is achieved by deleting that cookie.</p>
+        <p>Authentication is easy to get wrong which is why using, for instance, Django's authentication and session middleware is a good idea.</p>
+      </section>
+
+
+      <section>
+        <h2>Shared Authentication</h2>
+        <p>"Let someone else worry about authentication."</p>
+        <p>The basic idea is, that user has credentials to some system and those credentials can be shared with other systems. You've all seens "log in with Facebook" or "log in with Google" buttons.</p>
+        <p>A common one, used in Aalto as well, is <a href="https://shibboleth.net/">Shibboleth</a>. Another popular scheme is <a href="http://oauth.net/">OAuth</a>.</p>
+      </section>
+
+      <section>
+        <h2>Combining Authentication</h2>
+        <p>Web applications can have multiple authentication schemes, that serve different purposes.</p>
+        <p>For example, form-based login can be provided for humans and some token based authentication (API key) can be used for RESTful services on that application.</p>
+      </section>
+
+      <section>
+        <section class="general_topic">
+          <h2>Common Vulnerabilities</h2>
+        </section>
+
+        <section>
+          <h2>User Input</h2>
+          <p>Generally user input should never be trusted. Many of the vulnerabilities used rely on user input not being validated.</p>
+          <p><em>Always validate user input.</em></p>
+        </section>
+
+        <section>
+          <h2>Cross-site Scripting (XSS)</h2>
+          <p>Very common and basic attack. The attacker formats input in a way, that JavaScript gets executed when that page is shown to other users.</p>
+          <pre><code>&lt;p class="blog"&gt;This is my first post&lt;/p&gt;
+&lt;p class="author"&gt;
+  James &lt;script&gt; alert("Proof of concept");&lt;/script&gt;
+&lt;/p&gt;</code></pre>
+          <p>If you can do this, you can also call <code>eval</code> function, which will take evaluate and execute any string as JavaScript.</p>
+        </section>
+
+        <section>
+          <h2>XSS</h2>
+          <p>It runs in the same domain as the page. Which means it can read, for example, users cookies, and can alter the page in any way.</p>
+          <p>Basic defense against this is to validate and sanitize user input (HTML/CSS/JavaScript). Sanitizing HTML might not be that straightforward. Again, it is a good idea to rely on experts, and use some service/application that does this for you.</p>
+          <p><a href="https://developers.google.com/caja/">Google's Caja</a> is one example:</p>
+          <blockquote>"The Caja Compiler is a tool for making third party HTML, CSS and JavaScript safe to embed in your website."</blockquote>
+          <p>Django Templates also automatically escapes data.</p>
+        </section>
+
+        <section>
+          <h2>Session Hijacking</h2>
+          <p>Session hijacking refers to attacker gaining access to user's session which will then allow the attacker to use the system as the hijacked user.</p>
+          <p>Main methods for hijacking:</p>
+          <ul>
+            <li>Session Fixation</li>
+            <li>Session Sidejacking</li>
+            <li>XSS</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Session Fixation</h2>
+          <p>The idea in a session fixation is that an attacker will first log into a site and acquire a session id. Then this id is fed to the victim somehow (e.g. email, xss). Victim then logs in and the attacker has full access to the victims resources.</p>
+          <p>Wikipedia has nice descriptive examples of <a href="http://en.wikipedia.org/wiki/Session_fixation#A_simple_attack_scenario">session fixation</a>.</p>
+        </section>
+
+        <section>
+          <h2>Session Sidejacking</h2>
+          <p>Sessions sidejacking works by packet sniffing (observing network trafic), e.g. in unencrypted wi-fi networks. And by this way acquiring the victims session id.</p>
+          <p>Note that even if you are using HTTPS for login and then using HTTP for the rest of the communication users are still vulnerable for this attack. The users password communication is encrypted, but if a session id is transmitted unencrypted an attacker can have access to that.</p>
+        </section>
+
+
+        <section>
+          <h2>Clickjacking</h2>
+          <p>Clickjacking refers to tricking a user clicking something they did not know they were clicking. Typically there is another website with opaque set to 0 on top of the one that the user sees.</p>
+          <p>Clicks go first to the invisible one, unbeknownst to the user, and only after that to the site that the user sees. This is commonly used to "steal" likes on Facebook etc. If the user is already logged into Facebook s/he probably won't even notice liking something.</p>
+          <p>A <a href="http://coding.pressbin.com/files/86-clickjacking_demo.html">demo of clickjacking</a> and <a href="http://coding.pressbin.com/86/How-Facebook-click-jacking-scams-work/">explanation of it.</a>.</p>
+        </section>
+
+        <section>
+          <h2>Cross-Site Forgery Request</h2>  
+          <p>The idea behind Cross Site Request Forgery (CSRF) is that a victim has already authenticated to site A and after that visits a malicious site B. The site B contains a link malicious link to site A which executes some unwanted action. The link might be e.g. in some <code>img</code> element <code>src</code> attribute which will be automatically followed.</p>
+          <pre style=""><code>Mallory: Hello Alice! Look here:
+&lt;img 
+  src="http://bank.example.com/
+    withdraw?account=Alice&mp;amount=1000000&mp;for=Mallory"&gt;
+&lt;!-- line breaks added for clarity --&gt;</code></pre>
+          <p>Example from <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery#Example_and_characteristics">Wikipedia's CSRF article</a>. Because Alice is already logged in to bank.example.com the action gets executed.</p>
+        </section>
+
+        <section>
+          <h2>CSRF</h2>
+          <p>Previous slides example had a GET request with side effects, which is already inheretly bad idea. But CSRF can also be POST requests (possibly also using JavaScript to do it).</p>
+        </section>
+
+        <section>
+          <h2>Django and CSRF</h2>
+          <p>Django has CSRFMiddleware for preventing CSRF attacks:</p>
+          <ul>
+            <li>User gets a cookie with randomized CSRF code</li>
+            <li>Forms will have a hidden field with name of 'csrfmiddlewaretoken' that will have the same value as in the cookie.</li>
+            <li>Incoming requests that might change the server state will get checked and only accepted if the cookie and the hidden field values match.</li>
+          </ul>
+          <p>Read the details from Django docs <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/">on CSRF</a>.</p>
+        </section>
+
+        <section>
+          <h2>Little Bobby Tables</h2>
+          <p><a href="http://xkcd.com/327/"><img style="width: 100%;" src="img/exploits_of_a_mom.png" alt="XKCD Exploits of a Mom"></a></p>
+          <p><a href="http://creativecommons.org/licenses/by-nc/2.5/">CC-BY-NC 2.5</a> Randall Munroe</p>
+        </section>
+
+        <section>
+          <h2>Injection attacks</h2>
+          <p>Injection attacks rely on not sanitizing your user input. That input is then used as executable code. That is always a bad idea! Consider the following</p>
+          <pre style="width: 100%;"><code>statement = "SELECT * FROM users WHERE name ='" + userName + "';"</code></pre>
+          <p>What if the userName variable is set to <code>' or '1'='1</code>?</p>
+          <pre style="width: 100%;"><code>statement = "SELECT * FROM users WHERE name ='' or '1'='1';"</code></pre>
+          <p>Example from <a href="http://en.wikipedia.org/wiki/SQL_injection#Technical_implementations">Wikipedia</a>, read through the rest of the examples as well.</p>
+        </section>
+
+        <section>
+          <h2>SQL Injection</h2>
+          <p><em>Never ever construct SQL queries by concatenating user input!</em> And never show database errors messages to the user.</p>
+          <p>If you are constructing SQL, then use parameterized queries where parameters are not interpreted as SQL code.</p>
+          <p>Other option (might be preferrable) is to use a well tested library that handles the protection. Django's models handle the data processing in a protected way. And using Django's <code>ORM</code> (mostly) means that you do not have to construct queries by hand.</p>
+        </section>
+
+        <section>
+          <h2>HTTP Response Spitting</h2>
+          <blockquote>"The attack consists of making the server print a carriage return (CR, ASCII 0x0D) line feed (LF, ASCII 0x0A) sequence followed by content supplied by the attacker in the header section of its response" ... " the failure to remove CRs and LFs allows the attacker to set arbitrary headers, take control of the body, or break the response into two or more separate responses" <a href="http://en.wikipedia.org/wiki/HTTP_response_splitting">Wikipedia Response Splitting</a></blockquote>
+        </section>
+
+        <section>
+          <h2>Directory Traversal</h2>
+          <blockquote>it "... consists in exploiting insufficient security validation / sanitization of user-supplied input file names, so that characters representing "traverse to parent directory" are passed through to the file APIs." <a href="http://en.wikipedia.org/wiki/Directory_traversal_attack">Wikipedia</a></blockquote>
+          <p>Some browsers (but not all!) will handle <code>../</code> in an URL differently to protect agains this. Attacker gains access to the file system based on malicious user input.</p>
+          <p>Cure against these attacks is to urlencode strings used in HTTP headers.</p>
+        </section>
+
+        <section>
+          <h2>Directory Travelsal Example</h2>
+          <p>Consider example from Wikipedia:</p>
+          <pre><code>&lt;?php
+$template = 'red.php';
+if (isset($_COOKIE['TEMPLATE']))
+   $template = $_COOKIE['TEMPLATE'];
+include ("/home/users/phpguru/templates/" . $template);
+?&gt;</code></pre>
+          <p>Sending the following HTTP request:</p>
+          <pre><code>GET /vulnerable.php HTTP/1.0
+Cookie: TEMPLATE=../../../../../../../../../etc/passwd</code></pre>
+          <p>Would give a response like:</p>
+          <pre><code>HTTP/1.0 200 OK
+Content-Type: text/html
+Server: Apache
+
+root:fi3sED95ibqR6:0:1:System Operator:/:/bin/ksh 
+daemon:*:1:1::/tmp: 
+phpguru:f8fk3j1OIf31.:182:100:Developer:/home/users/phpguru/:/bin/csh</code></pre>
+        </section>
+
+
+
+        <section>
+          <h2>DEMO: <a href="http://google-gruyere.appspot.com/">http://google-gruyere.appspot.com/</a></h2>
+        </section>
+
+      </section>
+
+
+
+      </div>
+    </div>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
