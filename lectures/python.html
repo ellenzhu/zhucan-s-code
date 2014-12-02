@@ -57,7 +57,7 @@
 
       <section>
         <h2>Self study material</h2>
-        <p>There are many great resources for learning Python available online. One of those is free book called <a href="http://www.diveintopython3.net/">Dive Into Python 3</a>. For this course chapters 0,1,2,3,4, and 7 cover most what is needed.</p>
+        <p>There are many great resources for learning Python available online. One of those is free book called <a href="http://www.diveintopython3.net/">Dive Into Python 3</a>. For this course, chapters 0,1,2,3,4, and 7 cover most what is needed.</p>
         <p>In addition, it's advisable to read ProgrammingBits tutorial on <a href="http://programmingbits.pythonblogs.com/27_programmingbits/archive/50_function_decorators.html">function decorators</a>.</p>
         <p class="extra">The official Python site also has a nice <a href="https://wiki.python.org/moin/BeginnersGuide/NonProgrammers">list of tutorials</a> for beginners (in Python or programming in general).</p>
       </section>
@@ -83,7 +83,7 @@
       <section>
         <h2>Comments in Python</h2>
 
-        <p>Quick note how comments work in Python, they are used in the coming slides</p>
+        <p>A quick note on how comments work in Python, they are used in the coming slides</p>
         <p>Single line comments start with <code>#</code> and documentation strings (multiline comments) are noted with <code>"""</code>. That's all there is.</p>
         <pre><code class="python">"""
 This example illustrates comment usage in Python.
@@ -181,7 +181,7 @@ test[::-1] # 'fedcba', think about how this works
 
       <section>
         <h2>String Methods</h2>
-        <p>Note that apart from <code>find</code> which returns an int all of these will return a new string and will not modify
+        <p>Note that apart from <code>find</code>, which returns an int, all of these will return a new string and will not modify the original variable.
         <p>Some useful string methods (there are plenty more):</p>
         <pre  style="width:115%;"><code class="python">line = "Once upon a midnight dreary, while I pondered, weak and weary"
 
@@ -244,12 +244,12 @@ Look a snowman ☃!
 &gt;&gt;&gt; coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
 &gt;&gt;&gt; 'Coordinates: {latitude}, {longitude}'.format(**coord)
 'Coordinates: 37.24N, -115.81W'</code></pre>
-        <p>Example from <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Python 3 documentation</a> read more about string formatting syntax there.</p>
+        <p>Example from <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Python 3 documentation</a>. Read more about string formatting syntax there.</p>
       </section>
 
       <section>
         <h2>Lists and Tuples</h2>
-        <p>Lists are <em>mutable</em> collections of values and tuples are <em>immutable</em> collections of values. In other respects they work similarly, expect trying to change contents of a tuple will result in error. Lists are noted with <code>[]</code> and tuples with <code>()</code>.</p>
+        <p>Lists are <em>mutable</em> collections of values and tuples are <em>immutable</em> collections of values. In other respects they work similarly, except trying to change contents of a tuple will result in error. Lists are noted with <code>[]</code> and tuples with <code>()</code>.</p>
         <pre><code class="python"># Let's look at a list of different Pythons
 pythons = ["Angolan", "Burmese", "Sumatran short-tailed "]
 pythons.append("Royal") #add to the end of the list
@@ -338,7 +338,7 @@ agent = {'name': 'James', 'code': '007'}
 
       <section>
         <h2>Word operators</h2>
-        <p>Python has word operatos that you've already seen</p>
+        <p>Python has word operatos that you've already seen:</p>
         <p><code>in</code> checks if something is in something else (value in a list, characters in a string)</p>
         <p><code>and</code> checks if both values are <code>True</code></p>
         <p><code>or</code> checks if either of the values is <code>True</code></p>
@@ -400,7 +400,7 @@ for key in agent:
 
       <section>
         <h2><code>while</code> Loops</h2>
-        <p>While loops work as expected, while a condition is <code>True</code> the loop will be executed</p>
+        <p>While loops work as expected: while a condition is <code>True</code> the loop will be executed.</p>
         <pre><code>user_input = ''
 while user_input != "exit":
   print("Type something:")
@@ -506,7 +506,7 @@ class Question(models.Model):
         <p>Like we saw on the class examples, there are some special methods (sometimes also called magical methods) that start and end with two underscores, e.g. <code>__init__</code></p>
         <p>These special methods get called in certain circumstances, for example, <code>__init__</code> is a <em>constructor</em>. 
         <p>There is also, for example,  <code>__str__</code> method, which gets called whenever we want the string representation of the object, such as when printing.</p>
-        <p>There are many more, most are not needed on this course <a href="http://www.diveintopython3.net/special-method-names.html">Dive Into Python 3 Appendix B: Special Method Names</a></p>
+        <p>There are many more, most are not needed on this course. <a href="http://www.diveintopython3.net/special-method-names.html">Dive Into Python 3 Appendix B: Special Method Names</a>.</p>
       </section>
       <section>
         <h2>Imports</h2>
@@ -539,14 +539,14 @@ Serving HTTP on 0.0.0.0 port 8000 ...
       <section>
 
         <h2>Working with Files</h2>
-        <p>Files are opened with builtin function <code>open</code> which will return a file object. Calling <code>.close()</code> on that object will close the file. However, recommended way to open files is with <code>with</code> (files get closed automatically after the block)</p>
+        <p>Files are opened with builtin function <code>open</code> which will return a file object. Calling <code>.close()</code> on that object will close the file. However, recommended way to open files is with <code>with</code> (files get closed automatically after the block).</p>
         <pre><code class="python">events_file = open('events.html', 'r')
 print(events_file.readlines()[0:5])
 events_file.close()
 
 with open('events.html', 'r') as f:
   print(f.readlines()[0:5])</code></pre>
-        <p>Contents of the file can by read by <code>.read(size)</code>, <code>.readline()</code>, and <code>.readlines()</code> refer to the <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Python Docs on files</a> for those and more</p>
+        <p>Contents of the file can by read by <code>.read(size)</code>, <code>.readline()</code>, and <code>.readlines()</code>. Refer to the <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Python Docs on files</a> for those and more.</p>
       </section>
 
       <section>

@@ -57,9 +57,9 @@
 
       <section>
         <h2>API Introduction</h2>
-        <p>Not all web applications are meant directly for people. Different web services provide useful information primarily aimed for other applications to consume. Some examples are thins like authentication, stock data, weater reports, Twitter feeds, etc.</p>
+        <p>Not all web applications are meant directly for people. Different web services provide useful information primarily aimed for other applications to consume. Some examples are things like authentication, stock data, weater reports, Twitter feeds, etc.</p>
         <p>These programmatic interfaces might not have a GUI but instead are meant to be used by other programs on client-side as well as on server-side.</p>
-        <p>Typically they are created in a way, where the consumer use different operating systems or languages.</p>
+        <p>Typically they are created in a way that allows the consumers to use different operating systems or languages.</p>
       </section>
 
       <section>
@@ -77,8 +77,8 @@
       <section>
         <h2>SOAP</h2>
         <p>Simple Object Access Protocol (SOAP) is an XML-based messaging protocol where client sends requests encoded in XML and gets reponses back as XML. It can use other protocols in addition to HTTP, such as <code>SMTP</code>.</p>
-        <p class="dense">Web Services Description Language (<code>WSDL</code>) is XML-based language used to describe the data/functionaly offered by a web service. It's commonly used with SOAP.</p>
-        <p>You should not need to write SOAP yourself, let API/Toolkit handle that for you.</p>
+        <p class="dense">Web Services Description Language (<code>WSDL</code>) is XML-based language used to describe the data/functionality offered by a web service. It's commonly used with SOAP.</p>
+        <p>You should not need to write SOAP yourself, let the API/Toolkit handle that for you.</p>
       </section>
 
       <section>
@@ -104,7 +104,7 @@
       <section>
         <h2>XML-RPC</h2>
         <p>Remote Procedure Call (<code>RPC</code>) generally refers to collections of techniques to call a procedure typically on another computer. XML-RPC is a specification that is SOAPs predecessor.</p>
-        <p>Procedure calls and parameters as well as and responses are encoded in XML. It's simpler that SOAP and doesn't have a WSDL.</p>
+        <p>Procedure calls, parameters and responses are encoded in XML. It's simpler that SOAP and doesn't have a WSDL.</p>
       </section>
 
       <section>
@@ -141,7 +141,7 @@
         <ul>
           <li>ubiquity</li>
           <li>simplicity</li>
-          <li>readibility</li>
+          <li>readability</li>
           <li>flexibility</li>
           <li>etc...</li>
         </ul>
@@ -213,12 +213,12 @@
       <section>
         <h2>REST: Uniform Interface</h2>
         <p>All the resources share a common uniform interface. Instead of doing something (URLs as a "method") set something (URLs as "variables").</p>
-        <p>Four main constrains of uniform interface:</p>
+        <p>Four main constraints of uniform interface:</p>
         <p>Take advantage of <code>HTTP</code> "verbs":</p>
         <ul>
           <li><code>GET</code> fetch resource</li>
           <li><code>PUT</code> create/replace resource</li>
-          <li><code>DELETE</code> remove resouce</li>
+          <li><code>DELETE</code> remove resource</li>
           <li><code>POST</code> add/modify resource</li>
         </ul>
         <p>POST is not <em>idempotent</em>, so it can be used for partial updates.</p>
@@ -227,7 +227,7 @@
         <h2>Uniform Interface Principles</h2>
         <ul>
           <li>Identification of Resources: Request identifies the resource, data could be returned in number of formats.</li>
-          <li>Manipulation of through representations: If a client has the resources, it knows enough to modify/manipulate it</li>
+          <li>Manipulation of resources through representations: If a client has the resources, it knows enough to modify/manipulate it</li>
           <li>Self-descriptive messages: Each message contains enough information on how to process is (what is its mime-type etc.)</li>
           <li>HATEOAS</li>
         </ul>
@@ -235,15 +235,15 @@
       </section>
 
       <section>
-        <h2>HATEOS</h2>
-        <p>Hypertext As The Engine Of Application State (<code>HATEOS</code>).</p>
+        <h2>HATEOAS</h2>
+        <p>Hypertext As The Engine Of Application State (<code>HATEOAS</code>).</p>
         <blockquote>"Clients make state transitions only through actions that are dynamically identified within hypermedia by the server (e.g., by hyperlinks within hypertext). Except for simple fixed entry points to the application, a <em>client does not assume that any particular action is available for any particular resources beyond those described in representations previously received from the server</em>." <a href="http://en.wikipedia.org/wiki/Representational_state_transfer#Uniform_interface">Wikipedia - REST</a> (emphasis mine)</blockquote>
         
       </section>
 
       <section>
         <h2>REST: Good Ideas</h2>
-        <p><em>API versioning</em>. You might need to change it in the future. If you version you will not break existing API consumers.</p>
+        <p><em>API versioning</em>. You might need to change it in the future. If you version, you will not break existing API consumers.</p>
         <pre><code>some-domain.com/api/v1/resources/item/775</code></pre>
         <p><em>Standard timeformats</em>. Don't invent your own format for expressing times, <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> is a better option.</p>
         <pre><code>"time": "D2014/07/08T11:23pm" // Do NOT do this
@@ -295,7 +295,7 @@
 
       <section>
         <h2>REST Security</h2>
-        <p>Avoid session based authentication, keeping up with the principle of statelessness prefer to authenticate every request. Also prefer API Keys (like in GitLab) instead of username/password.</p>
+        <p>Avoid session based authentication; keeping up with the principle of statelessness, prefer to authenticate every request. Also prefer API Keys (like in GitLab) instead of username/password.</p>
         <p>Authorize based on the content of the resource, not URLs which might change.</p>
         <p><a href="http://en.wikipedia.org/wiki/OAuth">OAuth</a> is a good option.</p>
       </section>
@@ -319,14 +319,14 @@
         <h2>HTTP and Caching</h2>
         <p><code>HTTP</code> has built-in support for caching. HTTP headers contain metadata about fetched resources and can be used to make condifitonal requests.</p>
         <p>Conditional GET requests are only executed, when a certain condition is fulfilled, e.g. <em>If-Modified-Since</em> is only executed if a resource has been modified since the given date.</p>
-        <p>Images, JS libraries, CSS files, static pages, etch. should stay in cache as long as possible. Similarly, on rapidly changing pages caching should be disabled or expire fast.</p>
+        <p>Images, JS libraries, CSS files, static pages, etc. should stay in cache as long as possible. Similarly, on rapidly changing pages, caching should be disabled or expire fast.</p>
         <p>Caching is also really beneficial for REST APIs.</p>
       </section>
       
       <section>
         <h2>Caching Metadata</h2>
         <p><em>ETag</em> is calculated from the resource contents. If it has not changed, the resource hasn't changed either.</p>
-        <p><em>Expires</em> informs when the resource is expires and should be fetched again.</p>
+        <p><em>Expires</em> informs when the resource expires and should be fetched again.</p>
         <p><em>Last-modified</em> informs when the resource was last modified on the server.</p>
       </section>
 

@@ -212,7 +212,7 @@ for(var x=0; x &lt; 5; x++) {
         <section>
           <h2>JSON with Padding (JSONP)</h2>
           <p>The Same-Origin policy also restricts getting/posting JSON data. There is a way around this that is essentially a hack.</p>
-          <p><code>script</code>-elements <code>src</code> attribute is not subject to Same-Origin policy. A script is loaded like this with additional callback provided in the URL.</p>
+          <p><code>script</code>-element's <code>src</code> attribute is not subject to Same-Origin policy. A script is loaded like this with additional callback provided in the URL.</p>
           <pre style="width: 105%;"><code>&lt;script src="http://some-jsonp-service.com/some_data?callback=my_cb"&gt;
   &lt;/script&gt;</code></pre>
           <p>The server returns the data (<code>{'foo': 'bar'}</code>)'wrapped' in a callback function that was requested:</p>

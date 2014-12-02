@@ -160,7 +160,7 @@
 
         <section>
           <h2>User Input</h2>
-          <p>Generally user input should never be trusted. Many of the vulnerabilities used rely on user input not being validated.</p>
+          <p>Generally user input should never be trusted. Many of the vulnerabilities used to rely on user input not being validated.</p>
           <p><em>Always validate user input.</em></p>
         </section>
 
@@ -171,7 +171,7 @@
 &lt;p class="author"&gt;
   James &lt;script&gt; alert("Proof of concept");&lt;/script&gt;
 &lt;/p&gt;</code></pre>
-          <p>If you can do this, you can also call <code>eval</code> function, which will take evaluate and execute any string as JavaScript.</p>
+          <p>If you can do this, you can also call <code>eval</code> function, which will take, evaluate and execute any string as JavaScript.</p>
         </section>
 
         <section>
@@ -202,7 +202,7 @@
 
         <section>
           <h2>Session Sidejacking</h2>
-          <p>Sessions sidejacking works by packet sniffing (observing network trafic), e.g. in unencrypted wi-fi networks. And by this way acquiring the victims session id.</p>
+          <p>Sessions sidejacking works by packet sniffing (observing network trafic), e.g. in unencrypted wi-fi networks, and by this way acquiring the victims session id.</p>
           <p>Note that even if you are using HTTPS for login and then using HTTP for the rest of the communication users are still vulnerable for this attack. The users password communication is encrypted, but if a session id is transmitted unencrypted an attacker can have access to that.</p>
         </section>
 
@@ -260,7 +260,7 @@
           <h2>SQL Injection</h2>
           <p><em>Never ever construct SQL queries by concatenating user input!</em> And never show database errors messages to the user.</p>
           <p>If you are constructing SQL, then use parameterized queries where parameters are not interpreted as SQL code.</p>
-          <p>Other option (might be preferrable) is to use a well tested library that handles the protection. Django's models handle the data processing in a protected way. And using Django's <code>ORM</code> (mostly) means that you do not have to construct queries by hand.</p>
+          <p>Another option (might be preferrable) is to use a well tested library that handles the protection. Django's models handle the data processing in a protected way. And using Django's <code>ORM</code> (mostly) means that you do not have to construct queries by hand.</p>
         </section>
 
         <section>
@@ -271,7 +271,7 @@
         <section>
           <h2>Directory Traversal</h2>
           <blockquote>it "... consists in exploiting insufficient security validation / sanitization of user-supplied input file names, so that characters representing "traverse to parent directory" are passed through to the file APIs." <a href="http://en.wikipedia.org/wiki/Directory_traversal_attack">Wikipedia</a></blockquote>
-          <p>Some browsers (but not all!) will handle <code>../</code> in an URL differently to protect agains this. Attacker gains access to the file system based on malicious user input.</p>
+          <p>Some browsers (but not all!) will handle <code>../</code> in an URL differently to protect agains this. The attacker gains access to the file system based on malicious user input.</p>
           <p>Cure against these attacks is to urlencode strings used in HTTP headers.</p>
         </section>
 
