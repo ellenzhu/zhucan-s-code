@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Even More Django</title>
+
+    <meta name="description" content="Even More Django">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #142915;
+        background-color: #142915;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h2>Even More Django</h2>
+        <p>Static files, Middleware, More about sessions, etc.</p>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+     <section>
+        <h2>More About Migrations</h2>
+        <p><a href="https://docs.djangoproject.com/en/1.7/topics/migrations/">Django documentation on migrations</a> is quite exhaustive. <a href="https://realpython.com/blog/python/django-migrations-a-primer/">Tutorial on Real Python</a> covers the common use case with a clear example.</p>
+        <p>As an example, let's start and app called bird:</p>
+        <pre><code>python3 manage.py startapp bird</code></pre>
+        <p>And edit <code>bird/models.py</code> to contain the following:</p>
+        <pre><code>from django.db import models
+class Bird(models.Model):
+  name = models.CharField(max_length=200, unique=True)</code></pre>
+      </section>
+
+      <section>
+        <h2>Migration Example Continued 1/2</h2>
+        <p>Now running <code>manage.py makemigrations bird</code> will create a file <code>bird/migrations/0001_initial.py</code> that contains the information how the database should be adjusted to reflect the changes on the model.</p>
+        <p>You can see the actual SQL commands by running <code>manage.py sqlmigrate bird 0001</code>:
+        <pre><code>BEGIN;
+CREATE TABLE "bird_bird" (
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "name" varchar(200) NOT NULL UNIQUE);
+COMMIT;</code></pre>
+      </section>
+
+      <section>
+        <h2>Migration Example Continued 2/2</h2>
+        <p>Now running <code>manage.py migrate bird</code> will modify your database with the SQL query on the previous slide.</p>
+        <p>If we modify the model in the future, e.g. by adding a field to bird:</p>
+        <pre style="width: 100%;"><code>species = models.CharField(max_length=200, unique=True, default="")</code></pre>
+        <p>And the run makemigrations again, a new file 0002_bird_species.py will be created. Again we can see how the database is modified by running <code>sqlmigrate bird 0002</code>.</p>
+        <pre><code>BEGIN;
+CREATE TABLE "bird_bird__new" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(200) NOT NULL UNIQUE, "species" varchar(200) NOT NULL UNIQUE);
+INSERT INTO "bird_bird__new" ("id", "species", "name") SELECT "id", '', "name" FROM "bird_bird";
+DROP TABLE "bird_bird";
+ALTER TABLE "bird_bird__new" RENAME TO "bird_bird";
+COMMIT;</code></pre>
+      </section>
+
+      <section>
+        <h2>Static Files</h2>
+        <p>In Django files that do not change (like images, CSS, JavasScript files etc.) are referred to as <em>static</em> files.</p>
+        <p>To enable static files in your Django project you must have <code>django.contrib.staticfiles</code> in your <code>INSTALLED_APPS</code> (in <code>settings.py</code>). Additionally you need to define in your settings where the static files will be located, e.g. </p>
+        <pre><code>STATIC_URL = '/static/'</code></pre>
+        <p>Now you can store your apps static files in a folder, e.g. <code>blog/static/blog/header.png</code>.</p>
+        <p>Django docs <a href="https://docs.djangoproject.com/en/1.7/howto/static-files/">Static Files</a></p>
+      </section>
+
+      <section>
+        <h2>Static Files in Templates</h2>
+        <p>You can use the static files in a template by their path. E.g. presuming you have the image <code>blog/static/blog/header.png</code> you can display it in a template:</p>
+        <pre><code>&lt; img src="/static/blog/header.png" alt="My Blog" &gt;</code></pre>
+        <p>A better way of accessing static files in a template would be to use the <code>static</code> template tag:</p>
+        <pre><code>{% load staticfiles %}
+&lt;img src="{% static 'blog/header.png' %}" alt="My Blog"/&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2>Serving Static Files</h2>
+        <p>You also need to actually serve the static files. In development this is handled automatically when you use the <code>manage.py runserver</code> command and your <code>DEGUB</code> is set to True in the settings.</p>
+        <blockquote>"This method is grossly inefficient and probably insecure, so it is unsuitable for production." <a href="https://docs.djangoproject.com/en/1.7/howto/static-files/">Static Files</a></blockquote>
+        <p>In production you need to use something else. The course project will be deployed to a service called Heroku and they have <a href="https://devcenter.heroku.com/articles/django-assets">their documentation</a> on how to handle static files there.</p>
+      </section>
+
+      <section>
+        <h2>Managing Static Files</h2>
+        <p>The staticfiles app comes with three commands that are used to manage the static assets. <code>manage.py collectstatic</code> will go through all the apps with and collect all the static assets into a single folder, defined in the settings as <code>STATIC_ROOT</code>. This is an absolute path to a directory where the files will be located.</p>
+      </section>
+
+ 
+
+      <section>
+        <h2>Templates and Links</h2>
+        <p>Linking to other pages/views in templates works just as you would expect it to work:</p>
+        <pre><code>&lt;p&gt;Hello, {{user}}. &lt;a href="/logout"&gt;Logout&lt;/a&gt;&lt;/p&gt;</code></pre>
+        <p>Django comes built-in with <code>url</code> template tag, that can be used to resolve URLs to other views in the app:</p>
+        <pre><code class="python">Link with positional arguments
+{% url 'path.to.some_view' v1 v2 %}
+Link with keyword arguments
+{% url 'path.to.some_view' arg1=v1 arg2=v2 %}</code></pre>
+        <p>Note, do not mix keyword arguments and positional arguments. Examples from django docs <a href="https://docs.djangoproject.com/en/1.7/ref/templates/builtins/#url">url template tag</a>.</p>
+      </section>
+
+      <section>
+        <h2>More Examples of Templates and URLs</h2>
+        <p>If you want to display the URL:</p>
+        <pre><code>{% url 'path.to.view' arg arg2 as the_url %}
+&lt;a href="{{ the_url }}"&gt;I'm linking to {{ the_url }}&lt;/a&gt;</code></pre>
+        <p>If you have named your URL pattern, you can use that as well when linking:</p>
+        <pre><code># in urls.py 
+from django.conf.urls import patterns, url
+from mysite.views import archive
+
+urlpatterns = patterns('',
+    url(r'^archive/(\d{4})/$', archive, name="full-archive"),
+    url(r'^archive-summary/(\d{4})/$', 
+      archive, {'summary': True}, name="arch-summary"),
+)</code></pre>
+        <pre><code>{% url 'arch-summary' 1945 %}
+{% url 'full-archive' 2007 %}</code></pre>
+        <p>Example from Django docs <a href="https://docs.djangoproject.com/en/1.7/topics/http/urls/#naming-url-patterns">naming URL patterns</a>.</p>
+      </section>
+
+      <section>
+        <h2>Handling Email</h2>
+        <p>If you have an email server set up, sending email from Django is fairly straightforward:</p>
+        <pre><code>from django.core.mail import send_mail
+send_mail(
+  'Subject of the email', 
+  'Body of the message', 
+  'from@example.com', 
+  ['to@example.com'])</code></pre>
+        <p>Django has several <a href="https://docs.djangoproject.com/en/1.7/topics/email/#email-backends">email backends</a> that you can use. Backends are defined in settings, e.g.:</p>
+        <pre style="width: 100%;"><code># Send emails with SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Instead of sending, prints the emails to standard output
+# Very useful for development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'</code></pre>
+        <p>Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/email/">sending email</a>.</p>
+      </section>
+
+      <section>
+        <h2>Email Example</h2>
+        <pre><code class="python"># in settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'</code></pre>
+        <pre style="width: 105%;"><code>&gt;&gt;&gt; from django.core.mail import send_mail
+>>> send_mail('Hello', 'Just trying out', 'admin@myblog.com', ['some_user@myblog.com'])
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Hello
+From: admin@myblog.com
+To: some_user@myblog.com
+Date: Sat, 29 Nov 2014 19:23:41 -0000
+Message-ID: &lt;20141129192341.1877.62618@callisto.local&gt;
+
+Just trying out
+-------------------------------------------------------------------------------
+1</code></pre>
+      </section>
+
+      <section>
+        <h2>Django Middleware</h2>
+        <blockquote style="float: right; width: 30%;">"Middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system for globally altering Django’s input or output." <a href="https://docs.djangoproject.com/en/1.7/topics/http/middleware/">Django docs</a></blockquote>
+        
+        <p style="float: left;"><img src="img/middleware.svg" alt="Django Middleware"></p>
+        <p style="clear: both;"><small>Image from Django docs.</small></p>
+      </section>
+
+      <section>
+        <h2>Session Middleware</h2>
+        <blockquote>"Django provides full support for anonymous sessions. The session framework lets you store and retrieve arbitrary data on a per-site-visitor basis. It stores data on the server side and abstracts the sending and receiving of cookies. Cookies contain a session ID – not the data itself (unless you’re using the cookie based backend)." <a href="https://docs.djangoproject.com/en/1.7/topics/http/sessions/">Django Docs</a></blockquote>
+        <p>When you have sessions middleware enabled, the requests that you get in views will have a <code>session</code> attribute which you can read and edit.</p>
+      </section>
+
+      <section>
+        <h2><code>request.session</code></h2>
+        <p>You can <code>get</code> items as in a normal dictionary and set them:</p>
+        <pre><code class="python">request.session['fav_color'] = 'blue'
+
+# red is default if fav_color is not found
+fav_color = request.session.get('fav_color', 'red') </code></pre>
+        <p>Some helpful methods for sessions:</p>
+        <ul class="dense">
+          <li><code>.flush()</code> removes all session data and creates a new session key value</li>
+          <li><code>set_expiry(value)</code> when this session expires, value can be integer (in expiry in seconds), <code>datetime</code>/<code>timedelta</code>. If set to 0, session expires when browser is closed.</li>
+          <li><code>keys()</code> retrieves all keys in the session</li>
+          <li><code>items()</code> retrieves all items (key-value tuples) in the session</li>
+        </ul>
+        <p>Examples from <a href="https://docs.djangoproject.com/en/1.7/topics/http/sessions/#using-sessions-in-views">Django docs</a>.</p>
+      </section>
+
+      <section>
+        <h2>Authentication Middleware</h2>
+        <p>Authentication Middleware handles the combining of a request and a user. It is the piece of code that attaches <code>user</code> to incoming <code>requests</code> that can then be accessed in views. If the user is authenticated, the <code>request.user</code> will be an instance of <code>User</code> class, or otherwise and instance of <code>AnonymousUser</code>.</p>
+        <pre><code class="python">if request.user.is_authenticated():
+  # Do something for authenticated users.
+else:
+  # Do something for anonymous users.</code></pre>
+        <p>As a reminder <a href="https://docs.djangoproject.com/en/1.7/topics/auth/default/#auth-web-requests">authenticating requests</a> on Django docs.</p>
+      </section>
+
+      <section>
+        <h2>Message Middleware</h2>
+        <blockquote>"Quite commonly in web applications, you need to display a one-time notification message (also known as “flash message”) to the user after processing a form or some other types of user input. For this, Django provides full support for cookie- and session-based messaging, for both anonymous and authenticated users." <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/messages/">Django Docs</a></blockquote>
+        <p>The idea is, that you display (usually) one-off message to the user. Typically informing that the state of the server has changed. E.g. "your order was received".</p>
+      </section>
+
+      <section>
+        <h2>Enabling Messages</h2>
+        <p>To enable messages in your project:</p>
+        <ol>
+          <li>add <code>django.contrib.messages</code> to <code>INSTALLED_APPS</code></li>
+          <li>Add middlewares:<br><code style="font-size: 90%;">django.contrib.sessions.middleware.SessionMiddleware</code> <br>
+          <code style="font-size: 90%;">django.contrib.messages.middleware.MessageMiddleware</code></li>
+          <li>Add <code style="font-size: 90%;">django.contrib.messages.context_processors.messages</code> to <code>TEMPLATE_CONTEXT_PROCESSORS</code></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Using Messages</h2>
+        <p>To use messages, add them in a view:</p>
+        <pre style="width: 100%;"><code>from django.contrib import messages
+messages.add_message(request, messages.INFO, 'Hello world.')
+# There are also shortcuts
+messages.success(request, 'Profile details updated.')
+messages.warning(request, 'Your account expires in three days.')
+</code></pre>
+        <p>And display them in a template:</p>
+        <pre style="width: 100%;"><code>{% if messages %}
+&lt;ul class="messages"&gt;
+  {% for message in messages %}
+  &lt;li{% if message.tags %} class="{{ message.tags }}"{% endif %}&gt;
+    {{ message }}
+  &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+{% endif %}</code></pre>
+        <p>More details in <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/messages/#using-messages-in-views-and-templates">Django docs</a>.</p>
+      </section>
+
+      <section>
+        <h2>Caching</h2>
+        <blockquote>"A web cache is a mechanism for the temporary storage (caching) of web documents, such as HTML pages and images, to reduce bandwidth usage, server load, and perceived lag. A web cache stores copies of documents passing through it; subsequent requests may be satisfied from the cache if certain conditions are met." <a href="http://en.wikipedia.org/wiki/Web_cache">Wikipedia</a></blockquote>
+        <p>In HTTP three mechanics are defined to control caching: <em>freshness</em>, <em>validation</em>, and <em>invalidation</em>.</p>
+      </section>
+
+      <section>
+        <h2>Cache Control</h2>
+       <ul>
+          <li><em>Freshness</em> allows use of resources without checking from the server. E.g. <code>Expires</code> and <code>Cache-control</code> headers.</li>
+          <li><em>Validation</em> for checking if a resource is still up to date, even if it has become stale. E.g. <code>Last-Modified</code> and <code>Etag</code> headers. Used with <code>conditional requests</code>.</li>
+          <li><em>Invalidation</em> request with a side-effect (<code>POST</code>, <code>PUT</code>, <code>DELETE</code>) can invalidate resource's cache.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Django and Caching</h2>
+        <p>Django has variety of built-in caching options to use as a backend. Caching is a large topic, this is only a very brief introduction on how to enable caching in Django.</p>
+        <p>Caching backends are found in <code>django.core.cache.backends</code>. It contains:</p> 
+        <ul class="dense">
+          <li><code>.db.DatabaseCache</code></li>
+          <li><code>.dummy.DummyCache</code> (use during development if cache is used in production) </li>
+          <li><code>.filebased.FileBasedCache</code></li>
+          <li><code>.locmem.LocMemCache</code> (default, if not other backend is specified</li>
+          <li><code>.memcached.MemcachedCache</code></li>
+          <li><code>.memcached.PyLibMCCache</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Enabling Django's Cache Backends</h2>
+        <p>To enable caching in Django add one of the backends to <code>CACHES</code> in settings.</p>
+        <pre style="width: 105%;"><code class="python">CACHES = {
+  'default': { # name of the cache, you can have multiple
+    # Backend used for this cache
+    'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+    # Where the cache is stored, in this case it's a file path
+    # with e.g. database cache it would be name of a database table
+    'LOCATION': '/var/tmp/django_cache',
+  }
+}</code></pre>
+        <p>For detailed instructions and information of the various settings, refer to the <a href="https://docs.djangoproject.com/en/1.7/topics/cache/">Django documentation</a>.</p>
+      </section>
+
+      </div>
+    </div>
+    
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+
+  </body>
+</html>
