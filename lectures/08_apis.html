@@ -57,7 +57,7 @@
 
       <section>
         <h2>API Introduction</h2>
-        <p>Not all web applications are meant directly for people. Different web services provide useful information primarily aimed for other applications to consume. Some examples are things like authentication, stock data, weater reports, Twitter feeds, etc.</p>
+        <p>Not all web applications are meant directly for people. Different web services provide useful information primarily aimed for other applications to consume. Some examples are things like authentication, stock data, weather reports, Twitter feeds, etc.</p>
         <p>These programmatic interfaces might not have a GUI but instead are meant to be used by other programs on client-side as well as on server-side.</p>
         <p>Typically they are created in a way that allows the consumers to use different operating systems or languages.</p>
       </section>
@@ -103,15 +103,15 @@
 
       <section>
         <h2>XML-RPC</h2>
-        <p>Remote Procedure Call (<code>RPC</code>) generally refers to collections of techniques to call a procedure typically on another computer. XML-RPC is a specification that is SOAPs predecessor.</p>
-        <p>Procedure calls, parameters and responses are encoded in XML. It's simpler that SOAP and doesn't have a WSDL.</p>
+        <p>Remote Procedure Call (<code>RPC</code>) generally refers to collections of techniques to call a procedure typically on another computer. XML-RPC is a specification that is SOAP's predecessor.</p>
+        <p>Procedure calls, parameters and responses are encoded in XML. It's simpler than SOAP and doesn't have a WSDL.</p>
       </section>
 
       <section>
         <h2>Representational State Transfer</h2>
         <p class="dense">In RPCs the focus is on method. In Representational State Transfer (<code>REST</code>) the focus is on <em>resources</em> that can be accessed and acted upon in a standard way.</p>
         <p class=""><a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a> described REST in his dissertation 'Architectural Styles and the Design of Network-based Software Architectures'.</p>
-        <p class="dense">Anything that is important enough to be separately refenced/ modified/retrieved is a resource that has a reference. Universal Resource Identifier (<code>URI</code>) is the reference. They should be constructed in an intuitive (human readable) manner and reflecting the underlying data structure.</p>
+        <p class="dense">Anything that is important enough to be separately referenced/ modified/retrieved is a resource that has a reference. Universal Resource Identifier (<code>URI</code>) is the reference. They should be constructed in an intuitive (human readable) manner and reflecting the underlying data structure.</p>
       </section>
 
       <section>
@@ -123,7 +123,7 @@
       <section>
         <h2>RESTful Web Services</h2>
         <p><em>Resources</em> are any type of data that can be pointed to with a hyperlink: images, documents, web services, etc.</p>
-        <p>Data is encoded in a way that it can represent the state of the resource and resources are refenreced by URIs.</p>
+        <p>Data is encoded in a way that it can represent the state of the resource and resources are referenced by URIs.</p>
         <p>REST is a pattern, a way of doing things that is not formally codified.</p>
         <p class="extra">The REST portion of this lecture is influenced by <a href="https://www.youtube.com/watch?v=mZ8_QgJ5mbs">Beautiful REST &amp; JSON APIs by Les Hazlewood</a> (definitely worth watching if you need to create an API).</p>
       </section>
@@ -150,7 +150,7 @@
 
       <section>
         <h2>REST: Resources</h2>
-        <p>In RPC resources can be thought of as <em>verbs</em>. In REST, resources should be <em>nouns</em>.</p>
+        <p>In RPC, resources can be thought of as <em>verbs</em>. In REST, resources should be <em>nouns</em>.</p>
         <p>Broadly speaking there are two types of resources:</p>
         <ul>
           <li><code>Collection resource</code> e.g. <code>/blogposts/2014</code> These link and list multiple instance resources. And they might also have their own attributes (e.g. 'first', 'latest')</li>
@@ -196,7 +196,7 @@
 
       <section>
         <h2>REST: Addressability</h2>
-        <p>Addressability (every resource has a unique identifier) gives the major benefit of using resources in unforseen ways.</p>
+        <p>Addressability (every resource has a unique identifier) gives the major benefit of using resources in unforeseen ways.</p>
 
         <p>Related to this it is a good idea to <em>version</em> your APIs, for example:</p>
 
@@ -206,7 +206,7 @@
 
       <section>
         <h2>REST: Connectedness</h2>
-        <p>Idea of connectedness is that resources link to other resources</p>
+        <p>The idea of connectedness is that resources link to other resources</p>
         <p>Following links traverses the API uncovering more information and structure.</p>
       </section>
 
@@ -228,7 +228,7 @@
         <ul>
           <li>Identification of Resources: Request identifies the resource, data could be returned in number of formats.</li>
           <li>Manipulation of resources through representations: If a client has the resources, it knows enough to modify/manipulate it</li>
-          <li>Self-descriptive messages: Each message contains enough information on how to process is (what is its mime-type etc.)</li>
+          <li>Self-descriptive messages: Each message contains enough information on how to process it (what is its mime-type etc.)</li>
           <li>HATEOAS</li>
         </ul>
         <p>Wikipedia has a nice article about <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
@@ -317,7 +317,7 @@
 
       <section>
         <h2>HTTP and Caching</h2>
-        <p><code>HTTP</code> has built-in support for caching. HTTP headers contain metadata about fetched resources and can be used to make condifitonal requests.</p>
+        <p><code>HTTP</code> has built-in support for caching. HTTP headers contain metadata about fetched resources and can be used to make condiditonal requests.</p>
         <p>Conditional GET requests are only executed, when a certain condition is fulfilled, e.g. <em>If-Modified-Since</em> is only executed if a resource has been modified since the given date.</p>
         <p>Images, JS libraries, CSS files, static pages, etc. should stay in cache as long as possible. Similarly, on rapidly changing pages, caching should be disabled or expire fast.</p>
         <p>Caching is also really beneficial for REST APIs.</p>
