@@ -92,7 +92,7 @@ connection.close()</code></pre>
         <h2>Library vs. Framework</h2>
         <p>What's the difference between frameworks and libraries?</p>
         <p>My view: frameworks provide/force structrure for the whole application and in return provide functionality and ease of use of some 'mundane' tasks.</p>
-        <p>Frameworks' design philosophy impacts more. Design of libraries will only affects how you call out the functionality</p>
+        <p>Frameworks' design philosophy impacts more. Design of libraries will only affect how you call out the functionality.</p>
         <p class="extra">Good discussion on the topic from <a href="http://stackoverflow.com/questions/148747/what-is-the-difference-between-a-framework-and-a-library">Stack Overflow</a></p>
       </section>
 
@@ -114,14 +114,14 @@ connection.close()</code></pre>
         <h2>Model (<strong>M</strong>VC)</h2>
         <p>Model maintains the state of the application, it holds the data. In the web application context typically the data is stored in a database(s). </p>
         <p>Model is used to abstract away the database-centric stuff. This is typically done using <em>Object-Relational-Mapper</em> (<code>ORM</code>). It maps the data in the database to objects and conversely maps objects to database entries.</p>
-        <p>Any restrictions to the data are defined in the model... and it takes care of validating that incorrect data does not end up in the database.</p>
+        <p>Any restrictions to the data are defined in the model... and it takes care of validating, so that incorrect data does not end up in the database.</p>
       </section>
 
       <section>
         <h2>View (M<strong>V</strong>C)</h2>
         <p>The concern of the view is to generate the user interface. In web applications this means producing <code>HTML</code> usually by using a <em>templating language</em>.</p>
         <p>Data is acquired from the Model (typically via Controller) and mixed with HTML using templating language.</p>
-        <p>View can (and often does) <em>format</em> the data to suit requirements for that particular view. It answers to questions like: what is to be displayed? how it should be displayed? etc.</p>
+        <p>View can (and often does) <em>format</em> the data to suit the requirements of that particular view. It answers questions like: what is to be displayed? how should it be displayed? etc.</p>
       </section>
 
       <section>
@@ -143,8 +143,8 @@ connection.close()</code></pre>
       <section>
         <h2>Django on The Course</h2>
         <p>We will use version 1.7 with Python 3</p>
-        <p>Why Django? It offers nice amount of functionality and "forces" writing applications in a particular way. It is powerful and flexible and it is quite "traditional" web framework as well.</p>
-        <p class="extra">The world is full of frameworks <a href="http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks">Wikipedia has listed some for many languages</a>.</p>
+        <p>Why Django? It offers nice amount of functionality and "forces" writing applications in a particular way. It is powerful and flexible and it is quite a "traditional" web framework as well.</p>
+        <p class="extra">The world is full of frameworks. <a href="http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks">Wikipedia has listed some for many languages</a>.</p>
       </section>
 
       <section>
@@ -158,9 +158,9 @@ connection.close()</code></pre>
       
       <section>
         <h2>MTV and Django</h2>
-        <p>In Django's MTV role of the model is the same as in the typical <code>MVC</code>.</p>
+        <p>In Django's MTV, the role of the model is the same as in the typical <code>MVC</code>.</p>
         <p><em>Templates</em> are just called that in Django, they produce the final HTML presented to the user by combining given HTML elements and data.</p>
-        <p>Views get the user input (HTTP request) they access the necessary models (and perhaps include some additional logic) and then pass the data to the template.</p>
+        <p>Views get the user input (HTTP request), they access the necessary models (and perhaps include some additional logic), and then pass the data to the template.</p>
         <p>The template is rendered and returned to the user.</p>
         <p>The role of the 'traditional' controller can be viewed in django as the whole framework + URL-routing (<code>urls.py</code>)</p>
       </section>
@@ -184,7 +184,7 @@ connection.close()</code></pre>
       <section>
         <h2>Structure of a Django Project</h2>
         <p style="float:left;"><img src="img/django_myblog.png" alt="Simple Django project directory structure"></p>
-        <p>The project 'myblog' contains an app called 'blogpost' which has various Python files which we'll look next. There is also a nested 'myblog' directory that contains some important files.</p>
+        <p>The project 'myblog' contains an app called 'blogpost' which has various Python files which we'll look at next. There is also a nested 'myblog' directory that contains some important files.</p>
       </section>
 
       <section>
@@ -275,7 +275,7 @@ def latest_posts(request, amount):
 
       <section>
         <h2>Templates - Variables</h2>
-        <p>Double curly brackets denote a variable in templates. The values are filled in the view. If the variable is a dict/list/object etc. dot notation can be used to access its members.</p>
+        <p>Double curly brackets denote a variable in templates. The values are filled in the view. If the variable is a dict/list/object etc., dot notation can be used to access its members.</p>
         <p>Variables can also be preprocessed before they are included in the document. Filters are marked with: <code> | filter_name &amp; params</code>, e.g.:</p>
         <pre><code class="python">{# escapes special characters in urls #}
 {{ userprovided_url | urlencode }}
@@ -339,14 +339,14 @@ def latest_posts(request, amount):
 
       <section>
         <h2>Object-Relational-Mapper ORM</h2>
-        <p>Most of the data in an Django application is in objects that have a number of instance variables (that can also reference other objects).</p>
+        <p>Most of the data in a Django application is in objects that have a number of instance variables (that can also reference other objects).</p>
         <p>Data is stored in tables in relational databases that are not designed to contain objects.</p>
         <p>Object-Relational-Mapper is designed to bridge this gap. It converts objects to a form that can be stored relational database. And similarly, fetches data from the database and transforms that data back into objects.</p>
         </section>
         
         <section>
           <h2>Models in Django</h2>
-          <p>The first step is to describe models in Python code (typically in <code>app/models.py</code>). Following example defines two models:</p>
+          <p>The first step is to describe models in Python code (typically in <code>app/models.py</code>). The following example defines two models:</p>
 
         <pre><code>from django.db import models
 

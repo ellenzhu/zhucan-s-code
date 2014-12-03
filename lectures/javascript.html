@@ -121,7 +121,7 @@
             #1 Mistake with Javascript (according to Crockford)
             is not bothering to learn the language</p>
           <p>It might look like C and have Java in the name,
-            but it is very different language.</p>
+            but it is a very different language.</p>
           <p class="extra"><a href="http://www.crockford.com/javascript/javascript.html">The World's Most Misunderstood Programming Language</a></p>
         </section>
 
@@ -139,12 +139,12 @@
   console.log("Hello console");
   alert("Alert");
 &lt;/script&gt; </code></pre>
-          <p class="extra">Actually there is a third way as well... but it is something that should not be used. The curious can Google <a href="http://www.google.com/search?q=inline+javascript">inline javascript</a></p>
+          <p class="extra">Actually there is a third way as well... but it is something that should not be used. The curious can Google <a href="http://www.google.com/search?q=inline+javascript">inline javascript</a>.</p>
         </section>
 
         <section>
           <h2>Variables</h2>
-          <p>Variables are declared with <code>var</code> keyword</p>
+          <p>Variables are declared with <code>var</code> keyword:</p>
           <pre><code>var lectureTopic = "javascript";</code></pre>
           <p>Variables do not have types, but their values do. Additionally, the value can be <code>undefined</code> if it is not set.</p>
 <pre><code contenteditable="true">var lectureTopic = "javascript";
@@ -153,7 +153,7 @@ console.log(lectureTopic); //javascript
 console.log(lecturer); //undefined
 lecturer = "Lassi";
 console.log(lecturer); //Lassi</code></pre>
-          <p><code>var</code> can be left out completely. But this means that it will be in the global scope. <em style="">Always use <code>var</code>. Leaving it out will eventually harm you and your users</em>
+          <p><code>var</code> can be left out completely. But this means that it will be in the global scope. <em style="">Always use <code>var</code>. Leaving it out will eventually harm you and your users.</em>
         </section>
 
         <section>
@@ -219,7 +219,7 @@ someNumbers.length; //8</code></pre>
           <h2>Functions</h2>
           <p>Functions are defined with <code>function</code> keyword and a name (optional) and parameters in parenthesis (also optional) as comma separated list.</p>
           <p>Functions are <a href="http://en.wikipedia.org/wiki/First-class_function">first class citizens</a> in JavaScript.</p>
-          <p>Method-functions are invoked with dot notation: <code>myObject.doSomething()</code>. Global functions are invoced with the function's name and parameters in parenthesis.</p>           
+          <p>Method-functions are invoked with dot notation: <code>myObject.doSomething()</code>. Global functions are invoked with the function's name and parameters in parentheses.</p>           
           <pre><code>function add(a,b) {
   return a + b;
 }
@@ -363,13 +363,13 @@ someText.toUpperCase(); //"THIS IS MY TEXT"</code></pre>
 
         <section>
           <h2>Control Structures</h2>
-          <p><code>if...else</code> Statement (can also have optional <code>else if</code> branches):</p>
+          <p><code>if...else</code> statement (can also have optional <code>else if</code> branches):</p>
           <pre><code>if(myVariable === 7) {
   console.log("It is seven!");
 } else { //Else could also be completely omitted
   console.log("It is NOT seven!");
 }</code></pre>
-          <p><code>switch</code> Statement</p>
+          <p><code>switch</code> statement:</p>
           <pre><code>switch (someVariable) {
   case 7:
     console.log("It's seven");
@@ -384,7 +384,7 @@ someText.toUpperCase(); //"THIS IS MY TEXT"</code></pre>
 
         <section>
           <h2>For Loops</h2>
-          <p>JavaScript has <code>while</code> and <code>do ... while</code> statements</p><pre><code>/* This will just keep printing 'Still doing stuff' until 
+          <p>JavaScript has <code>while</code> and <code>do ... while</code> statements:</p><pre><code>/* This will just keep printing 'Still doing stuff' until 
 keepDoingStuff is set to false */
 
 // shorter way of expressing while(keepDoingStuff === true)
@@ -463,7 +463,7 @@ anotherPerson.greet('Good day!'); //prints: Good day!! My name is Mary</code></p
         </section>
         <section>
           <h2>JSON</h2>
-          <p><code>JSON</code> stands for JavaScript Object Notation. It has two structures (taken from <a href="http://json.org/">json.org</a>:</p>
+          <p><code>JSON</code> stands for JavaScript Object Notation. It has two structures (taken from <a href="http://json.org/">json.org</a>):</p>
           <ul>
           <li>A collection of name/value pairs. In various languages, this is realized as an <code>object</code>, record, struct, dictionary, hash table, keyed list, or
             associative array.</li>
@@ -507,7 +507,7 @@ foo(7); //Will result in printing 7, 8, and 15</code></pre>
         
         <section>
           <h2>JavaScript Standards</h2>
-          <p class="dense">JavaScript is an implementation of ECMAScript which is the official specification. Different versions of this spefication has been released, the latest being the fifth edition.</p>
+          <p class="dense">JavaScript is an implementation of ECMAScript which is the official specification. Different versions of this specification have been released, the latest being the fifth edition.</p>
           <p class="dense">The latest specification added a <code>strict</code> mode. It is more restricted than the normal mode, a subset of JavaScript where some features which are known to cause problems are removed. For example, some things which fail silently will throw an error.</p>
           <pre><code class="js">function noStrict() {
   message = "This is a bad idea";
@@ -529,7 +529,7 @@ noStrict(); //works
         <section>
           <h2><code>this</code></h2>
           <p><code>this</code> is a keyword that refers to the current execution context. When it is used in the global scope it refers to the global object. Inside functions it behaves differently depending on whether strict mode is used. Inside a method function it refers to the object on which it is called.</p>
-          <p>Good overview on what <code>this</code> can refer to on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN</a></p>
+          <p>Good overview on what <code>this</code> can refer to on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN</a>.</p>
         </section>
         
         <section>
@@ -565,7 +565,7 @@ document.getElementById('js_dom_h2').appendChild(newElement);
 
         <section>
           <h2>Events</h2>
-          <p>Most of what you end up doing with JavaScript in the browser is event-driven. What this means, is that when something happens you have some code that activates.</p>
+          <p>Most of what you end up doing with JavaScript in the browser is event-driven. What this means is that when something happens, you have some code that activates.</p>
           <p>There are many events to which you can respond. Some examples are:</p>
           <ul>
             <li>Document finished loading</li>
@@ -578,7 +578,7 @@ document.getElementById('js_dom_h2').appendChild(newElement);
 
         <section>
           <h2>Event Handling</h2>
-          <p>The way we handle these events is by attaching <em>event handlers</em> to elements (including the document itself)</p>
+          <p>The way we handle these events is by attaching <em>event handlers</em> to elements (including the document itself).</p>
           <p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers">MDN - Event Handlers</a></p>
           <pre><code>document.getElementById('specialButton').onclick = function (event) {
   alert("Someone clicked the special button!");
@@ -602,7 +602,7 @@ document.getElementById('js_dom_h2').appendChild(newElement);
           <!--<p>https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml</p>-->
           <p><a href="http://www.jslint.com/">JSLint</a> - "Warning: JSLint will hurt your feelings."</p>
           <p><a href="http://www.jshint.com/">JSHint</a> - "JSHint is a program that flags suspicious usage in programs written in JavaScript."</p>
-          <p>Incorporating tools such as JSLint or JSHint in to your workflow will make your life easier in the long run. There exists a plethora of solutions how to run these automatically, for instance, when you save a .js file in your editor.</p>
+          <p>Incorporating tools such as JSLint or JSHint in to your workflow will make your life easier in the long run. A plethora of solutions exist for running these automatically, for instance, when you save a .js file in your editor.</p>
         </section>
 
         <section>

@@ -62,7 +62,7 @@
         <ul>
           <li><code>CharField</code> needs at least <code>max-length</code> as parameter</li>
           <li><code>TextField</code></li>
-          <li><code>EmailField</code> <em>Note</em> set the max_length to 254</li>
+          <li><code>EmailField</code> <em>Note:</em> set the max_length to 254</li>
           <li><code>IntegerField</code></li>
           <li><code>FileField</code></li>
         </ul>
@@ -71,7 +71,7 @@
 
       <section>
         <h2>Models and Relations</h2>
-        <p>Many-to-one relationship in Models is defined by <code>ForeignKey</code>. It requies the name of the class that the model is related as a first parameter.</p>
+        <p>Many-to-one relationship in Models is defined by <code>ForeignKey</code>. It requires the name of the class that the model is related to as the first parameter.</p>
         <pre><code>from django.db import models
 
 class Car(models.Model):
@@ -82,13 +82,13 @@ class Manufacturer(models.Model):
     # ...
     pass</code></pre>
         <p>Example from <a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#foreignkey">Django Docs ForeignKey</a>.</p>
-        <p>Similarly many-to-many relations are created with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#manytomanyfield">ManyToManyField</a></code> and one-to-one relations with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#onetoonefield">OneToOneField</a></code>.</p>
+        <p>Similarly, many-to-many relations are created with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#manytomanyfield">ManyToManyField</a></code> and one-to-one relations with <code><a href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#onetoonefield">OneToOneField</a></code>.</p>
       </section>
 
       <section>
         <h2>Models and Methods</h2>
         <p class=dense>It is a good idea to place as much of your data related business logic to the models as possible. Treat it similarly to normal object-oriented programming.</p>
-        <p class="dense">One of the 'magic methods' in Python is <code>__str__</code> that you should define in models, this determines how they are represented in Django Admin, for instance.</p>
+        <p class="dense">One of the 'magic methods' in Python is <code>__str__</code> that you should define in models; this determines how they are represented in Django Admin, for instance.</p>
         <pre><code>from django.db import models
 
 class Person(models.Model):
@@ -126,8 +126,8 @@ class Question(models.Model):
         <p>Some of the most important field options:</p>
         <ul>
           <li><code>null=True</code> allows empty value in database</li> 
-          <li><code>blank=True</code> allows emptry value</li>
-          <li><code>primary_key</code> makes this field the primary key (normally this is created automatically yor you)</li>
+          <li><code>blank=True</code> allows empty value</li>
+          <li><code>primary_key</code> makes this field the primary key (normally this is created automatically for you)</li>
           <li><code>unique</code> requires that this value is unique in this model</li>
         </ul>
         <pre><code>class Person(models.Model):
@@ -197,7 +197,7 @@ for book in new_books:
         <h2>Shortcuts</h2>
         <p>Django provides convenient <a href="https://docs.djangoproject.com/en/1.7/topics/http/shortcuts/">shortcuts</a> to accomplish common tasks:</p>
         <ul>
-          <li><code>get_object_or_404(...)</code> calls get as usual but raises Http404 if not found</li>
+          <li><code>get_object_or_404(...)</code> calls <code>get()</code> as usual, but raises Http404 if not found</li>
           <li><code>get_list_or_404(...)</code> calls <code>filter()</code> and raises Http404 if resulting set is empty</li>
           <li><code>render(request, template, [, dict])</code> renders given context/dict with the template and returns HttpResponse</li>
           <li><code>redirect(to)</code> to can be view name, hardcoded url or an object with <code>.get_absolute_url()</code> method</li>
@@ -222,7 +222,7 @@ def current_datetime(request):
 
       <section>
         <h2>Views Example</h2>
-        <p>If an item that was requested was not found, the view can raise a Http404 error. <code>render_to_response</code> is a convenient way of returning a rendered template with data as a reponse.</p>
+        <p>If an item that was requested was not found, the view can raise a Http404 error. <code>render_to_response()</code> is a convenient way of returning a rendered template with data as a reponse.</p>
         <pre style="width: 105%;"><code>from django.http import Http404
 from django.shortcuts import render_to_response
 from polls.models import Poll
@@ -248,7 +248,7 @@ def detail(request, poll_id):
 
       <section>
         <h2>HttpRequest Object</h2>
-        <p>The <code>HttpRequest</code> object contains metadata about the request. Most of the metadata is set by user's browser, but middleware might process/create some data as well, for instance session information.</p>
+        <p>The <code>HttpRequest</code> object contains metadata about the request. Most of the metadata is set by the user's browser, but middleware might process/create some data as well, for instance session information.</p>
         <pre><code># In some view...
  # path for the request, not including domain
 print(request.path) # e.g. "/myblog/add_comment"
@@ -275,7 +275,7 @@ else:
           <li><code>.is_secure()</code> returns True/False depending on whether request was made with HTTPS.</li>
           <li><code>.get_full_path()</code> returns the path and parameters</li>
           <li><code>.get_host()</code> return the host, e.g. "127.0.0.1:8000"</li>
-          <li><code>.user.is_authenticated</code> whether the user makign the request has been authenticated.</li>
+          <li><code>.user.is_authenticated</code> whether the user making the request has been authenticated.</li>
         </ul>
       </section>
       

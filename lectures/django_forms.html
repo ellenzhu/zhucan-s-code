@@ -79,14 +79,14 @@
 
       <section>
         <h2>Django and Forms</h2>
-        <p>Django has a library for handling forms. It handles generation of form tags (in templates) and validates data from forms (on the server side <code>.is_valid()</code>). If the data is not valid it errors will be stored and returned to the template.</p>
-        <p>Django's forms resemble Django's models and in fact, you can create forms based on your models as well.</p>
+        <p>Django has a library for handling forms. It handles generation of form tags (in templates) and validates data from forms (on the server side <code>.is_valid()</code>). If the data is not valid, errors will be stored and returned to the template.</p>
+        <p>Django's forms resemble Django's models and, in fact, you can create forms based on your models as well.</p>
         <p>Forms define a structure for data fields and these fields can have validity restrictions, as is the case with models.</p>
       </section>
 
       <section>
         <h2>Example Form</h2>
-        <p>An example form to ask for users name (characters) and age (integer):</p>
+        <p>An example form to ask for user's name (characters) and age (integer):</p>
         <pre><code>from django import forms
 class ExampleForm(forms.Form):
   name = forms.CharField(max_length=100, label="Your name")
@@ -117,12 +117,12 @@ class ExampleForm(forms.Form):
           <li><code>HiddenInput</code> -> <code>&lt;input type="hidden" ...&gt;</code></li>
           <li><code>SplitDateTimeWidget</code> Combined DateInput and TimeInput widget</li>
         </ul>
-        <p>The names of the widget classes should are self-explanatory.</p>
+        <p>The names of the widget classes should be self-explanatory.</p>
       </section>
 
       <section>
         <h2>Forms and Views</h2>
-        <p>Typically same view that publishes a form also processes it:</p>
+        <p>Typically, the same view that publishes a form also processes it:</p>
         <pre><code>from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -190,7 +190,7 @@ def form_example(request):
 
       <section>
         <h2>Form Template Example</h2>
-        <p>Based on what HTML the forms provide, there are some things that you do need to create manually. Namely the actual <code>form</code> element and a way to <code>submit</code> it. A basic example of a form in a template.</p>
+        <p>Based on what HTML the forms provide, there are some things that you do need to create manually. Namely the actual <code>form</code> element and a way to <code>submit</code> it. A basic example of a form in a template:</p>
         <pre><code>&lt;form action="/save_user/" method="post"&gt;
   {% csrf_token %} &lt;!-- this will explained later --&gt;
   &lt;table&gt;
@@ -248,7 +248,7 @@ def clean_age(self):
 
       <section>
         <h2>ModelForms</h2>
-        <p>It is often the case that you want forms that are based on your models. Django provides a conventient class <code>ModelForm</code> for this. These forms can prepopulate fields based on what is in the database</p>
+        <p>It is often the case that you want forms that are based on your models. Django provides a conventient class <code>ModelForm</code> for this. These forms can prepopulate fields based on what is in the database.</p>
         <pre style="width: 105%;"><code>&gt;&gt;&gt; from django.forms import ModelForm
 &gt;&gt;&gt; from myapp.models import Article
 
@@ -273,8 +273,8 @@ def clean_age(self):
         <h2>User Management</h2>
         <p>Django provides built-in views for handling common scenarios with handling users, such as registartion, login, password change etc.</p>
         <p>Additionally, Django has a <code>User</code> model that can be used and extended to suit your needs.</p>
-        <p class="dense">Instead of writing your own logic for registration/login etc., use these built-in views. Major reason for using Django's own is security, unless you are really experienced with security and user management, you are more likely to get it wrong with your own solution.</p>
-        <p>Additional benefit is, that using built-in functionality is a lot faster and easier. Again, see Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/auth/">User authentication</a>.</p>
+        <p class="dense">Instead of writing your own logic for registration/login etc., use these built-in views. Major reason for using Django's own is security: unless you are really experienced with security and user management, you are more likely to get it wrong with your own solution.</p>
+        <p>An additional benefit is that using built-in functionality is a lot faster and easier. Again, see Django docs on <a href="https://docs.djangoproject.com/en/1.7/topics/auth/">User authentication</a>.</p>
       </section>
 
       <section>
@@ -297,7 +297,7 @@ freds_department = user.employee.department</code></pre>
         <pre><code>...
 url(r'^login/$', 'django.contrib.auth.views.login'),
 ...</code></pre>
-        <p>By default this view looks for a template in 'register/login.html'. You can configure this by passing the url configuration a dictionary, as such:<pre><code>url(r'^login/$',
+        <p>By default, this view looks for a template in 'register/login.html'. You can configure this by passing the url configuration a dictionary, as such:<pre><code>url(r'^login/$',
   'django.contrib.auth.views.login', 
   {'template_name': 'login_template.html'}),</code></pre>
       </section>
@@ -357,7 +357,7 @@ def register(request):
 
       <section>
         <h2>Logging out</h2>
-        <p>A ready made view for logging out exists as well, to provide a logout link, just add to <code>urls.py</code>:</p>
+        <p>A ready made view for logging out exists as well: to provide a logout link, just add to <code>urls.py</code>:</p>
         <pre><code>url(r'^logout/$', 'django.contrib.auth.views.logout'),</code></pre>
         <p>And provide a link to <code>'/logout/'</code>.</p>
       </section>

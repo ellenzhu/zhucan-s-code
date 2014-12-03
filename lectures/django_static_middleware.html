@@ -59,7 +59,7 @@
      <section>
         <h2>More About Migrations</h2>
         <p><a href="https://docs.djangoproject.com/en/1.7/topics/migrations/">Django documentation on migrations</a> is quite exhaustive. <a href="https://realpython.com/blog/python/django-migrations-a-primer/">Tutorial on Real Python</a> covers the common use case with a clear example.</p>
-        <p>As an example, let's start and app called bird:</p>
+        <p>As an example, let's start and app called "bird":</p>
         <pre><code>python3 manage.py startapp bird</code></pre>
         <p>And edit <code>bird/models.py</code> to contain the following:</p>
         <pre><code>from django.db import models
@@ -83,7 +83,7 @@ COMMIT;</code></pre>
         <p>Now running <code>manage.py migrate bird</code> will modify your database with the SQL query on the previous slide.</p>
         <p>If we modify the model in the future, e.g. by adding a field to bird:</p>
         <pre style="width: 100%;"><code>species = models.CharField(max_length=200, unique=True, default="")</code></pre>
-        <p>And the run makemigrations again, a new file 0002_bird_species.py will be created. Again we can see how the database is modified by running <code>sqlmigrate bird 0002</code>.</p>
+        <p>And the run makemigrations again, a new file 0002_bird_species.py will be created. Again, we can see how the database is modified by running <code>sqlmigrate bird 0002</code>.</p>
         <pre><code>BEGIN;
 CREATE TABLE "bird_bird__new" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(200) NOT NULL UNIQUE, "species" varchar(200) NOT NULL UNIQUE);
 INSERT INTO "bird_bird__new" ("id", "species", "name") SELECT "id", '', "name" FROM "bird_bird";
@@ -95,7 +95,7 @@ COMMIT;</code></pre>
       <section>
         <h2>Static Files</h2>
         <p>In Django files that do not change (like images, CSS, JavasScript files etc.) are referred to as <em>static</em> files.</p>
-        <p>To enable static files in your Django project you must have <code>django.contrib.staticfiles</code> in your <code>INSTALLED_APPS</code> (in <code>settings.py</code>). Additionally you need to define in your settings where the static files will be located, e.g. </p>
+        <p>To enable static files in your Django project you must have <code>django.contrib.staticfiles</code> in your <code>INSTALLED_APPS</code> (in <code>settings.py</code>). Additionally, you need to define in your settings where the static files will be located, e.g. </p>
         <pre><code>STATIC_URL = '/static/'</code></pre>
         <p>Now you can store your apps static files in a folder, e.g. <code>blog/static/blog/header.png</code>.</p>
         <p>Django docs <a href="https://docs.djangoproject.com/en/1.7/howto/static-files/">Static Files</a></p>
@@ -277,7 +277,7 @@ messages.warning(request, 'Your account expires in three days.')
       <section>
         <h2>Caching</h2>
         <blockquote>"A web cache is a mechanism for the temporary storage (caching) of web documents, such as HTML pages and images, to reduce bandwidth usage, server load, and perceived lag. A web cache stores copies of documents passing through it; subsequent requests may be satisfied from the cache if certain conditions are met." <a href="http://en.wikipedia.org/wiki/Web_cache">Wikipedia</a></blockquote>
-        <p>In HTTP three mechanics are defined to control caching: <em>freshness</em>, <em>validation</em>, and <em>invalidation</em>.</p>
+        <p>In HTTP, three mechanics are defined to control caching: <em>freshness</em>, <em>validation</em>, and <em>invalidation</em>.</p>
       </section>
 
       <section>
@@ -305,7 +305,7 @@ messages.warning(request, 'Your account expires in three days.')
 
       <section>
         <h2>Enabling Django's Cache Backends</h2>
-        <p>To enable caching in Django add one of the backends to <code>CACHES</code> in settings.</p>
+        <p>To enable caching in Django, add one of the backends to <code>CACHES</code> in settings.</p>
         <pre style="width: 105%;"><code class="python">CACHES = {
   'default': { # name of the cache, you can have multiple
     # Backend used for this cache
