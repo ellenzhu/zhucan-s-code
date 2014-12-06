@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>MVC and Django</title>
+
+    <meta name="description" content="MVC and Django">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #142915;
+        background-color: #142915;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+      <section class="general_topic">
+        <h1>MVC and Django</h1>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+    <section data-background="#002b36">
+      <section>
+        <h2>CGI Example</h2>
+        <pre style="width: 100%;"><code class="python">#!/usr/bin/env python
+import MySQLdb
+
+print("Content-Type: text/html\n")
+print("&lt;html&gt;&lt;head&gt;&lt;title&gt;Books&lt;/title&gt;&lt;/head&gt;")
+print("&lt;body&gt;")
+print("&lt;h1&gt;Books&lt;/h1&gt;")
+print("&lt;ul&gt;")
+
+connection = MySQLdb.connect(user='me', passwd='letmein', db='my_db')
+cursor = connection.cursor()
+cursor.execute("SELECT name FROM books ORDER BY pub_date DESC LIMIT 10")
+
+for row in cursor.fetchall():
+    print("&lt;li&gt;{}&lt;/li&gt;".format(row[0]))
+
+print("&lt;/ul&gt;")
+print("&lt;/body&gt;&lt;/html&gt;")
+
+connection.close()</code></pre>
+        <p class="extra">Example (slightly modified) from <a href="http://www.djangobook.com/en/2.0/index.html">Django Book</a> which is outdated at the moment.</p>
+      </section>
+
+      <section>
+        <h2>What are Web Application Frameworks?</h2>
+        <blockquote>"In computer programming, a software framework is an abstraction in which software providing generic functionality can be selectively changed by additional user-written code, thus providing application-specific software." <a href="http://en.wikipedia.org/wiki/Software_framework">Wikipedia</a></blockquote>
+        <p>&nbsp;</p>
+        <blockquote>"A web application framework (WAF) is a software framework that is designed to support the development of dynamic websites, web applications, web services and web resources. The framework aims to alleviate the overhead associated with common activities performed in web development." <a href="http://en.wikipedia.org/wiki/Web_application_framework">Wikipedia</a></blockquote>
+      </section>
+      
+      <section>
+        <h2>Library vs. Framework</h2>
+        <p>What's the difference between frameworks and libraries?</p>
+        <p>My view: frameworks provide/force structrure for the whole application and in return provide functionality and ease of use of some 'mundane' tasks.</p>
+        <p>Frameworks' design philosophy impacts more. Design of libraries will only affect how you call out the functionality.</p>
+        <p class="extra">Good discussion on the topic from <a href="http://stackoverflow.com/questions/148747/what-is-the-difference-between-a-framework-and-a-library">Stack Overflow</a></p>
+      </section>
+
+      <section>
+        <h2>Separation of Concerns</h2>
+        <blockquote>"... '<em>the separation of concerns</em>', which, even if not perfectly possible, is yet the only available technique for effective ordering of one's thoughts, that I know of. This is what I mean by 'focussing one's attention upon some aspect': it does not mean ignoring the other aspects," <a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD04xx/EWD447.html">E.W. Djikstra</a>
+        </blockquote>
+        <p><a href="http://en.wikipedia.org/wiki/Separation_of_concerns">Wikipedia</a> has a worthwhile article about it as well.</p>
+      </section>
+
+      <section>
+        <h2>Model-View-Controller</h2>
+        <p>Model-View-Controller (or MVC) is a <em>pattern</em> used in software architecture used for interactive software/application.</p>
+        <p>The application is created from three components which have different responsibilities.</p>
+        <p><img src="img/mvc.png" alt="Model-View-Controller"></p>
+      </section>
+
+      <section>
+        <h2>Model (<strong>M</strong>VC)</h2>
+        <p>Model maintains the state of the application, it holds the data. In the web application context typically the data is stored in a database(s). </p>
+        <p>Model is used to abstract away the database-centric stuff. This is typically done using <em>Object-Relational-Mapper</em> (<code>ORM</code>). It maps the data in the database to objects and conversely maps objects to database entries.</p>
+        <p>Any restrictions to the data are defined in the model... and it takes care of validating, so that incorrect data does not end up in the database.</p>
+      </section>
+
+      <section>
+        <h2>View (M<strong>V</strong>C)</h2>
+        <p>The concern of the view is to generate the user interface. In web applications this means producing <code>HTML</code> usually by using a <em>templating language</em>.</p>
+        <p>Data is acquired from the Model (typically via Controller) and mixed with HTML using templating language.</p>
+        <p>View can (and often does) <em>format</em> the data to suit the requirements of that particular view. It answers questions like: what is to be displayed? how should it be displayed? etc.</p>
+      </section>
+
+      <section>
+        <h2>Controller (MV<strong>C</strong>)</h2>
+        <p>Controller decides which views to use based on <em>user input</em> and data from the models.</p>
+        <p>Controller can be interpreted in many ways and in the simplest case it only selects the views.</p>
+        <p>In a broader interpretation it handles more of the business logic (utilizing models and what rules they enforce).</p>
+      </section>
+
+    </section>
+    <section>
+
+      <section>
+        <h2>Django Framework</h2>
+        <blockquote style="width: 90%;">"The Web framework for perfectionists with deadlines" <a href="https://www.djangoproject.com/">Django</a></blockquote>
+        <p style="text-align: center;"><a href="https://www.djangoproject.com/"><img style="width: 80%;" src="img/django_website.png" alt="Screenshot of Django Website"></a></p>
+      </section>
+
+      <section>
+        <h2>Django on The Course</h2>
+        <p>We will use version 1.7 with Python 3</p>
+        <p>Why Django? It offers nice amount of functionality and "forces" writing applications in a particular way. It is powerful and flexible and it is quite a "traditional" web framework as well.</p>
+        <p class="extra">The world is full of frameworks. <a href="http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks">Wikipedia has listed some for many languages</a>.</p>
+      </section>
+
+      <section>
+        <h2>Model-Template-View</h2>
+        <p>Model-Template-View (<code>MTV</code>) is a variation of the <code>MVC</code> pattern.</p>
+        <p>Django uses this:</p>
+        <blockquote>'In our interpretation of MVC, the “view” describes the data that gets presented to the user. It’s not necessarily how the data looks, but which data is presented. The view describes which data you see, not how you see it. It’s a subtle distinction.' <a href="https://docs.djangoproject.com/en/dev/faq/general/#django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names">Django FAQ about MVC</a></blockquote>
+      </section>      
+
+
+      
+      <section>
+        <h2>MTV and Django</h2>
+        <p>In Django's MTV, the role of the model is the same as in the typical <code>MVC</code>.</p>
+        <p><em>Templates</em> are just called that in Django, they produce the final HTML presented to the user by combining given HTML elements and data.</p>
+        <p>Views get the user input (HTTP request), they access the necessary models (and perhaps include some additional logic), and then pass the data to the template.</p>
+        <p>The template is rendered and returned to the user.</p>
+        <p>The role of the 'traditional' controller can be viewed in django as the whole framework + URL-routing (<code>urls.py</code>)</p>
+      </section>
+
+      <section>
+        <h2>MTV and Django</h2>
+        <p><img style="width: 80%;" src="img/django_mtv.png" alt="Django and Model-Template-View"></p>
+      </section>
+      
+      <section>
+        <h2>django-admin.py</h2>
+        <p><code>django-admin.py startproject my_first_project</code> this will create a new folder with specific filestructure called my_first_project and importantly creates a manage.py script, which is used to do various tasks related to the project:</p>
+        <ul>
+          <li><code>python manage.py syncdb</code> creates the database schema</li>
+          <li><code>python manage.py runserver [port]</code> starts a development server</li>
+          <li><code>python manage.py startapp appname</code> creates an app for the project</li>
+          <li><code>python manage.py help</code> lists out all the nice things manage.py can do for you</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Structure of a Django Project</h2>
+        <p style="float:left;"><img src="img/django_myblog.png" alt="Simple Django project directory structure"></p>
+        <p>The project 'myblog' contains an app called 'blogpost' which has various Python files which we'll look at next. There is also a nested 'myblog' directory that contains some important files.</p>
+      </section>
+
+      <section>
+        <h2>urls.py</h2>
+        <p>This routes <code>URL</code>s to Django functions (typically defined in <code>views.py</code>).</p>
+        <pre><code>from django.conf.urls import patterns, include, url
+from my_app.views import welcome_page
+from django.contrib import admin
+
+urlpatterns = patterns('',
+    url(r'^$', welcome_page), # ^$ matches empty path
+    url(r'^admin/', include(admin.site.urls)),
+  )
+</code></pre>
+        <p class="extra">'Some people, when confronted with a problem, think, "I know, I'll use regular expressions." Now they have two problems.' <a href="http://nedbatchelder.com/blog/201204/two_problems.html">More humor</a></p>
+      </section>
+      
+      <section>
+        <h2>views.py</h2>
+        <p><code>views.py</code> (naming convention) files contain views that get requested through the <code>urls.py</code>. For example:</p>
+        <pre style="width: 95%;"><code>from django.http import HttpResponse
+
+def welcome_page(request):
+    return HttpResponse("Hello, world. Welcome to this page")</code></pre>
+        <p>Using a template and <code>render</code> shortcut:</p>
+        <pre style="width: 95%;"><code>from django.shortcuts import render
+
+def latest_posts(request, amount):
+    posts = BlogPost.objects.all().order_by('-pub_date')[:amount]
+    context = {'blog_posts': posts}
+    return render(request, 'blog/index.html', context)</code></pre>
+      </section>
+
+      <section>
+        <h2>Templates</h2>
+        <p>Templates have some predefined HTML and they get some data from the view (which gets it from the model).</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title>Welcome&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1>Welcome to {{ system_name }}!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </section>
+
+      <section>
+        <h2>settings.py</h2>
+        <p>This is the main configuration file for the project which can be extended by local settings files.</p>
+        <p>Some of the important settings contained in it: installed apps, database settings, where templates are loaded, and much more.</p>
+      </section>
+
+      <section>
+        <h2>Generating HTML without Templates</h2>
+        <p>It is possible but highly unadvisable!</p>
+        <p>Think about the following code:</p>
+        <pre style="width: 95%"><code>def current_datetime(request):
+  now = datetime.datetime.now()
+  html = "&lt;html&gt;&lt;body&gt;It is now {}.&lt;/body&gt;&lt;/html&gt;".format(now)
+  return HttpResponse(html)
+        </code></pre>
+        <p>How does that relate to separation of concerns and maintainability?</p>
+      </section>
+
+      <section>
+        <h2>Templating Languages</h2>
+        <p>The main idea is to separate the presentation from the data.</p>
+        <p>They offer many benefits, such as: 
+          <ul>
+            <li>Flexibility - designers can work on templates while coders work on code</li>
+            <li>Maintainability - loose coupling. Presentation can be reworked completely without touching the underlying logic</li>
+            <li>Typically easier than coding - non-coders (think designers, ux specialists) can work on them as well</li>
+          </ul>
+      </section>
+
+      <section>
+        <h2>Django Templates</h2>
+        <p>Templates in Django can generate HTML/XML/JSON and other formats.</p>
+        <p>They use a templating language that mixes its own tags with the parent languages (e.g. HTML) tags.</p>
+        <p>They have a minimal set of control constructs (looping, branching) and any actual logic should be coded in views.</p>
+        <p>They have template <em>inheritance</em> to keep up with the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY-principle</a>.</p>
+        <pre><code>{{ variable }}
+{# comment #}
+{% programming logic %}</code></pre>
+      </section>
+
+      <section>
+        <h2>Templates - Variables</h2>
+        <p>Double curly brackets denote a variable in templates. The values are filled in the view. If the variable is a dict/list/object etc., dot notation can be used to access its members.</p>
+        <p>Variables can also be preprocessed before they are included in the document. Filters are marked with: <code> | filter_name &amp; params</code>, e.g.:</p>
+        <pre><code class="python">{# escapes special characters in urls #}
+{{ userprovided_url | urlencode }}
+{# e.g. http://www.google.com -> http%3A//www.google.com #}</code></pre>
+      </section>
+
+      <section>
+        <h2>Templates - Comments</h2>
+        <p>Two ways:</p>
+        <pre><code>{# self commenting #}
+
+{% comment %}
+  This is commented out.
+{% endcomment %}
+
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Templates - <code>if</code> and <code>for</code></h2>
+        <p>Can be used to test presense of a variable with <code>{% if variable %}</code>.</p>
+
+        <pre><code class="python">{% if condition %}
+  If condition evaluates to true this will get rendered.
+{% else %}
+  Otherwise this will get rendered.
+{% endif %}
+        </code></pre>
+        <pre><code class="python">{% ifequal a b %}
+  {{a}} and {{b}} are equal
+{% else %}
+  {{a}} and {{b}} are NOT equal
+{% endif %}
+        </code></pre>        
+        <pre><code class="python">{% for item in collection %}
+  Collecttion (e.g. list) contains {{item}}.
+{% endfor %}
+        </code></pre>        
+        <p>For a complete list of tags and filters refer to <a href="http://docs.djangoproject.com/en/1.7/ref/templates/builtins/">Django Documentation</a>.</p>  
+      </section>
+
+      <section>
+        <h2>Templates - Workflow</h2>
+        <p>Following steps describe how templates are rendered:</p>
+        <ol>
+          <li>Fetch a template</li>
+          <li>Prepare data in Context object</li>
+          <li>Render template with the data</li>
+          <li>Return rendered template as an HttpResponse</li>
+        </ol>
+
+        <pre style="width: 95%;"><code>￼def congratulate_page(request):
+  template = get_template("congratulations.html") # 1.
+  variables = 
+    Context( { "name" : "Matti", "username" : "iceman" } ) # 2.
+  output = template.render(variables) # 3.
+  return HttpResponse(output) # 4.
+        </code></pre>
+        <p>There is a <a href="https://docs.djangoproject.com/en/1.7/topics/http/shortcuts/#render">render shortcut</a> for this.</p>
+      </section>
+
+      <section>
+        <h2>Object-Relational-Mapper ORM</h2>
+        <p>Most of the data in a Django application is in objects that have a number of instance variables (that can also reference other objects).</p>
+        <p>Data is stored in tables in relational databases that are not designed to contain objects.</p>
+        <p>Object-Relational-Mapper is designed to bridge this gap. It converts objects to a form that can be stored relational database. And similarly, fetches data from the database and transforms that data back into objects.</p>
+        </section>
+        
+        <section>
+          <h2>Models in Django</h2>
+          <p>The first step is to describe models in Python code (typically in <code>app/models.py</code>). The following example defines two models:</p>
+
+        <pre><code>from django.db import models
+
+class Student(models.Model):
+  name = models.CharField(max_length=30) 
+  student_number = models.CharField(max_length=6) 
+  group = models.ForeignKey(ProjectGroup)
+
+class ProjectGroup(models.Model):
+  name = models.CharField(max_length=30) 
+  project_deadline = models.DateField()</code></pre>
+        </section>
+
+        <section>
+          <h2>Django ORM</h2>
+          <p>Once you've defined some models you can run <code>python3 manage.py makemigrations appname</code> and then <code>python3 manage.py sqlmigrate</code> which will give the corresponding <code>SQL</code> query to create the necessary tables.</p>
+          <pre style="width: 102%;"><code>BEGIN;
+
+CREATE TABLE "student_projectgroup" ("id" integer 
+  NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(30) 
+  NOT NULL, "project_deadline" date NOT NULL);
+CREATE TABLE "student_student" (
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "name" varchar(30) NOT NULL, "student_number" varchar(6) NOT NULL, 
+  "group_id" integer NOT NULL 
+    REFERENCES "student_projectgroup" ("id")
+  );
+CREATE INDEX 
+  student_student_0e939a4f ON "student_student" ("group_id");
+
+COMMIT;</code></pre>
+        </section>
+
+      <section class="general_topic">
+        <h2>DEMO: Getting Started with Django</h2>
+      </section>
+
+    </section>
+      </div>
+    </div>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>

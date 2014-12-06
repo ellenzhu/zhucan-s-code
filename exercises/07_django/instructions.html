@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 7: Django Application</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 7: Django Application</h1>
+<ol>
+  <li><a href="#preamble">Preamble</a></li>
+	<li><a href="#models">Models</a></li>
+	<li><a href="#views">Views</a></li>
+	<li><a href="#templates">Templates</a></li>
+</ol>
+</div>
+
+<div class="content" id="preamble">
+  <h1>Preamble</h1>
+  <p>In this exercise round you will create a small web service, that provides country and continent information. This information will be available in HTML for humans to use, and in a very basic API where the data can be fetched in JSON format.</p>
+
+  <p>In first exercise you will create a new django project, define models and import initial data given to you. Then in second exercise you will complete the views that handle serving this data. And finally in third exercise, you will create templates for humans to browse this data that will utilize components created in first two exercises.</p>
+
+  <p class="warning">Note that tests are given to you to help with the exercises. However, it is also useful to test your code in browser with Django's development server.</p>
+</div>
+
+<div class="content" id="models">
+
+	<h1>1. Models</h1>
+
+	<p>
+		In this exercise, you need to implement models for <code>Continent</code> and <code>Country</code>.
+		An XML file <a href="countrydata/fixtures/countrydata.xml">countrydata/fixtures/countrydata.xml</a> is given that defines the model
+		structure and the contents for your database.
+	</p>
+	<p><small>The data in this exercise is licensed under a Creative Commons Attribution License
+		and downloaded from <a href="http://www.geonames.org/">GeoNames.org</a>.</small></p>
+    <p>
+        You must create a SQLite database and fill it with given initial data in the <code>countrydata.xml</code> file by using
+        <code><a href="https://docs.djangoproject.com/en/1.7/ref/django-admin/#loaddata-fixture-fixture">
+            manage.py loaddata</a></code> or setting it as
+        <a href="https://docs.djangoproject.com/en/1.7/howto/initial-data/">initial data</a>.
+	</p>
+
+	<h3>Getting Started</h3>
+
+    <p>To setup the project for all the exercises on this round:</p>
+    <ol>
+        <li>Create a Django project called <code>country</code>.</li>
+        <li>Copy the provided <code>countrydata</code> into the created project folder.</li>
+        <li>Edit the settings.py and include 'countrydata' to INSTALLED_APPS).</li>
+        <li>Add the following URL pattern: <code>(r'^countrydata/', include("countrydata.urls")),</code>in your main URL configure file.</li>
+        <li>And finally, before you can load data to the database, the appropriate tables must be created.
+            This is done with the <code>makemigrations</code> and <code>migrate</code> commands.
+        </li>
+    </ol>
+
+	<p><strong>Open the XML file and examine the data.</strong>
+        In the beginning of the XML file you should find the continents followed by the countries.
+        From the data you can easily deduce most of the requirements for the models, such as the names and types of the fields. Additional requirements for the models (not deducible from the data) are:
+	</p>
+	<ul>
+		<li>Countries of a continent should be accessible through attribute <code>countries</code> of the Continent model.</li>
+		<li>Names of continents should be unique (not to be confused with setting it as primary key).</li>
+		<li>Codes of countries and continents should be unique (but not primary keys).</li>
+		<li>Both models should be ordered by the <code>name</code> field by default.</li>
+	</ul>
+
+	<p><strong>Implement the models.</strong> Once the database and models are ready, proceed to
+        <strong>load the data into the database</strong> using the <code>loaddata</code> command or as initial data.
+    </p>
+
+	<h3>Things to read</h3>
+	<p>If you run into problems or don't know where to start, the following resources might be helpful:</p>
+	<ul>
+		<li><a href="http://docs.djangoproject.com/en/1.7/intro/tutorial01/">Creating a Django project</a>.</li>
+		<li>Django <a href="http://docs.djangoproject.com/en/1.7/topics/db/models/#field-options">model field options</a>.</li>
+		<li>Django <a href="http://docs.djangoproject.com/en/1.7/topics/db/models/#meta-options">meta options for models</a>.</li>
+		<li>Django <code><a href="http://docs.djangoproject.com/en/1.7/ref/django-admin/#loaddata-fixture-fixture">manage.py loaddata</a></code> command.</li>
+	</ul>
+
+	<h3>What to Submit?</h3>
+	<p>In this exercise you must submit your implementation of the <code>Continent</code> and <code>Country</code>
+        models in the <code>models.py</code>.</p>
+
+	<p>Before submitting, you should test your program yourself. We also provide you with some Django tests:<code>countrydata/tests.py</code>.
+  Refer to the first Django round for instructions how run the tests. <em>Please note that the tests.py contains three tests classes, one for each exercise on this round.</em> Thus, after solving this exercise, only the tests from class <code>BasicDataTestCase</code> should pass. Use the same unit tests also on the remaining two exercises on this round.
+  Hint: you can run a single named test case separately.</p>
+  <pre>$ python3 manage.py test countrydata.tests.BasicDataTestCase</pre>
+
+	<h3>Submitting Your Project to A+</h3>
+	<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+	Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check
+	is <code>exercises/07_django/country/countrydata/models.py</code>.</p>
+</div>
+
+<div class="content" id="views">
+	<h1>2. Views</h1>
+	
+	<h2>Rendering JSON in Django Views</h2>
+
+  <p>In this exercise you need to implement the views, <code>continent_json</code> and <code>country_json</code>,
+        that will return data for countries and continents in JSON
+        format with JSONP support. You should continue working with the same Django project
+        that you already worked with in the first exercise of this Django round. Your views will
+        use the Country and Continent models that you implemented.</p>
+
+    <h3>Constructing JSON string</h3>
+
+	<p>You need to turn the country data in the models to JSON.
+        One way to do it, would be to store the data in corresponding python data structures (dicts and lists) and to use the <code>json</code> module to encode it to
+        JSON string. The json function <code>dumps</code> does just this.</p> See the <a href="#examples">Examples</a> below for how the data should be formatted.
+
+    <h3>Making the view render JSON instead of HTML</h3>
+
+	<p>The HttpResponse objects that views return are not just for carrying HTML.
+        The body of an HTTP response may carry any text or data that is encoded in text.
+        But if you return something else than HTML, you should setthe <b>mimetype</b> of the data in the HttpResponse. For JSON data this would be:<br /><code>return HttpResponse(my_json_data,
+        content_type="application/json")</code>. There is also <a href="https://docs.djangoproject.com/en/1.7/ref/request-response/#jsonresponse-objects">JsonResponse</a> in Django.</p>
+
+    <p>If a continent or country with the given code is not found,
+        the view should respond with an HTTP response having the 404 status code.</p>
+
+    <h3>About JSONP</h3>
+
+    <p>Make sure you understand what JSONP is and why we need it
+        (see <a href="#things-to-read">Things to Read</a> below).
+        If the HTTP GET request for <code>continent_json</code> or <code>country_json</code> has the
+        <code>callback</code> GET parameter, the JSON data must be wrapped in a JavaScript function call
+        and the name of the function must be the value of the <code>callback</code>.
+        If there is no <code>callback</code>
+        parameter, the views should return normal JSON.
+        </p>
+
+    <h3 id="examples">Examples</h3>
+
+    <p> Example of the rendered JSON for the url<br />
+        <code>http://localhost:8000/countrydata/data/eu/fi.json</code>:</p>
+
+        <pre class="codesample">{
+  "area": 337030,
+  "population": 5244000,
+  "capital": "Helsinki"
+}
+        </pre>
+
+	<p> Example of the rendered JSON for the url<br />
+        <code>http://localhost:8000/countrydata/data/eu/fi.json?callback=myCallbackFunction</code>
+        (with JSONP callback):</p>
+
+        <pre class="codesample">myCallbackFunction({
+  "area": 337030, 
+  "population": 5244000, 
+  "capital": "Helsinki"
+})
+        </pre>
+
+        <p>Example of the rendered JSON for the url<br />
+            <code>http://localhost:8000/countrydata/data/eu.json?callback=myCallbackFunction</code>:</p>
+
+        <pre class="codesample">myCallbackFunction({
+  "xk": "Kosovo", 
+  "ch": "Switzerland", 
+  "gr": "Greece", 
+  "va": "Vatican City", 
+  "ee": "Estonia", 
+  "is": "Iceland", 
+  "al": "Albania", 
+  "gg": "Guernsey", 
+  "cz": "Czech Republic", 
+  "cy": "Cyprus", 
+  "sj": "Svalbard and Jan Mayen", 
+  "im": "Isle of Man", 
+  "at": "Austria", 
+  "je": "Jersey", 
+  "ad": "Andorra", 
+  "ax": "\u00c5land Islands", 
+  "ie": "Ireland", 
+  "gi": "Gibraltar", 
+  "dk": "Denmark", 
+  "ru": "Russia", 
+  "nl": "Netherlands", 
+  "pt": "Portugal", 
+  "no": "Norway", 
+  "li": "Liechtenstein", 
+  "lv": "Latvia", 
+  "lt": "Lithuania", 
+  "lu": "Luxembourg", 
+  "es": "Spain", 
+  "it": "Italy", 
+  "ro": "Romania", 
+  "pl": "Poland", 
+  "be": "Belgium", 
+  "fr": "France", 
+  "bg": "Bulgaria", 
+  "ba": "Bosnia and Herzegovina", 
+  "hr": "Croatia", 
+  "de": "Germany", 
+  "hu": "Hungary", 
+  "fi": "Finland", 
+  "by": "Belarus", 
+  "cs": "Serbia and Montenegro", 
+  "fo": "Faroe Islands", 
+  "me": "Montenegro", 
+  "md": "Moldova", 
+  "mc": "Monaco", 
+  "rs": "Serbia", 
+  "mk": "Macedonia", 
+  "sk": "Slovakia", 
+  "mt": "Malta", 
+  "si": "Slovenia", 
+  "sm": "San Marino", 
+  "ua": "Ukraine", 
+  "se": "Sweden", 
+  "gb": "United Kingdom"
+})
+</pre>
+
+    <h3 id="things-to-read">Things to Read</h3>
+    <p>Here are some external resources to help you out with this exercise:</p>
+    <ul>
+        <li><a href="https://docs.djangoproject.com/en/1.7/ref/request-response/">Django Request and Response objects</a></li>
+        <li><a href="http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about#answer-6879319">Dirty details of JSONP</a></li>
+        <li><a href="https://docs.djangoproject.com/en/1.7/topics/db/queries/">Django: Making queries</a>
+    </ul>
+
+	<h3>Submitting Your Project to A+</h3>
+	<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+	Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check
+	is <code>exercises/07_django/country/countrydata/views.py</code>.</p>
+</div>
+
+<div class="content" id="templates">
+	<h1>3. Templates</h1>
+	
+	<h4>Templates and views for normal requests</h4>
+
+<p> In this exercise, you need to implement templates that will display countries  and their data in a table on the bottom of this page. The table should only be visible when a user has requested this view with a country code. Above the table there should be links to all continents in the database. If the user requests a page with a non existent  continent code a 404 HTTP response code should be returned.</p>
+
+<h4>Templates and (changes to) views for Ajax updates</h4>
+
+<p> The base template and a piece of javascript that come with the exercise package will make interface improvements for this page : The continent names that link to the country tables of other continents are  modified by the script so that instead of reloading the whole page, they trigger an Ajax request. This will only update the modified part of the page (ie. the table). The JavaScript code used is included in the given material. In this exercise you don't need to do the javascript, but to write the views that provide Ajax call the requested data .</p><p>You need to modify the view (<code>show_continent</code>) on server side   so that when it is requested with an Ajax request, it will only  render the table template (<code>countrydata/countrytable.html</code>) instead of the whole page. </p>
+
+<p>Checking whether a request is made via Ajax can be checked from information in the HttpRequest object using the <a href="http://docs.djangoproject.com/en/1.7/ref/request-response/#django.http.HttpRequest.is_ajax">is_ajax()-method</a>.</p>
+
+<h3>The Templates</h3>
+<p>The given material contains an index.html template in <code>templates/countrydata</code>. Do not modify this! Instead, write your part of the page to the templates countrytable.html and continentmenu.html that are included into the index.html</p>
+
+<h4>Template countrytable</h4><p>The template countrytable should render a table with columns for Name, Capital, Population, and Area for all countries of the <code>continent</code> passed to the template. If no continent is passed, it should simply render the headings of the table. Example for imaginary continent with only one country:</p>
+
+<pre>
+&lt;table id="countryTable"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt; 
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Capital&lt;/th&gt;
+      &lt;th&gt;Population&lt;/th&gt;
+      &lt;th&gt;Area&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sweden&lt;/td&gt;
+      &lt;td&gt;Stockholm&lt;/td&gt;
+      &lt;td&gt;9045000&lt;/td&gt;
+      &lt;td&gt;449964 km2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+
+<h4>Template continentmenu</h4>
+<p>The template should render an unordered list with list items including links to the continents passed to the template (as template variable <code>all_continents</code>). Example with only one continent:</p>
+<pre>
+&lt;ul id="continentMenu"&gt;
+  &lt;li&gt;&lt;a href="insert-path-to-continent-using-the-template"&gt;Scandinavia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<h3>Hints and Tips</h3>
+
+<ul><li>Read the code in the given material! Especially files <code>templates/countrydata/index.html</code> and <code>templates/countrydata/ajax_ui.html</code>.</li>  <li>Read the given code in countrytable/views.py for the show_continent view to figure out what parameters are passed to the templates you should write.</ul>
+
+
+	
+	<h3>Submitting Your Project to A+</h3>
+	<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+	Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check
+	are <code>views.py</code>, <code>countrytable.html</code>, and <code>continentmenu.html</code> in <code>exercises/07_django</code>.</p>
+</div>
+
+</body>
+</html>

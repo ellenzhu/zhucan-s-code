@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Python Introduction</title>
+
+    <meta name="description" content="Python Introduction">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+    <style>
+      body {
+        background: #142915;
+        background-color: #142915;
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+      <section class="general_topic" data-background="#142915">
+        <h1>Python</h1>
+        <h2>A Brief Introduction</h2>
+        <p><small>Lassi Haaranen</small></p>
+      </section>
+
+      <section>
+        <h2>Self study material</h2>
+        <p>There are many great resources for learning Python available online. One of those is free book called <a href="http://www.diveintopython3.net/">Dive Into Python 3</a>. For this course, chapters 0,1,2,3,4, and 7 cover most what is needed.</p>
+        <p>In addition, it's advisable to read ProgrammingBits tutorial on <a href="http://programmingbits.pythonblogs.com/27_programmingbits/archive/50_function_decorators.html">function decorators</a>.</p>
+        <p class="extra">The official Python site also has a nice <a href="https://wiki.python.org/moin/BeginnersGuide/NonProgrammers">list of tutorials</a> for beginners (in Python or programming in general).</p>
+      </section>
+
+      <section>
+        <h2>Python Generally</h2>
+        <blockquote>"Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms." <a href="https://docs.python.org/3.5/tutorial/">The Python Tutorial</a></blockquote>
+        <p>Currently there are two different versions of Python that are widely used: <code>Python 2</code> and <code>Python 3</code>. We will use Python 3 on this course. The versions are quite similar (on the surface) but not completely compatible.</p>
+      </section>
+
+      <section>
+        <h2>Getting started with Python</h2>
+        <p><img style="width: 60%;" src="img/python_website.png" alt="Python Website Screenshot"></p>
+        <p>You can test if you have Python by running <code>python3</code> on the command line.</p>
+      </section>
+
+      <section>
+        <h2>Running Python</h2>
+        <p>There are two ways you run Python code: either by running a file containing the code: <code>python3 hello_user.py</code> or by just typing <code>python3</code> and writing some code interactively.</p>
+        <p>Let's try both.</p>
+      </section>
+      
+      <section>
+        <h2>Comments in Python</h2>
+
+        <p>A quick note on how comments work in Python, they are used in the coming slides</p>
+        <p>Single line comments start with <code>#</code> and documentation strings (multiline comments) are noted with <code>"""</code>. That's all there is.</p>
+        <pre><code class="python">"""
+This example illustrates comment usage in Python.
+This is a multiline comment.
+"""
+
+# Assigning a value to 'name' variable
+name = "Comment example"  # Single line comments can live here too
+
+# End of example</code></pre>
+        <p>All the usual advice about using comments applies!</p>
+      </section>      
+
+      <section>
+        <h2>Indentation</h2>
+        <p>In JavaScript blocks of code, like a function or an if-statement, were defined with curly braces. In Python there are no curly braces but blocks are defined by indentation, for example:</p>
+        <pre><code class="python3">some_variable = True
+
+# Since some_variable has True as a value "It's true!" will be printed
+if some_variable == True:
+  print("It's true!")
+else:
+  print("It's false!")</code></pre>
+        <p>Similarly indentation is used when defining functions, loops, classes etc. We'll see this in coming slides.</p>
+        <p>Because indentation plays such a crucial role in Python, a good editor is very highly recommended.</p>
+      </section>
+
+      <section>
+        <h2>Variables</h2>
+        <p>Variables are not declared, they get created by assignment statements</p>
+        <pre><code class="python">my_variable = 3 # create my_variable by assigning 3 to it
+my_other_variable = my_variable + 1 # my_other_variable will be 4</code></pre>
+        <p>Python is dynamically typed: variables will have whatever type their value has. Errors are discovered at run-time:</p>
+        <pre><code>a = 3.5 # a is a number
+a = 'three' # a is a string
+b = a + 3 # can't concat string and int
+# Results in error:
+# TypeError: cannot concatenate 'str' and 'int' objects (Python 2)
+# TypeError: Can't convert 'int' object to str implicitly (Python 3)
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Values</h2>
+        <p><code>integer</code>, <code>float</code>, <code>string</code>, <code>Unicode string</code>, <code>Boolean</code> (True/False, note capitalization), <code>tuple</code>, <code>list</code>, <code>functions</code>...</p>
+        <p>Type conversions are explictit:</p>
+        <pre><code>a = 3.5 # a is a number
+a = 'three' # a is a string
+b = a+str(3) # 'three3'
+str(35)  #'35'
+int("42") # 42
+float("45.3") # 45.3 
+int(45.5) # 45
+</code></pre>
+        <p>There is also special value <code>None</code> it's Python's equivalent of <code>Null</code>. For instance, functions without return values return <code>None</code>.</p>
+      </section>
+
+      <section>
+        <h2>Strings</h2>
+        <p>String literals are marked with either single or double quotes. By using triple quotes multiline strings can be created. </p>
+        <p>Raw strings are created by prefixing string literal with <code>r</code>. This might be quite useful later in Django URL configurations.</p>
+        <pre><code class="python">text = 'This is fine.'
+another_text = "And so is this."
+some_quote = "He said: \"It's a fine day\"." # mixing quotes
+same_quote = 'He said: "It\'s a fine day".' # mixing quotes
+raw_string = r'My string with \ character' # raw string
+# By E. A. Poe
+raven_first_verse = """ 
+Once upon a midnight dreary, while I pondered, weak and weary,
+Over many a quaint and curious volume of forgotten lore-
+    While I nodded, nearly napping, suddenly there came a tapping,
+As of some one gently rapping, rapping at my chamber door.
+"'Tis some visitor," I muttered,"tapping at my chamber door-
+            Only this and nothing more."
+"""</code></pre>
+      </section>
+      <section>
+        <h2>Strings and Slicing</h2>
+        <p>Strings are concatenated with <code>+</code> and repeated with <code>*</code>.</p>
+        <p>Strings are immutable (you cannot change them).</p>
+        <p>Parts of strings can be accessed with string slicing <code>[start:stop:step]</code> notation.</p>
+        <pre><code class="python">a = "world"
+b = "hello" * 3
+c = b + " " + a # 'hellohellohello world'
+test = 'abcdef'
+test[2] # 'c'
+test[2:4] # 'cd'
+test[2:] # 'cdef'
+test[:4] # 'abcd'
+test[1:-2] # 'bcd', ignore first from beginning and two from the end
+test[::2] # 'ace', take every second character
+test[::-1] # 'fedcba', think about how this works
+</code></pre>
+      </section>
+
+      <section>
+        <h2>String Methods</h2>
+        <p>Note that apart from <code>find</code>, which returns an int, all of these will return a new string and will not modify the original variable.
+        <p>Some useful string methods (there are plenty more):</p>
+        <pre  style="width:115%;"><code class="python">line = "Once upon a midnight dreary, while I pondered, weak and weary"
+
+# find gives index of first instance, or -1 if not found
+line.find('eary') # 23
+
+# Replace all occurences of first argument with second argument
+line.replace('eary', 'afty') #'Once upon a midnight drafty, while I pondered, weak and wafty'
+
+# Split string into list using comma
+line.split(',') # ['Once upon a midnight dreary', ' while I pondered', ' weak and weary']
+
+# Join a list with pipe character
+'|'.join(line.split(',')) # 'Once upon a midnight dreary| while I pondered| weak and weary'
+
+# To uppercase, there is also corresponding .lower()
+line.upper() # 'ONCE UPON A MIDNIGHT DREARY, WHILE I PONDERED, WEAK AND WEARY'
+
+#strip white space from both ends
+"   hello ".strip() # 'hello'
+</code></pre>
+      </section>
+
+      <section>
+        <h2>About Unicode</h2>
+        <p>In Python 2.x strings are limited when it comes to what characters they can contain. This is fixed in Python 3.x. You can get around the limitations by prefixing a string literal with <code>u</code>.</p>
+        <pre><code class="python"># In Python 2
+my_string = u'special unicode\u0020string'</code></pre>
+        <pre><code class="python"># In Python 3
+print("Look a snowman \u2603!") # prints: Look a snowman ☃!</code></pre>
+        <p>If you want to print out to terminal, you might also need to set <code>environment variable</code> <code>PYTHONIOENCODING</code> to <code>utf-8</code>, example:</p>
+        <pre><code class="sh">&gt;&gt;&gt; print("Look a snowman \u2603!") 
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec cannot encode character '\u2603' in position 15: ordinal not in range(128)          
+$ export PYTHONIOENCODING=utf-8
+$ python3
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; print("Look a snowman \u2603!") 
+Look a snowman ☃!        
+</code></pre>
+      </section>
+
+      <section>
+        <h2>String Formatting</h2>
+        <p>Concatenating strings (and other things) for display is a bad idea in the long run. You will run into unexpected <code>TypeError</code>s. To avoid this problem there is a format method for strings, used as such: </p>
+        
+        <pre><code class="python">&gt;&gt;&gt; '{0}, {1}, {2}'.format('a', 'b', 'c')
+'a, b, c'
+&gt;&gt;&gt; '{}, {}, {}'.format('a', 'b', 'c')  # 3.1+ only
+'a, b, c'
+&gt;&gt;&gt; '{2}, {1}, {0}'.format('a', 'b', 'c')
+'c, b, a'
+&gt;&gt;&gt; '{2}, {1}, {0}'.format(*'abc')      # unpacking argument sequence
+'c, b, a'
+&gt;&gt;&gt; '{0}{1}{0}'.format('abra', 'cad')   # arguments indices can be repeated
+'abracadabra'
+&gt;&gt;&gt; 'Coordinates: {latitude}, {longitude}'.format(latitude='37.24N', longitude='-115.81W')
+'Coordinates: 37.24N, -115.81W'
+&gt;&gt;&gt; coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
+&gt;&gt;&gt; 'Coordinates: {latitude}, {longitude}'.format(**coord)
+'Coordinates: 37.24N, -115.81W'</code></pre>
+        <p>Example from <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Python 3 documentation</a>. Read more about string formatting syntax there.</p>
+      </section>
+
+      <section>
+        <h2>Lists and Tuples</h2>
+        <p>Lists are <em>mutable</em> collections of values and tuples are <em>immutable</em> collections of values. In other respects they work similarly, except trying to change contents of a tuple will result in error. Lists are noted with <code>[]</code> and tuples with <code>()</code>.</p>
+        <pre><code class="python"># Let's look at a list of different Pythons
+pythons = ["Angolan", "Burmese", "Sumatran short-tailed "]
+pythons.append("Royal") #add to the end of the list
+pythons[0] # 'Angolan' indexing from zero
+pythons[-1] # 'Royal' negative indices start at the end
+
+# Slicing as with strings
+pythons[2:] # ['Sumatran short-tailed ', 'Royal']
+pythons[:2] # ['Angolan', 'Burmese']
+pythons[1:3] # ['Burmese', 'Sumatran short-tailed ']
+pythons[::-2] # ['Royal', 'Burmese'] every other in reverse order
+
+# This will print Pythons on separate lines
+for snake in pythons:
+  print(snake) 
+
+if "Royal" in pythons:
+  print("Royal is a Python")
+</code></pre>
+
+      </section>
+
+      <section>
+        <h2>List Methods</h2>
+        <p>Some useful methods for lists:</p>
+        <pre><code class="python">my_list.sort() # Sorts the list 
+my_list.append(element) # Add element at the end of the list
+
+# appends the other list to the end of this one 
+my_list.extend(other_list)
+
+# Returns the index of element or
+# throws ValueError if element is not in list
+my_list.index(element)
+
+my_list.remove(element) # removes element
+# Inserts a new element to the list into the specified location
+my_list.insert(location, element)
+
+# iterating a list, more on loops in a moment
+for element in my_list:
+  print(element)</code></pre>
+      </section>
+
+      <section>
+        <h2>Tuples</h2>
+        <p>So tuples almost work the same:</p>
+        <pre><code class="python"># This tuple would work similarly, except
+# adding, removing, sorting, or 
+# any type of modification would throw an error
+pythons = ("John Cleese", "Terry Gilliam", "Eric Idle",
+  "Terry Jones", "Michael Palin", "Graham Chapman")
+
+for actor in pythons:
+  print("{0} is a brilliant actor!".format(actor))
+# prints: 
+# John Cleese is a brilliant actor!
+# Terry Gilliam is a brilliant actor!
+# ... and so on</code></pre>
+        <p>Tuple packing/unpacking:</p>
+        <pre><code class="python">dijkstra = 'Edsger Wybe Dijkstra', 1930
+# variable dijkstra will be tuple: ('Edsger Wybe Dijkstra', 1930)
+name, year_of_birth = dijkstra        
+print(name) # prints: Edsger Wybe Dijkstra
+print(year_of_birth) # prints: 1930</code></pre>
+      </section>
+
+      <section>
+        <h2>Dicts</h2>
+        <p>Dictionary, or dict for short, is a mutable set of key-value pairs.</p>
+        <pre style="width: 100%;"><code class="python3">agent = {} # new empty dictionary
+agent['name'] = 'James'
+agent['code'] = '007'
+print(agent) # prints: {'code': '007', 'name': 'James'}
+print(agent['name']) # prints James
+print(agent['codename']) # Will result in KeyError, there is no key 'codename'
+print(agent.get('codename')) # prints None
+print(agent.get('codename', 'classified')) # prints classified
+
+# key-values can also be set when creating a dict
+agent = {'name': 'James', 'code': '007'}
+</code></pre>
+      </section>
+
+
+
+      <section>
+        <h2>Word operators</h2>
+        <p>Python has word operatos that you've already seen:</p>
+        <p><code>in</code> checks if something is in something else (value in a list, characters in a string)</p>
+        <p><code>and</code> checks if both values are <code>True</code></p>
+        <p><code>or</code> checks if either of the values is <code>True</code></p>
+        <p><code>not</code> negates as usual (<code>!</code> in most languages)</p>
+      </section>
+
+
+      <section>
+        <h2><code>if</code> Control statements</h2>
+        <p>Python has <code>if</code>...<code>elif</code>...<code>else</code> syntax. <code>elif</code> and <code>else</code> parts can be omitted.</p>
+        <pre><code class="python">some_number = 5
+if some_number &gt; 3:
+  print("Some number is bigger than 3")
+elif some_number &lt; 3:
+  print("Some number is smaller than 3")
+elif some_number == 3:
+  print("Some number is 3!")
+else:
+  print("You can't end up in here")
+
+# This can be used to test if a value exists in a list
+pythons = ("John Cleese", "Terry Gilliam", "Eric Idle",
+  "Terry Jones", "Michael Palin", "Graham Chapman")
+comedian = "John Cleese"
+if comedian in pythons:
+  print(comedian + "is a brilliant comedian!")
+else:
+  print(comedian + " is not a member of the Pythons")</code></pre>
+      </section>
+
+      <section>
+        <h2> <code>in</code> and Dicts </h2>
+          <p><code>in</code> operand can also be used to test if a key exists in a dictionary:</p>
+        <pre><code class="python">agent = {'name': 'James', 'code': '007'}
+
+if 'codename' in agent: # Will be False, no codename in agent dict
+  print(agent['codename']) # Won't get executed
+elif 'name' in agent:
+  print(agent['name']) # Prints 'James'</code></pre>
+      </section>
+
+      <section>
+        <h2><code>for</code> Loops</h2>
+        <pre><code># Prints numbers 0,1,2,3,4 on separate lines
+for i in range(5):
+  print(i)</code></pre>
+        <p>We already saw that <code>for ... in</code> structure can also be used to iterate a list:</p>
+        <pre><code># This will print all animals on separate lines
+animals = ["dog", "cat", "mouse"]
+for animal in animals:
+  print(animal)</code></pre>
+        <pre><code>agent = {'name': 'James', 'code': '007'}
+for key in agent:
+  print(key, agent[key])
+# What will get printed:
+# code 007
+# name James</code></pre>
+      </section>
+
+      <section>
+        <h2><code>while</code> Loops</h2>
+        <p>While loops work as expected: while a condition is <code>True</code> the loop will be executed.</p>
+        <pre><code>user_input = ''
+while user_input != "exit":
+  print("Type something:")
+  user_input = input()
+  if user_input == "exit":
+    print("You typed exit... not asking for more input")
+  else:
+    print("You typed: '{0}'. Type 'exit' to quit.".format(user_input))
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Scopes</h2>
+        <p>Unlike JavaScript, Python is <code>block</code>-scoped. Meaning that variables can be accessed if they are created in this or previous blocks. <code>global</code> keyword can be used to create global variables.</p>
+        <p>Good Stack Overflow question &amp; answer regarding <a href="http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules">scoping rules</a></p>
+        <p class="extra"><a href="https://docs.python.org/3.3/reference/executionmodel.html">More details in Python3 documentation</a>
+      </section>
+
+      <section>
+        <h2><code>break</code>, <code>continue</code>, and <code>else</code> in Loops</h2>
+        <p><code>break</code> is used to break out of a loop and <code>continue</code> is used to start the next iteration immediately.</p> 
+        <pre><code>for n in range(2, 10):
+  for x in range(2, n):
+    if n % x == 0:
+      print(n, 'equals', x, '*', n//x)
+      break
+  else:
+   # loop fell through without finding a factor
+   print(n, 'is a prime number')</code></pre>
+        <p>Example from <a href="https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops">Python 3 Documentation</a></p>
+      </section>
+      <section>
+        <h2>Functions and <code>def</code></h2>
+        <p>Functions (and methods) are defined with <code>def</code>. </p>
+        <p>Returning values is done similarly to JavaScript with <code>return</code> statement.</p>
+        <pre><code class="python">def add(a,b):
+  return a+b
+
+# could also be written as
+def addLong(a,b):
+  result = a + b
+  return result
+
+result = add(7,8)
+print(result) # will print: 15</code></pre>
+      </section>
+      <section>
+        <h2>Functions</h2>
+        <p>Let's try to wrap up the prime number example into a function:</p>
+
+        <pre><code class="python3">def prime_finder(upper_limit):
+  for n in range(2, upper_limit):
+    for x in range(2, n):
+      if n % x == 0:
+        print (n, 'equals', x, '*', n//x)
+        break
+    else:
+      # loop fell through without finding a factor
+      print(n, 'is a prime number')
+
+prime_finder(5)
+# What will get printed
+# 2 is a prime number
+# 3 is a prime number
+# 4 equals 2 * 2</code></pre>
+      </section>
+
+      <section>
+        <h2>Classes</h2>
+        <p>Unlike JavaScript, Python has classes which are defined as such: <code>class Name</code>. Convention is to use a capital letter at the start of the class name.</p>
+        <p>When <em>defining</em> methods for a class, the reference to the instance needs to be passed as the first argument. Here the convention is to use <code>self</code> as the name.</p>
+        <pre><code class="python" contenteditable="true">class Person():
+  def __init__(self, first_name, last_name):
+    self.first_name = first_name
+    self.last_name = last_name
+  def greet(self):
+    return "Hi, my name is " + self.first_name
+
+edgar = Person("Edgar", "Poe")
+greeting = edgar.greet()
+print(greeting) # prints: Hi, my name is Edgar</code></pre>
+        <p><a href="https://docs.python.org/3/tutorial/classes.html">Python Docs on Classes</a></p>
+      </section>
+
+      <section>
+        <h2>Classes Another Example</h2>
+        <p>You can <em>inherit</em> from another class giving the class name in parenthesis where you want to inherit.</p>
+        <p>An example from <a href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/">Django tutorial</a></p>
+        <pre>
+          <code class="python" contenteditable="true"># We will talk about imports in a moment
+from django.db import models
+
+class Question(models.Model):
+  question_text = models.CharField(max_length=200)
+  pub_date = models.DateTimeField('date published')
+          </code>
+        </pre>
+      </section>
+
+
+      <section>
+        <h2>Special Methods?</h2>
+        <p>Like we saw on the class examples, there are some special methods (sometimes also called magical methods) that start and end with two underscores, e.g. <code>__init__</code></p>
+        <p>These special methods get called in certain circumstances, for example, <code>__init__</code> is a <em>constructor</em>. 
+        <p>There is also, for example,  <code>__str__</code> method, which gets called whenever we want the string representation of the object, such as when printing.</p>
+        <p>There are many more, most are not needed on this course. <a href="http://www.diveintopython3.net/special-method-names.html">Dive Into Python 3 Appendix B: Special Method Names</a>.</p>
+      </section>
+      <section>
+        <h2>Imports</h2>
+        <p>You can import other modules (from Python's modules, some project, your own, etc.) with the <code>import</code> keyword. If you only want a specific function, you can also say <code>from module import function</code>.</p>
+        <pre><code class="python3">
+import glob
+print(glob.glob('*')) # Prints out all the files in current directory
+
+from random import choice
+print( choice([0,1,2,3]) ) # Prints either 0, 1, 2, or 3
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Some Modules</h2>
+        <p>Many useful builtin modules in Python, some examples:</p>
+        <ul>
+          <li><code>random</code> random numbers, choices</li>
+          <li><code>glob</code> unix style file/directory listings</li>
+          <li><code>json</code> working with json data</li>
+          <li><code>http</code> contains many wonderful things for working with HTTP</li>
+        </ul>
+        <p>Example use of the <code>http</code> module:</p>
+        <pre><code class="sh">examples hazen$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 ...
+        </code></pre>
+        <p><img src="img/http_server_python.png" alt="Python's builtin HTTP server"></p>
+      </section>
+
+      <section>
+
+        <h2>Working with Files</h2>
+        <p>Files are opened with builtin function <code>open</code> which will return a file object. Calling <code>.close()</code> on that object will close the file. However, recommended way to open files is with <code>with</code> (files get closed automatically after the block).</p>
+        <pre><code class="python">events_file = open('events.html', 'r')
+print(events_file.readlines()[0:5])
+events_file.close()
+
+with open('events.html', 'r') as f:
+  print(f.readlines()[0:5])</code></pre>
+        <p>Contents of the file can by read by <code>.read(size)</code>, <code>.readline()</code>, and <code>.readlines()</code>. Refer to the <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Python Docs on files</a> for those and more.</p>
+      </section>
+
+      <section>
+        <h2>Handling Errors</h2>
+        <p>Python has <code>try...except...[else]</code> structure for handling errors.</p>
+        <pre><code>for arg in sys.argv[1:]:
+  try:
+    f = open(arg, 'r')
+  except IOError:
+    print('cannot open', arg)
+  else:
+    print(arg, 'has', len(f.readlines()), 'lines')
+    f.close()</code></pre>
+        <p>See <a href="https://docs.python.org/3/tutorial/errors.html#handling-exceptions">Python docs on Handling Exceptions</a> and <a href="https://docs.python.org/3/library/exceptions.html#bltin-exceptions">list of built-in exceptions</a>.</p>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>

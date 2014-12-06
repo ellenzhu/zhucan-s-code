@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>WSD 2014 - HTML &amp; CSS Introduction</title>
+
+    <meta name="description" content="Introduction to HTML, CSS and JavaScript">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+      <section>
+        <section style="text-align: center;">
+          <h1>WSD 2014</h1>
+          <h2>Introduction to<br> HTML, CSS &amp; JS</h2>
+          <p>
+            <small>Lassi Haaranen</small>
+          </p>
+        </section>
+
+        <section  style="text-align: left;">
+            <h2>Webpage - 3 Layers</h2>
+
+            <p>There are three distinct qualities to a web page that you can observe: <strong>content</strong>, <strong>look</strong>, and <strong>behavior</strong></p>
+
+            <p>In other words, what is on the page, how does it look, and if something happens how does the page react.</p>
+
+            <a href="#/html"><h3 class="box html_color">CONTENT: <br> HTML</h3></a>
+            <h3 class="box css_color">STYLE: <br> CSS</h3>
+            <h3 class="box js_color">BEHAVIOR: <br> JAVASCRIPT</h3>
+            <div style="clear: both"></div>
+            <p>First a quick overview of each, then we'll dive deeper.</p>
+        </section>
+
+        <section data-background="#4d271f">
+          <h2>Content - HTML</h2>
+          <p>HTML - HyperText Markup Language</p>
+          <p>There are different versions of the HTML standard, latest being HTML5 which we are using on this course.</p>
+          <p>HTML is used to convey the semantic structure and meaning of the content.</p>
+          <p>It does affect the look and layout of the page, but that can (and often should) be overridden in CSS.</p>
+          <p>In older HTML versions there were elements for purely affecting presentation, but this is not the case anymore.</p>
+          <p class="extra"> <a href="http://html5doctor.com/i-b-em-strong-element/">Read about i, b, em, and strong elements</a></p>
+        </section>
+
+        <section  data-background="#4d271f">
+          <h2>HTML Snippet &amp; Browser Tools</h2>
+          <pre><code contenteditable="true" id="html_first_demo">&lt;p&gt;Quis aute iure reprehenderit in voluptate velit esse cillum
+fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident,
+culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;p&gt;
+  Here's a &lt;a href="http://en.wikipedia.org/wiki/Lorem_ipsum"&gt;link&lt;/a&gt;
+  to "Lorem ipsum" in wikipedia.
+&lt;/p&gt;</code></pre>
+          <button id="html_first_demo-btn">Try it</button>
+          <div id="html_first_demo-target"></div>
+        </section>
+
+        <section data-background="#264f4f">
+            <h2>Style - Cascading Style Sheets</h2>
+            <p>CSS enables the separation of concerns: content and presentation.</p>
+            <p>Affects the presentation of HTML and can be customized to different media as well as screen &amp; print.</p>
+            <p><em>Cascading</em> means one page may have (and often does) different styles, which have different priority. Highest priority (i.e. most specific definition) determines the presentation.</p>
+            <p>Advantages: separation of concerns, site-wide consistency, bandwidth, accessibility</p>
+        </section>
+
+        <section  data-background="#264f4f">
+          <h2>CSS &amp; Browser Tools Demo</h2>
+          <pre class="html"><code id="css_first_demo" contenteditable="true" class="html">&lt;p style="font-style:italic; color: green;"&gt;Quis aute iure 
+  reprehenderit in voluptate velit esse cillum fugiat nulla pariatur. 
+  Excepteur sint obcaecat cupiditat non proident, culpa qui officia 
+  deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;p&gt;
+  Here's a &lt;a style="font-variant: small-caps"
+      href="http://en.wikipedia.org/wiki/Lorem_ipsum"&gt;link&lt;/a&gt;
+  to "Lorem ipsum" in wikipedia.
+&lt;/p&gt;</code></pre>
+          <button id="css_first_demo-btn">Try it</button>
+          <div id="css_first_demo-target"></div>
+        </section>
+
+        <section data-background="#302433">
+            <h2>Behavior - JavaScript</h2>
+            <p>With JavaScript, behavior can be added to the website. It could,
+            for instance, try to autocomplete what you write in a text box as in
+            Google's search. Apart from practical and security limitations, a web page
+            can behave in any way desired.</p>
+            <p>It is also worth noting that with JavaScript the <em>content</em> and
+            the <em>style</em> of the web page can be manipulated – and often is.</p>
+        </section>
+
+        <section data-background="#302433">
+          <h2>JavaScript &amp; Browser Tools Demo</h2>
+          <pre><code contenteditable="true" id="js_first_demo">
+console.log("Hello console!");
+alert("Hello alert!");
+          </code></pre>
+          <button id="js_first_demo-btn">Try it</button>
+        </section>
+
+        <section>
+          <h2>Why The Separation?</h2>
+          <h3>Coupling</h3>
+
+          <p>When style is separated from the content one can be modified without affecting the other one.</p>
+
+          <p>Most pages on a website look the same, this can be achieved by meticulously editing every page to have a same look... or by using (a single) stylesheet that is loaded on all the pages.</p>
+          <blockquote>"The mark of maintainable HTML, CSS, and JavaScript is when individual developers can easily and confidently edit parts of the code base without those changes inadvertently affecting other, unrelated parts."</blockquote>
+          <p class="extra"><a href="http://philipwalton.com/articles/decoupling-html-css-and-javascript">Decoupling HTML, CSS and JavaScript</a></p>
+        </section>
+
+        <section class="general_topic">
+          <h1>HTTP</h1>
+          <h2>Hypertext Transfer Protocol</h2>
+        </section>
+        <section>
+          <h2>HTTP - How Content Gets Around</h2>
+          <p>HTTP stands for Hypertext Transfer Protocol.</p>
+          <p>It's an <a href="http://en.wikipedia.org/wiki/Application_layer">application level</a> protocol (OSI 8) which is <em>stateless</em>.<p>
+          <p>It follows <em>client-server</em> model, which means that a client makes a 
+            request to the server and the server provides a response (which might also be an error).
+          </p>
+          <p>Since it is stateless, no state is kept between two requests.</p>
+        </section>
+
+        <section>
+          <h2>HTTP Example</h2>
+          <p>A request to the server might look something like this:</p>
+          <pre><code>GET / HTTP/1.1
+Host: developer.mozilla.org
+Accept-Language: fr</code></pre>
+          <p>To which the server might respond with the following:</p>
+          <pre><code>HTTP/1.1 200 OK
+Date: Sat, 09 Oct 2010 14:28:02 GMT
+Server: Apache
+Last-Modified: Tue, 01 Dec 2009 20:18:22 GMT
+ETag: "51142bc1-7449-479b075b2891b"
+Accept-Ranges: bytes
+Content-Length: 29769
+Content-Type: text/html
+
+&lt;!DOCTYPE html... (here comes the 29769 bytes of the requested web page)</code> </pre>
+          <p>Example taken from <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">MDN - HTTP</a>. You can also inspect these requests on your browser.</p>
+        </section>
+        
+        <section>
+          <h2>HTTP - Safe and Idempotent Methods</h2>
+          <p>There are <em>safe methods</em> <code>GET</code> and <code>HEAD</code>: these will fetch some data and importantly will not have any side-effects on the server.</p>
+          <p><em>Idempotent</em> methods are methods that behave in a way where doing multiple identical requests will result in the same side-effects on a server as a single request. Safe methods are idempotent, but in addition there are
+          <code>PUT</code> and <code>DELETE</code></p>
+          <p><code>PUT</code> uploads a resource to the server. If it does not exist it gets created. If it exists (and different from request) it gets updated.</p>
+          <p><code>DELETE</code> removes a resource from the server.</p>
+        </section>
+
+        <section>
+          <h2>HTTP - POST Method</h2>
+          <p>
+            As the name implies, the <code>POST</code> method will post some data to
+            the server. It can have side effects on the server and it is up to you
+            what you do with it. An example from MDN: 
+          </p>
+          <pre><code>POST /contact_form.php HTTP/1.1
+Host: developer.mozilla.org
+Content-Length: 64
+Content-Type: application/x-www-form-urlencoded
+
+name=Joe%20User&amp;request=Send%20me%20one%20of%20your%20catalogue</code></pre>
+          <p class="extra">There are also a few more METHODs, you can read more from the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">W3C specification</a>.</p>
+        </section>
+
+
+        <section>
+          <h2>HTTP - Response Codes</h2>
+          <p>
+            <a href="https://github.com/404"><img src="img/github404.png" alt="GitHub's take on 404 page"></a>
+          </p>
+          <p><a href="https://github.com/404">GitHub's take on 404 page</a></p>
+        </section>
+
+        <section>
+          <h2>HTTP - Response Codes</h2>
+          <p>HTTP Responses have a <code>response code</code> which is three numbers long:</p>
+          <ul>
+            <li><code>1xx</code> Informational responses, e.g. <code>100 Continue</code></li>
+            <li><code>2xx</code> Success responses, most common <code>200 OK</code></li>
+            <li><code>3xx</code> Redirect responses, e.g. <code>301 Moved Permanently</code></li>
+            <li><code>4xx</code> Client error, you've all seen <code>404 Not found</code>, <code>403 Forbidden</code> is also common.</li>
+            <li><code>5xx</code> Server errors, like <code>500 Internal Server Error</code></li>
+          </ul>
+
+          <p class="extra fragment">There is also error <a href="http://tools.ietf.org/html/rfc2324">418 I'm a teapot</a> where "The resulting entity body MAY be short and stout."</p>
+        </section>
+
+        <section>
+          <h2>Browser's Network Tools</h2>
+          <p><img src="img/inspecting_http.png" alt="Inspecting HTTP headers"></p>
+        </section>
+
+      </section><!-- preamble ends -->
+
+        <section data-background="#4d271f" id="html">
+
+          <section>
+            <h1>HTML</h1>
+            <h2>What content is on the page?</h2>
+          </section>
+
+          <section>
+            <h2>Content</h2>
+            <p>The content is defined by something called HTML, which stands for <em>HyperText Markup Language</em>. It holds the words you are reading currently, it has the menu items on a website.</p>
+            <div class="fragment">It's <strong>HyperText</strong> - it can point (commonly known as link) to other HyperText documents. <p class="extra"> <a href="http://en.wikipedia.org/wiki/Hypertext">Check Wikipedia for the history of the word.</a></p></div>
+            <p class="fragment"><strong>Markup</strong> means, that you construct it by marking up text in a certain manner.</p>
+            <p class="fragment"><strong >Language</strong> comes from the fact that it has a specific way of expressing things.</p>
+        </section>
+
+
+        <section>
+          <h2>HTML... the content stuff</h2>
+          <p>So <strong>HTML</strong> is a language, it has syntax and a grammar. It is a way of expressing content.</p>
+          <p>If it is conscructed correctly we say it is <em>valid</em>.</p>
+          <p>
+            Throughout the course we expect that you only submit valid HTML (and CSS).
+            Checking validity of HTML/CSS can be done with W3C's validator service:
+            <a href="http://validator.w3.org">http://validator.w3.org</a>
+
+          <p>Before we dive any deeper, let us see what it actually looks like.</p>
+        </section>
+
+        <section>
+          <h2>HTML Example</h2>
+          <pre><code class="html" id="somehtml" contenteditable="true">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;title&gt;A simple page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;A BIG heading&lt;/h1&gt;
+
+    &lt;p&gt;This is a paragaph of text.&lt;/p&gt;
+
+    &lt;p&gt;Quis aute iure reprehenderit in voluptate velit esse cillum
+    fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident,
+    culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+    &lt;p&gt;
+      Here's a &lt;a href="http://en.wikipedia.org/wiki/Lorem_ipsum"&gt;link&lt;/a&gt;
+      to "Lorem ipsum" in wikipedia.
+    &lt;/p&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p class="fragment">Let's try to copy and paste that to a text editor.</p>
+          <p class="fragment">So it is just text but the extension matters.</p>
+        </section>
+
+        <section>
+          <h2>So what was all that stuff?</h2>
+
+          <p>It had <em>elements</em> that were <em>nested</em>. Elements are created by <em>tags</em>, first there is a <em>start tag</em>, then what goes inside the element (if any), and finally  an <em>end tag</em>. For exampe: <code>&lt;body&gt;</code> started the document body (the part that you actually see in the browser) and <code>&lt;/body&gt;</code> ended it.</p>
+
+          <p>There are also void elements, they only have an opening tag and no content. These can be <em>self-closed</em> (e.g. <code>&lt;img /&gt;</code>) but it is not necessary. </p>
+
+          <p class="extra">Extra links about self-closing and HTML5:<br>
+          <a href="http://www.colorglare.com/2014/02/03/to-close-or-not-to-close.html">To close or not to close</a><br>
+           <a href="http://blogs.msdn.com/b/thebeebs/archive/2012/02/06/why-don-t-you-need-to-self-close-tags-in-html5.aspx">Why don't need to self-close tags in html5</a></p>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## Nesting
+
+          In essence nesting just means that elements can be inside other elements.
+
+          There are some rules however (examples on the next slide):
+
+            - Elements can not be misnested
+
+            - Some elements may not contain other elements, for example, links are not allowed to contain other links
+          </script>
+        </section>
+
+        <section>
+        <h2>Nesting</h2>
+            <p>So this is right:<p>
+
+          <pre><code>&lt;div&gt;
+  &lt;p&gt;
+    This is some text and a &lt;a href="http://google.com"&gt;link&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <p>And this is wrong:<p>
+
+          <pre><code>&lt;div&gt;
+  &lt;p&gt;
+    This is some text and a &lt;a href="http://google.com"&gt;link&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;</code></pre>
+          <p>This is cool:</p>
+          <pre><code>&lt;a href=""&gt;&lt;p&gt;This is a paragaph of text.&lt;/p&gt;&lt;/a&gt;</code></pre>
+
+          <p>And this is not cool:</p>
+          <pre><code>&lt;a href=""&gt;&lt;p&gt;This is a &lt;a href=""&gt;paragaph&lt;/a&gt; of text.&lt;/p&gt;&lt;/a&gt;</code></pre>
+        </section>
+
+
+        <section style="text-align: left;">
+          <h2>Attributes</h2>
+          <p>Elements have a start tag (e.g. <code>&lt;p&gt;</code>) and an end tag (e.g. <code>&lt;/p&gt;</code>). The start tag can have any number of <em>attributes</em>. For example:</p>
+
+          <pre><code>&lt;!-- href attribute contains the URL where the link leads--&gt;
+&lt;a href="http://google.com"&gt;Google&lt;/a&gt;
+
+&lt;!-- class attribute with value important_text--&gt;
+&lt;p class="important_text"&gt;This paragraph has attribute called class
+with the value of important_text. This can be used to style the element,
+which we'll see in a moment.&lt;/p&gt;</code></pre>
+        <div class="fragment">
+        <p>Oh yeah, HTML has comments too, anything inside a comment will not be shown.</p>
+        <pre><code>&lt;p&gt;This will show up&lt;/p&gt;
+&lt;!-- &lt;p&gt;This paragraph is hidden&lt;/p&gt; --&gt;
+&lt;a href="http://google.com"&gt;Visible link&lt;/a&gt;
+</code></pre>
+        </div>
+        </section>
+
+        <section>
+          <h2>About White Space</h2>
+          <p>
+            Multiple white space characters (space, tab, line break) in an HTML document are
+            collapsed into a single white space. All the following will produce the same output:
+          </p>
+          <pre><code id="white_space_example" contenteditable>&lt;p&gt;White space example&lt;/p&gt;
+
+&lt;p&gt;White
+space
+example&lt;/p&gt;
+
+&lt;p&gt;White            space example&lt;/p&gt;
+</code></pre>
+          <button id="white_space_btn">Try it</button>
+          <div id="white_space_target"></div>
+        </section>
+        <section>
+          <h2>Element Gallery</h2>
+          <p>Let's go over some common elements, by no means is this list exhaustive.</p>
+          <p>The idea is to look at the most common ones that you will need throughout the course</p>
+          <p>For an exhaustive list, refer to <a href="https://developer.mozilla.org/en/docs/Web/Guide/HTML/HTML5/HTML5_element_list">Mozilla Developer Network's HTML5 element list</a></p>
+        </section>
+        <section>
+          <h2>Elements - h1...h6</h2>
+          <p>Headings are defined from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important).</p>
+          <p>Use those as you would use headings/topics in any text document.</p>
+          <pre><code class="html" contenteditable="true" id="h1_example">&lt;h1&gt;Most Important Thing&lt;/h1&gt;&lt;h6&gt;Smallest Topic of The Page&lt;/h6&gt;</code></pre>
+          <button id="h1_example_btn">Try it</button>
+          <div id="h1_example_target"></div>
+        </section>
+
+        <section>
+          <h2>Elements - Links</h2>
+          <p>You define a link to another document with <code>&lt;a&gt;</code> tag</p>
+          <p>The location of the other document is provided with <code>href</code> attribute</p>
+          <pre><code>&lt;a href="http://google.com"&gt;Google&lt;/a&gt;</code></pre>
+          <p>Links to specific parts of documents are made by defining an <code>id</code>
+          attribute and then referring to it in the <code>href</code> part.</p>
+          <pre><code>&lt;h1 id="page_start"&gt;This is at the top of the page&lt;/h1&gt;
+[[some content]]
+&lt;a href="#page_start"&gt;link to the top of the page&lt;/a&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Elements - Images</h2>
+          <p>Images are added with <code>&lt;img&gt;</code> element</p>
+          <p>The location of the image is specified with <code>src</code>-attribute</p>
+          <pre><code>&lt;img src="images/picture.jpg" alt="A picture of something"&gt;</code></pre>
+          <p><code>alt</code>-attribute is always required. It's short for alternative text meaning it's used in place of the image when it can't be displayed.
+          <p class="extra"><a href="http://blog.adrianroselli.com/2011/04/image-alt-attributes-not-always.html">
+          This is not strictly true</a></p>
+
+        </section>
+
+
+
+        <section>
+          <h2>Elements - Tables</h2>
+          <p>Tables <code>&lt;table&gt;</code> are meant for marking up tabular data. They consist of table headers <code>&lt;th&gt;</code>, rows <code>&lt;tr&gt;</code> and cells <code>&lt;td&gt;</code>.</p>
+          <p>In the olden days, meaning mostly '90s, someone thought it might be a good idea to use tables for page layouts. <em>NEVER ever do this</em>. Tables are used to display data - not for adjusting the location of page navigation.</p>
+          <p>Useful attributes to know:</p>
+          <ul>
+            <li><code>&lt;td&gt;</code> and <code>&lt;th&gt;</code> can have a <code>colspan</code> attribute, which defines how many columns they span</li>
+            <li>Similarly <code>&lt;tr&gt;</code> can have a rowspan attribute to define how many rows it spans</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Elements - Table Example</h2>
+          <pre><code contenteditable="true" id="table_example">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Header for Column 1&lt;/th&gt;&lt;th&gt;Column 2&lt;/th&gt;&lt;th&gt;Result?&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;&lt;td&gt;cat&lt;/td&gt;&lt;td&gt;blueberry?&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;html&lt;/td&gt;&lt;td colspan="2"&gt;table&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+          </code></pre>
+          <button id="table_example_btn">Try it</button>
+          <div id="table_example_target"></div>
+        </section>
+        <section>
+          <h2>Elements - Lists</h2>
+          <p>There are three types of lists <em>ordered</em> <code>&lt;ol&gt;</code>, <em>unordered</em> <code>&lt;ul&gt;</code>, and <em>definition</em> <code>&lt;dl&gt;</code>. The first one is list with numbering and the second one is without numbering. Items in the first two are marked with <code>&lt;li&gt;</code>.</p>
+          <p>Ordered and unordered lists are for "normal" lists. The definition list is used to mark a list of definions.</p>
+        </section>
+        <section>
+          <h2>Elements - List examples</h2>
+          <pre><code>&lt;ol&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Mark-up Language,  a way of describing
+  content that can point to other similar documents&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style Sheets are a way of
+  defining the presentation of HTML documents&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Elements - Forms</h2>
+          <p>Forms are used to send data to the server. In this exaple data from the from is POSTed to the server. This communication happens via <em>HTTP</em> – HyperText Transfer Protocol. It will be discussed later on.</p>
+          <pre><code id="form_example">&lt;form action="/scripts/add_contact" method="POST"&gt;
+  &lt;p&gt;First name:
+    &lt;input type="text" name="first-name"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Surname:
+    &lt;input type="text" name="surname"&gt;
+  &lt;/p&gt;
+  &lt;input type="submit" value="Add"&gt;
+&lt;/form&gt;</code></pre><button id="form_example_btn">Try it</button>
+          <div id="form_example_target"></div>
+          <p class="extra"><a href="http://diveintohtml5.info/forms.html">Dive Into HTML5 - forms</a></p>
+        </section>
+
+        <section>
+          <h2>Elements - div &amp; span</h2>
+          <p>&lt;div&gt; is used to mark a division of a document. It carries no further semantical meaning. Commonly it's used to "wrap" different parts or even the whole document for styling purposes. It creates a line break before and after the element</p>
+          <p>Similarly <code>&lt;span&gt;</code> is used to mark a section of text.</p>
+          <pre><code contenteditable="true" id="div_span_example">&lt;div id="some_paragraphs"&gt;
+  &lt;p&gt;Some text with part of it in
+    &lt;span style="color: green;"&gt;green for no &lt;/span&gt;reason.&lt;/p&gt;
+  &lt;p&gt;Some other text with part of it in
+    &lt;span style="color: blue;"&gt;blue for no reason&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+          </code></pre>
+          <button id="div_span_example_btn">Try it</button>
+          <div id="div_span_example_target"></div>
+
+        </section>
+
+        <section>
+          <h2>Entities</h2>
+          <p>Wait a minute... how do you display <code>&lt;h1&gt;</code> on the slides, if that's supposed to start a heading</p>
+          <div class="fragment">
+          <p >This is where <em>entities</em> come in handy. They are for displaying characters. They start with an &amp; and end with ;</p>
+          <p>For example:</p>
+          <pre><code class="html">&amp;amp; will display as &amp;. And similarly &amp;lt; will display as &lt;</code></pre>
+          </div>
+          <div class="fragment">
+          <p>You can read the <a href="http://www.w3.org/TR/html4/sgml/entities.html">specification</a> or take a look at more user friendy <a href="http://dev.w3.org/html5/html-author/charref">character reference</a></p>
+
+          <p>Some good ones to know are: <code>&amp;nbsp;</code> (empty space ), <code>&amp;amp;</code> (&amp;)</p>
+          <p class="extra"><a href="https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml?showone=Entity_References#Entity_References">Google's HTML style guide on entities</a></p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Document structure</h2>
+          <p>HTML documents start with a doctype definition, for HTML5 we just use <code>&lt;!DOCTYPE html&gt;</code>.</p>
+          <p>Rest of the document is then presented inside <code>&lt;html&gt;</code>-element in two major sections: <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code></p>
+          <p>Inside <code>&lt;head&gt;</code> document title and meta elements are set. Meta elements describe the document (who was the author, what character encoding is to be used, etc). Additionally, stylesheets and scripts can be loaded in here.</p>
+          <p><code>&lt;body&gt;</code> contains the actual information in the document and is shown in the browser. Elements we've covered so far all go inside the <code>&lt;body&gt;</code>.</p>
+        </section>
+
+
+        <section>
+          <h2>Character encoding</h2>
+          <p>To explicitly state what character encoding is used on the page <code>&lt;meta charset="utf-8"&gt;</code> is inserted at the start of the <code>&lt;head&gt;</code> of the document.</p>
+          <p>Encodings are easy to get wrong and there are typically multiple point of failures when loading a web page (browser, the document, server or database might declare something wrong.</p>
+          <p class="extra"><a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a> by Joel Spolsky. It's over ten years old but still very relevant.</p>
+        </section>
+
+        <section>
+          <h2>IFrames</h2>
+          <p>IFrames embed another <code>HTML</code> document (specified byt the <code>src</code> attribute) to the current document. If the embedded HTML document comes from another <code>domain</code> there are some restrictions what it can do.</p>
+          <p>An example:</p>
+          <pre><code>
+&lt;iframe src="http://plus.cs.hut.fi"&gt;
+  Your browser doesn't support IFrames
+&lt;/iframe&gt;
+          </code></pre>
+          <p>Read more at <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe">MDN - IFrame</a></p>
+        </section>
+
+        <section>
+          <h2>IFrame Example</h2>
+          <iframe style="width: 100%;" src="http://plus.cs.hut.fi">...</iframe>
+        </section>
+
+        <section>
+          <h2>New in HTML5</h2>
+          <p>There are a fair number of new elements HTML5. Some of them are used to define semantics of the document further and some of them provide new functionality.</p>
+          <p>A good overview of important semantic elements can be found from <a href="http://diveintohtml5.info/semantics.html#new-elements">Dive Into HTML5</a>.</p>
+          <p>There are plenty of new elements for <em>embedding</em> content, such as <code>&lt;video&gt;</code> (for videos) and <code>&lt;canvas&gt;</code> (for interactive bitmap graphics).</p>
+        </section>
+
+        <section>
+          <h2>Inline &amp; Block</h2>
+          <p>Some elements (such as <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;br&gt;</code>) are "block" elements – there is a line break before and after them.</p>
+          <p>Similarly there are "inline" elements (such as <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;code&gt;</code>) which do not insert line breaks.</p>
+          <p>This, of course, has an effect to the layout of the page and these can be controlled and set with CSS as well, as we'll soon discover.</p>
+        </section>
+
+
+      </section> <!-- end html -->
+
+      <section data-background="#264f4f" id="css">
+
+        <section>
+          <h1>CSS</h1>
+          <h2>What does the page look like?</h2>
+        </section>
+
+        <section>
+          <h2>CSS</h2>
+          <p><em>Cascading Style Sheets</em> or <em>CSS</em> for short defines the outlook of HTML.</p>
+          <p>It can be set in three different ways:</p>
+            <ul>
+              <li>Inside elements in the <code>style</code>-attribute</li>
+              <li>Inside <code>&lt;head&gt;</code> in <code>&lt;style&gt;</code>-element</li>
+              <li>In a separate file that's loaded inside <code>&lt;head&gt;</code> with <code>&lt;link&gt;</code> element.</li>
+            </ul>
+          <p>Loading style sheets from separate file is preferred. One file can be used on multiple pages – meaning that changing the style will affect all of them.</p>
+        </section>
+
+        <section>
+          <h2>CSS Examples</h2>
+          <p>Inside <code>style</code>-attribute:</p>
+          <pre><code id="css_load_example" contenteditable="true">&lt;p&gt;Some text and &lt;span style="color: blue;"&gt;some blue text&lt;/span&gt;&lt;/p&gt;</code></pre>
+          <p>In <code>&lt;style&gt;</code>-element:</p>
+<pre><code>&lt;head&gt;
+  &lt;title&gt;A simple page&lt;/title&gt;
+  &lt;style&gt; h1 { border-bottom: 2px solid black; }&lt;/style&gt;
+&lt;/head&gt;</code></pre>
+          <p>From a separate file:</p>
+          <pre><code contenteditable="true">&lt;html&gt;
+  &lt;head&gt;
+  &lt;title&gt;A simple page&lt;/title&gt;
+  &lt;link rel="stylesheet" href="my_awesome_style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Some content&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        </section>
+
+        <section>
+          <h2>How CSS works</h2>
+          <p>CSS is simply a list of style rules that are applied to particular elements</p>
+          <p>Rules consist of a <em>selector</em> and then one or more <em>declarations</em></p>
+          <p>Changing style for all <code>p</code> elements:</p>
+          <pre style="width: 30%; float: left"><code>p {
+  font-family: serif;
+  color: #0000FF;
+  }</code></pre>
+  <p style="clear: both;">Changing style for all <code>a</code>-elements that have a class <code>main_menu</code>:</p>
+            <pre style="width: 30%; float: left"><code>a.main_menu {
+  font-size: 20px;
+  padding: 10px;
+  }</code></pre>
+  <pre style="width: 69%; float: left; margin-left: 1%"><code>&lt;a href="index.html" class="main_menu"&gt;Home page&lt;/a&gt;
+&lt;a href="about.html" class="main_menu"&gt;About us&lt;/a&gt;
+&lt;a href="other.html" class="other_link">Other Links&lt;/a&gt;
+&lt;!-- last link will not be affected --&gt;
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Class, ID, and Element as selectors</h2>
+          <p>As in previous slide, elements <code>class</code>-attribute is often used to select particular elements for styling. A single dot is placed before the class name to select it in CSS.</p>
+          <pre><code>/* Make all paragraphs that have info_text as class have italic font-style */
+p.info_text { font-style: italic; }</code></pre>
+          <p>The <code>id</code>-attribute can also be used. Id must always be <em>unique</em> for the page. This way one particular element is selected for styling. Hash-character is used to denote id in CSS.</p>
+          <pre><code>/* div with the id of notice will have red borders */
+/* Note that the div is reduntant (and makes selecting it slower) */
+div#notice { border: 1px solid red; }
+/* Since at most, there will be exactly one element with the id of div
+leaving div out of the selector is preferred. */
+#notice { border: 1px solid red; } </code></pre>
+          <p>A third option is to use element type as a selector:</p>
+          <pre><code>/* Add underline to all h1 elements */
+h1 { text-decoration: underline }</code></pre>
+
+        </section>
+
+        <section>
+          <h2>Classes as selectors</h2>
+          <p>Class selectors can also be used without specifying any elements. In this case <em>any</em> element with that particular class is affected. So with the following rule:</p>
+          <pre><code>.green_text {color: green} </code></pre>
+          <p>...both of the following and any other elements with the class green text will be affected.</p>
+          <pre><code contenteditable="true" id="class_selector_example">
+&lt;h1 class="green_text"&gt;Ugly Heading&lt;/h1&gt;
+&lt;p&gt;Lorem ipsum &lt;span class="green_text"&gt;sit dolor&lt;/span&gt; amet.&lt;/p&gt;
+          </code></pre>
+
+        </section>
+
+        <section>
+          <h2>Multiple Selectors and Selecting Multiple Things</h2>
+          <p>Multiple classes can also be required by concatenating classes:</p>
+          <pre><code>p.old.python_code { text-decoration:line-through; }</code></pre>
+          <pre><code>&lt;p class="old python_code"&gt;print "Hello world!"&lt;/p&gt; &lt;!-- affected --&gt;
+&lt;p class="new python_code"&gt; print("Hello world!")&lt;/p&gt; &lt;!-- not affected --&gt;</code></pre>
+          <p>Note the space between new/old and python_code. These paragraphs have two classes.</p>
+          <p>Multiple elements, classes and ids can be selected with comma</p>
+          <pre><code>/* Affects all h1, h2, and h3 elements */
+h1, h2, h3 { font-family: serif; }</code></pre>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2em;">Descendant, Child, and Sibling Selectors</h2>
+          <p class="dense">Descendant selector selects all elements contained inside the parent element.</p>
+          <pre><code>/* All li elements inside element with id of important */
+#important li { font-weight: bold; }</code></pre>
+          <p class="dense">Child selector selects all elements which are <em>immediate</em> children of the parent element.</p>
+          <pre><code>/* All h2 elements that are immediate children of  element with id of content */
+#content > h2 { font-weight: bold; }</code></pre>
+          <p style="line-height: 0.9;">Sibling selectors select any elements that share the same parent and are after the first selector.</p>
+          <pre><code>/* Any p that share parent with h1 that are after h1 */
+h1 ~ p { font-weight: bold; }</code></pre>
+          <p style="line-height: 0.9;">Next sibling selector selects the elements which is immediately after the defined sibling.</p>
+          <pre><code>/* Selects p elements that are immediately after h1 */
+h1 + p { font-weight: bold; }</code></pre>
+        </section>
+
+        <section>
+          <h2>Pseudo-elements</h2>
+          <p>There are also pseudo-elements, which can be appended to a selector. They affect specific parts of the document. e.g. <code>p::first-line</code> will affect the first line of paragraphs.</p>
+          <p>In CSS3 (CSS has versions too) double colons are used to distinguish them from pseudo-classes (coming up next).</p>
+          <p>All of the pseudo-elements are: </p>
+          <ul>
+            <li><code>::after</code></li>
+            <li><code>::before</code></li>
+            <li><code>::first-letter</code></li>
+            <li><code>::first-line</code></li>
+            <li><code>::selection</code> (non-standard)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Pseudo-classes</h2>
+          <p>Pseudo-classes affect elements with a specific state. They are marked with single colon, e.g. <code>:hover</code>.</p>
+          <pre><code>/* this one is applied to the link at the bottom of the slide */
+a.special_link:hover { background-color: white; }</code></pre>
+
+          <p>Some selected ones:</p>
+          <ul>
+            <li><code>:active</code></li>
+            <li><code>:enabled</code></li>
+            <li><code>:first-child</code></li>
+            <li><code>:hover</code></li>
+            <li><code>:nth-child(an+b)</code></li>
+            <li><code>:visited</code></li>
+          </ul>
+          <p>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes" class="special_link">
+            All pseudo-classes listed at MDN</a></p>
+        </section>
+
+        <section>
+          <h2>CSS - Cascading</h2>
+          <p><em>Cascading</em> ...or what style gets applied if there's conflict?</p>
+          <p> First the rules which apply to that element are selected then they are ordered followingly :</p>
+          <table class="dense">
+                <thead>
+                  <tr>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Origin</th>
+                    <th scope="col">Importance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>user agent</td>
+                    <td>normal</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>user agent</td>
+                    <td><code>!important</code></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>user</td>
+                    <td>normal</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>author</td>
+                    <td>normal</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>CSS Animations</td>
+                    <td>(refer to links on next slide)</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>author</td>
+                    <td><code>!important</code></td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>user</td>
+                    <td><code>!important</code></td>
+                  </tr>
+                </tbody>
+          </table>
+          <p class="dense">This has the very important implication that if I, as a user, decide to override all font-families with comic-sans and note it as !important then all of your hard work selecting fonts will be in vain!</p>
+
+        </section>
+
+        <section>
+          <h2>CSS - Cascading - Specificity</h2>
+          <p class="dense">It is still possible (and even likely) that multiple styles still apply. The result will finally come from specificity rules.</p>
+          <ul class="dense" style="font-size: 80%;">
+            <li>Universal selectors <small>noted as explicitly as *, but can be omitted</small></li>
+            <li>Type selectors</li>
+            <li>Class selectors</li>
+            <li>Attributes selectors <small>(they check wheter attribute is present or has particular value)</small></li>
+            <li>Pseudo-classes</li>
+            <li>ID selectors</li>
+            <li>Inline style</li>
+          </ul>
+          <p class="dense" style="font-sie: 80%"><code>!important</code> command is used to override the cascading properties of CSS.
+          You should only use it when there is no other way! In practise, when there is CSS from somewhere that you can't control.</p>
+          <p class="dense">In case there is equality, the latest declaration in the CSS will be applied.</p>
+          <p class="dense">This and previous slide based heavily on MDN <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade">Cascading</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">Specificity</a> articles, do check them out.</p>
+        </section>
+
+        <section>
+          <h2>CSS Declarations</h2>
+          <p>Declarations can be used to control the outlook of the page in many ways:  font properties, colors &amp; backgrounds, text formatting, position &amp;, layout, etc.</p>
+          <p>In addition to these, images can be added to the page from CSS (often used, for instance, in backgrounds).</p>
+          <p>There is even a <code>content</code> property that can be used to insert content to the page. Consider options carefully before using this.</p>
+          <pre><code>/* Will insert the word Chapter and a
+   space before any text inside h1-element */
+h1::before  { content: "Chapter "; }</code></pre>
+          <p class="extra">See MDN for more <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content">examples and details.</a></p>
+        </section>
+
+        <section>
+          <h2>CSS - Inherit</h2>
+          <p><code>inherit</code>-value in declarations means that the value is the same as it is in the parent element.</p>
+          <p>It is an allowed value for every CSS property.</p>
+          <p>For this reason, future slides will omit mentioning <code>inherit</code> separately since it is always allowed.</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inherit">MDN inherit</a></p>
+
+        </section>
+
+
+        <section>
+          <h2>Note About CSS and Color-values</h2>
+          <p>There are multiple ways to define colors in CSS. The following are all the ways to color an element's text (the same) red.</p>
+          <pre><code>element { color: red }
+element { color: #f00 }
+element { color: #ff0000 }
+element { color: rgb(255,0,0) }
+element { color: rgb(100%, 0%, 0%) }
+element { color: hsl(0, 100%, 50%) }
+
+/* 50% translucent */
+element { color: rgba(255, 0, 0, 0.5) }
+element { color: hsla(0, 100%, 50%, 0.5) }</code></pre>
+          <p>As per usual the list is from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">MDN about Color</a></p>
+          <p class="extra"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">MDN on Color Values</a> is also worth checking. <small>There you can also discover the only new named color proposed for CSS4.</small></p>
+        </section>
+
+        <section>
+          <h2>CSS - Fonts - Font-family</h2>
+          <p><code>font-family</code> declarations control what fonts are used for the selector. It's value is comma separated list of fonts (a font stack) that should have a generic family as the last item.
+          <p>If the first font on the list is not found the next one is tried until a font is found. The generic families for the fonts are: serif, sans-serif, monospace, cursive, and fantasy.</p>
+          <pre><code>p.ingress {
+  font-family: "Gill Sans", Georgia, "Times New Roman", serif;
+}</code></pre>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">MDN font-family</a></p>
+
+        </section>
+
+        <section>
+          <h2>CSS - Fonts</h2>
+          <p>Other aspects of fonts that can be declared:</p>
+          <ul>
+            <li><code>font-style</code>
+              <ul>
+                <li><code>normal, italic, oblique</code></li>
+              </ul>
+            </li>
+            <li><code>font-variant</code>
+              <ul>
+                <li>e.g. <code>normal, small-caps</code></li>
+              </ul>
+            </li>
+            <li><code>font-weight</code>
+              <ul>
+                <li><code>normal, bold, bolder, lighter, 100-900</code></li>
+              </ul>
+            </li>
+            <li><code>text-decoration</code>
+              <ul>
+                <li>e.g. <code>none, underline, line-through</code></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>CSS - Font Size</h2>
+          <p>There are various ways for defining <code>font-size</code></p>
+          <ul>
+            <li>Absolute sizes:
+              <ul><li><code>xx-small, x-small, small, medium, large, x-large, xx-large</code></li></ul>
+            </li>
+            <li>Relative sizes:
+              <ul><li><code>smaller, larger</code> (relative to parent font size)</li></ul>
+            </li>
+            <li>Length values
+              <ul><li>Either in pixels <code>px</code> or in points <code>pt</code></li></ul>
+            </li>
+            <li>Percentage:
+              <ul><li>e.g. <code>font-size: 80%</code></li></ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>CSS - Text Formatting</h2>
+          <p>How text is formatted is controlled by <code>text-align, text-indent, line-height</code>, and <code>vertical-align</code></p>
+          <ul>
+            <li><code>text-align</code>
+              <ul><li><code>left, right, center, justify</code></li></ul>
+            </li>
+            <li><code>text-indent</code>
+              <ul><li><code>&lt;length&gt;, &lt;percentage&gt;</code></li></ul>
+            </li>
+            <li><code>line-height</code>
+              <ul><li><code>normal, &lt;number&gt;,&lt;length&gt;, &lt;percentage&gt;</code></li></ul>
+            </li>
+            <li><code>vertical-align</code>
+              <ul><li><code>baseline, sub, super, top, text-top, middle, bottom, text-bottom, &lt;length&gt;, &lt;percentage&gt;, </code></li></ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>CSS - Full example</h2>
+          <pre><code>p.ingress {
+  font-family: "Gill Sans", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-variant: normal;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12pt;
+  text-align: justify;
+  line-height: 1.2;
+  vertical-align: baseline;
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>CSS - Box Model</h2>
+          <p>Every element in an HTML document is represented as a box that has four edges: <em>content edge</em>, <em>padding edge</em>, <em>border edge</em>, and <em>margin edge</em></p>
+          <p><img src="img/boxmodel.png" alt="Box model in CSS"><br>
+          <small>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model">MDN Box Model</a></small></p>
+        </section>
+        
+        <section>
+          <h2>CSS - Box Model</h2>
+          <p>In the box model, the children try to be as wide as the parent allows them to be</p>
+          <p>...while the parent element aims for minimum height that fits all children</p>
+          <pre><code>p.box_model_example {
+  width: 20%; 
+  height: 20%;
+  padding: 3%;
+  margin: 5%;
+  border: 5px;
+}</code></pre>
+
+        </section>
+
+        <section>
+          <h2>CSS - Margin, Padding, &amp; Border</h2>
+          <p>Margins are always transparent. Horizontal margins don't overlap (collapse) while vertical (top and bottom) margins can collapse.</p>
+          <pre><code>h2 { margin-bottom: 10px; }
+p { margin-top: 5px;}</code></pre>
+          <pre><code>&lt;h2&gt;Collapsing Margins&lt;/h2&gt;
+&lt;p&gt;The margin between this paragraphs and
+the heading above would be 10 pixels&lt;/p&gt;</code></pre>
+          <p>Padding is the area surrounding the content box that shares its background.</p>
+          <p>Border is between padding and margin and has: <code>color</code>, <code>width</code>, and <code>style</code>:</p>
+          <pre><code>/* These two are equivalent */
+h2 { border: 3px solid #FF0000; }
+h2 { border-width: 3px; border-style: solid; border-color: #FF0000; }</code></pre>
+        </section>
+
+        <section>
+          <h2>CSS - Inline &amp; Block</h2>
+          <p>Elements are divided into inline and block elements. Inline elements, such as <code>span</code> and <code>a</code> flow "like text" from left to right without line breaks.</p>
+          <p>Block elements (such as <code>div</code> and <code>p</code>) inhabit the entire space of parent element (remember box model from couple slides ago?). Typically there is a new line inserted before and after them.</p>
+          <p>Elements can be changed from inline to block by <code>display</code> declarations.</p>
+          <pre><code>/* Would insert line breaks before and 
+after links with the class menu_item */
+a.menu_item { display: block; }</code></pre>
+        </section>
+
+        <section>
+          <h2>CSS - Position</h2>
+          <p>The position of an element can be set with <code>position</code>-attribute</p>
+          <p>It can be set as:</p>
+            <ul> 
+              <li><code>static</code> The element is positioned as in normal flow</li>
+              <li><code>relative</code> Element is positioned relative to it's "normal" position</li>
+              <li><code>absolute</code> Element is positioned relative to <em>nearest positioned ancestor</em> or if there is no positioned ancestor to the container of the document</li>
+              <li><code>fixed</code> Element is position relative to the viewport. It has the effect of keeping the element at the same position in the window even when scrolling.</li>
+              <li><code>sticky</code> Mixture of relative and fixed positioning. Not yet widely supported.</li>
+            </ul>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN on Position</a></p>
+        </section>
+
+        <section>
+          <h2>CSS - Position Example</h2>
+          <pre><code>/* Will always stay at the top left corner of the viewport */
+p.annoying_notice {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}</code></pre>
+          <pre><code>/* Will be 20 pixels lower and 20 pixels to 
+the left of where it would be without this style */
+p.side_note {
+  position: relative;
+  top: 20px;
+  left: 20px;
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>CSS - Floats</h2>
+          <blockquote>"A float is a box that is shifted to the left or right on the current line. The most interesting characteristic of a float (or "floated" or "floating" box) is that content may flow along its side (or be prohibited from doing so by the 'clear' property)." <a href="http://www.w3.org/TR/CSS2/visuren.html#floats">CSS2 specification on floats</a></blockquote>
+          <pre><code contenteditable="true" id="css_float_example">&lt;p style="float: right;"&gt;These&lt;/p&gt;&lt;p style="float: right;"&gt;are&lt;/p&gt;
+&lt;p style="float: right;"&gt;all&lt;/p&gt;&lt;p style="float: right;"&gt;paragraphs.&lt;/p&gt;
+          </code></pre>
+          <button id="css_float_example_btn">Try it</button>
+          <div id="css_float_example_target"></div>
+
+        </section>
+
+        <section>
+          <h2>How to Approach CSS</h2>
+          <p>Take advantage of the cascading and do not try to be too clever</p>
+          <blockquote>"Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it." –Brian Kernighan</blockquote>
+          <pre><code>.article #comments ul > li > a.button {
+  /* Crazy town */
+}</code></pre>
+          <p><a href="http://css-tricks.com/judging-css-spotting-bad-code/">From CSS-Tricks on spotting bad CSS</a></p>
+        </section>
+
+      </section> <!-- CSS ends -->
+
+
+      </div>
+    </div>
+
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="extra/custom.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    $("#html_first_demo-btn").click(function() {
+      htmlExample("#html_first_demo", "#html_first_demo-target");
+    });
+    $("#css_first_demo-btn").click(function() {
+      htmlExample("#css_first_demo", "#css_first_demo-target");
+    });
+
+    $("#js_first_demo-btn").click(function() {
+      eval($("#js_first_demo").text())
+    });
+
+    $("#white_space_btn").click(function() {
+      htmlExample("#white_space_example", "#white_space_target");
+    });
+    $("#h1_example_btn").click(function() {
+      htmlExample("#h1_example", "#h1_example_target");
+    });
+    $("#table_example_btn").click(function() {
+      htmlExample("#table_example", "#table_example_target");
+    });
+    $("#form_example_btn").click(function() {
+      htmlExample("#form_example", "#form_example_target");
+    });
+    $("#div_span_example_btn").click(function() {
+      htmlExample("#div_span_example", "#div_span_example_target");
+    });
+    $("#css_float_example_btn").click(function() {
+      htmlExample("#css_float_example", "#css_float_example_target");
+    });    
+
+    $("#dom-demo-btn").click(function() {
+      eval($("#dom-demo").text())
+    });
+    $("#handler-demo-btn").click(function() {
+      eval($("#handler-demo").text())
+    });
+
+    </script>
+
+  </body>
+</html>

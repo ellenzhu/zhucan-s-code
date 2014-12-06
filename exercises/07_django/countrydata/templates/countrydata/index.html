@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>If you see this, your countrydata setup is working!</p>
+    {% include "countrydata/continentmenu.html" %}
+    
+    <h2 id="continentName">{{ continent.name }}</h2>
+        <div id="tableContainer">
+            {% if continent %}
+            {% include "countrydata/countrytable.html" %}
+            {% endif %}
+        </div>
+{% endblock %}

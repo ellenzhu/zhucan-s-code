@@ -1,0 +1,109 @@
+section { 
+  text-align: left;
+}
+
+h3.box { 
+  float: left; 
+  width: 30%; 
+  border: 1px solid white; 
+  margin: 5px; 
+  min-height: 30%;
+  height: 200px;
+  width: 30%;
+  text-align: center;
+  padding-top: 100px;
+}
+
+section.general_topic {
+  text-align: center; 
+}
+
+button {
+	margin-bottom: 40px;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "League Gothic", Impact, sans-serif;
+}
+
+
+.reveal .lecture_quiz{
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  font-size: 2em;
+  color: yellow;
+}
+.reveal .quiz_content {
+  display: none;
+}
+
+.reveal blockquote {
+  width: 80%;
+  font-family: "Lato", serif;
+}
+.reveal em {
+  font-family: "Lato", serif;
+  font-size: larger;
+  color: #FFFFFF;
+}
+
+.reveal p,div {
+  color: #D4D4D4;
+}
+
+.html_color {
+  background-color: #4d271f;
+}
+.css_color { 
+  background-color: #264f4f;
+}
+.js_color {
+  background-color: #302433;
+}
+.python_color {
+  background-color: #142915;
+}
+.reveal pre code { 
+  max-height: 95%; max-width: 95%;
+}
+.reveal p.extra {
+	margin-left: 2%;
+  border-left: 3px solid white;
+  padding-left: 1%;
+  font-size: 90%;
+  line-height: 0.9;
+}
+
+.reveal p.extra::before {
+  content: "Extra: ";
+  color: white;
+}
+
+.reveal ul {
+	margin-left: 10%;
+}
+
+.reveal .dense {
+	font-size: 95%;
+	line-height: 1.1;
+}
+
+/* Used in html table example */
+.reveal #table_example_target table {
+  border: 1px solid white;
+}
+.reveal #table_example_target table th {
+  border: 1px solid white;
+}
+.reveal #table_example_target table tr {
+  border: 1px solid white;
+}
+.reveal #table_example_target table td {
+  border: 1px solid white;
+}
+
+/* Used in css pseudo-class example */
+.reveal a.special_link:hover {
+  background-color: white;
+}

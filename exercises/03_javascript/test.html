@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://webcourse.niksula.hut.fi/static/student-test.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Testing Javascript Arrays and Objects</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-git.css">
+  </head>
+  <body>
+    <h1 id="qunit-header">Testing Javascript Arrays and Objects</h1>
+    <h2 id="qunit-userAgent">...</h2>
+    <p id="qunit-testresult" class="result">
+    </p>
+    
+    <ol id="qunit-tests"></ol>
+
+    <script type="text/javascript" src="../lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../lib/qunit-1.15.0.js"></script>
+
+    <!-- loads your code -->
+    <script type="text/javascript" src="exercises.js"></script>
+
+    <script type="text/javascript">
+    test('Test keywordusage function', function(){
+      ok(typeof keywordusage !== "undefined", "Is function keywordusage defined?");
+      ok(jQuery.isFunction(keywordusage), "Is keywordusage a function?");
+      var res = keywordusage('Dive Into Python is a free book for experienced programmers', ['Python', 'python', 'scala']);
+      ok($.isArray(res), "Test if keywordusage returned an array.");
+      deepEqual(res, [true, false, false], "Testing provided example case");
+    });
+    test('Test frequencies function', function() {
+      ok(typeof frequencies !== "undefined", "Is function frequencies defined?");
+      ok(jQuery.isFunction(frequencies), "Is frequencies  a function?");
+      var d = frequencies('foo foo bar foo   bar buz', ['foo', 'bar']);
+      ok(typeof d !== "undefined", "Test if frequencies returned a value.");
+      deepEqual(d, {'bar': 2, 'foo': 3}, "Testing provided example case");
+    });
+    test('Test rotate function', function() {
+      ok(typeof rotate !== "undefined", "Is function rotate defined?");
+      ok(jQuery.isFunction(rotate), "Is rotate a function?");
+      a = [1, 2, 3, 4];
+      rotate(a);
+      deepEqual(a, [4, 1, 2, 3], "Testing provided example case");
+      rotate(a, -1);
+      deepEqual(a, [1, 2, 3, 4], "Testing provided example case");
+      rotate(a, 10);
+      deepEqual(a, [3, 4, 1, 2], "Testing provided example case");
+      rotate(a, -5);
+      deepEqual(a, [4, 1, 2, 3], "Testing provided example case");
+      rotate(a, 0);
+      deepEqual(a, [4, 1, 2, 3], "Testing provided example case");
+    });
+    </script>
+
+</body></html>

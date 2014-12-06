@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Resolving Git Conflicts</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Resolving Git Conflicts</h1>
+</div>
+
+<div class="content">
+
+  <h2>Resolving Merge Conflicts</h2>
+
+  <p>When there are multiple people working a project merge conflicts can happen. This means, that some people edited the same file in a way that it cannot be automatically merged (usually, the same line in the file was edited in both commits).</p>
+
+  <p>When you try and merge branches that have conflicts, for instance after fetching from upstream, git will notify you that merge could not be completed automatically. Also note that it tells you which files are causing the conflict:</p>
+
+  <pre>
+  $ <strong>git merge upstream/master</strong>
+  Auto-merging exercises/01_tools/hello.html
+  CONFLICT (content): <strong>Merge conflict in exercises/01_tools/hello.html</strong>
+  Automatic merge failed; fix conflicts and then commit the result.
+  </pre>
+
+  <p>Until you have resolved this conflict you are unable to make any commits:</p>
+
+  <pre>
+  $ <strong>git commit -m "Circle implemented"</strong>
+  U	exercises/04_python/geometry.py
+  error: 'commit' is not possible because you have unmerged files.
+  hint: Fix them up in the work tree,
+  hint: and then use 'git add/rm &lt;file&gt;' as
+  hint: appropriate to mark resolution and make a commit,
+  hint: or use 'git commit -a'.
+  fatal: Exiting because of an unresolved conflict.
+  </pre>
+
+  <p>If you look at the conflictingfile(s) the conflicting area(s) is marked with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; BRANCH_NAME</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; OTHER_BRANCH_NAME</code>.</p>
+
+  <pre>
+  $ <strong>cat exercises/01_tools/hello.html</strong>
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang="en"&gt;
+
+    &lt;head&gt;
+      &lt;meta charset="utf-8"&gt;
+      &lt;title&gt;WSD 2014 - Exercise 1&lt;/title&gt;
+      &lt;meta name="description" content="First exercise of WSD 2014"&gt;
+      &lt;meta name="author" content="lehtint6"&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      &lt;h1&gt;Hello wsd-agent!&lt;/h1&gt;
+      &lt;p&gt;I've added you to my project and finished the first exercise&lt;/p&gt;
+      &lt;p&gt;Sincerely, &lt;br&gt;
+  &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+        &lt;span style="margin-left: 20px;"&gt;&lt;em id="signature"&gt;lehtint6&lt;/em&gt;&lt;/span&gt;
+  =======
+        &lt;span style="margin-left: 20px;"&gt;&lt;em id="signature"&gt;YOU_SHOULD_LEAVE_YOUR_NIKSULA_USER_HERE&lt;/em&gt;&lt;/span&gt;
+  &gt;&gt;&gt;&gt;&gt;&gt;&gt; upstream/master
+      &lt;/p&gt;
+    &lt;/body&gt;
+
+  &lt;/html&gt;
+  </pre>
+
+  <p>
+    Edit the file so that it is the way you want it to be:
+  </p>
+
+  <pre>
+  $ <strong>nano -w exercises/01_tools/hello.html</strong> # Edit file
+  $ <strong>cat exercises/01_tools/hello.html</strong> #File is now edited
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang="en"&gt;
+
+    &lt;head&gt;
+      &lt;meta charset="utf-8"&gt;
+      &lt;title&gt;WSD 2014 - Exercise 1&lt;/title&gt;
+      &lt;meta name="description" content="First exercise of WSD 2014"&gt;
+      &lt;meta name="author" content="lehtint6"&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      &lt;h1&gt;Hello wsd-agent!&lt;/h1&gt;
+      &lt;p&gt;I've added you to my project and finished the first exercise&lt;/p&gt;
+      &lt;p&gt;Sincerely, &lt;br&gt;
+        &lt;span style="margin-left: 20px;"&gt;&lt;em id="signature"&gt;lehtint6&lt;/em&gt;&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/body&gt;
+
+  &lt;/html&gt;</pre>  
+
+  <p>
+    And add and commit as usual:
+  </p>
+
+  <pre>
+  $ <strong>git add exercises/01_tools/hello.html</strong>
+  $ <strong>git commit -m "Resolved conflict"</strong>
+  [master 06261fd] Resolved conflict
+  $ <strong>git push</strong>
+  Counting objects: 14, done.
+  Delta compression using up to 8 threads.
+  Compressing objects: 100% (4/4), done.
+  Writing objects: 100% (6/6), 608 bytes, done.
+  Total 6 (delta 1), reused 0 (delta 0)
+  To git@git.niksula.hut.fi:lehtint6/wsd-test.git
+     6b9de13..06261fd  master -> master</pre>
+
+  <p>You are now done, and keep on working as usual.</p>
+  <h2>More resources</h2>
+  <ul>
+    <li><a href="http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#Basic-Merge-Conflicts">Pro Git - Basic Merge Conflicts</a></li>
+    <li><a href="https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/">https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/</a></li>
+      <li><a href="https://help.github.com/articles/resolving-merge-conflicts/">https://help.github.com/articles/resolving-merge-conflicts/</a></li>    
+  </ul>
+
+</div>
+
+</body>
+</html>

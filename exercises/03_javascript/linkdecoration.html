@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Link Collection</title>
+        <link rel="stylesheet" type="text/css" href="linkdecoration.css"/>
+    </head>
+    <body>
+
+
+      <div class="note">
+        <h1>Exercise 2.3</h1>
+        <p>Below is a list of links that will get decorated by
+           CSS with proper images when your JavaScript adds the
+           proper CSS classes.
+        </p>
+
+        <p>If done correctly, these two images <img src="img/pdf.png" alt="PDF" /> and <img src="img/download.png" alt="download" /> should appear automatically (through the provided CSS classes) before the links.</p>
+
+        <h2>Some info on your JavaScript</h2>
+        <p id="javascript_start">Your javascript file is not found or is corrupted (or you have javascript disabled)</p>
+        <p id="javascript_end"></p>
+
+      </div>
+
+      <div class="test_data">
+      <h2>The test data</h2>
+
+      <p>These are the links that get decorated by your script.</p>
+
+      <ul>
+        <li><a href="myPersonalProject.html">myPersonalProject (a local html file)</a></li>
+        <li><a href="cv.pdf">my CV (a local PDF file)</a></li>
+        <li><a href="archive/2014.zip">archive (a local ZIP file)</a></li>
+        <li><a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf">ECMAScript Language Specification (an external PDF)</a></li>
+        <li><a href="../pdfs/christmas/">Christmas cards (a local directory with pdf in the pathname - but NOT a pdf file)</a></li>
+        <li><a href="https://noppa.tkk.fi/">Noppa (an external link)</a></li>
+      </ul>
+
+      <script type="text/javascript" src="../lib/jquery-1.11.1.min.js"></script>
+      <script type="text/javascript" src="linkdecoration.js"></script>
+      <noscript><h1>YOU HAVE JAVASCRIPT DISABLED!!!</h1></noscript>
+      </div>
+    </body>
+</html>

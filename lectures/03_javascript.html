@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>WSD 2014 - JavaScript Introduction</title>
+
+    <meta name="description" content="Introduction to HTML, CSS and JavaScript">
+    <meta name="author" content="Lassi Haaranen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js-2.6.2/css/theme/moon.css" id="theme">
+
+    <link rel="stylesheet" href="lib/highlight/styles/monokai_sublime.css">
+
+    <link rel="stylesheet" href="extra/custom.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'lib/reveal.js-2.6.2/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section style="text-align: center;">
+          <h1>WSD 2014</h1>
+          <h2>Introduction to<br> JavaScript</h2>
+          <p>
+            <small>Lassi Haaranen</small>
+          </p>
+        </section>
+        <section>
+          <section>
+            <h1>Dom</h1>
+            <h2>Quick look at Document Object Model</h2>
+          </section>
+
+          <section>
+            <h2>Document Object Model</h2>
+            <blockquote>"The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents." <a href="http://www.w3.org/DOM/">http://www.w3.org/DOM/</a></blockquote>
+            <p>The DOM presents documents as a hierarchy (Tree) of Node objects</p>
+            <p>Some nodes are leaf nodes (without children), such as text inside elements and HTML comments</p>
+            <p>Other nodes can have child nodes, such as Document (the root element), HTML elements, Attr (Attribute - value pairs)</p>
+          </section>
+
+          <section>
+            <h2>Document Object Model</h2>
+            <blockquote>"The Document Object Model (DOM) is a programming interface for HTML and XML documents. It provides a structured representation of the document and it defines a way that the structure can be accessed from programs so that they can change the document structure, style and content."</blockquote>
+            <p style="clear: both;">See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">MDN DOM Introduction</a> for more details</p>
+          </section>
+
+          <section>
+            <h2>DOM Example</h2>
+            <pre style="width: 45%; float: left;"><code>&lt;!DOCTYPE html&gt; 
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;title&gt;Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt; 
+    &lt;h1&gt;Heading&lt;/h1&gt; 
+    &lt;p class="quoted"&gt;Some text&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <p style="float: right;"><img src="img/dom.png" alt="DOM - Document Object Model"></p>
+
+          </section>
+
+      </section>    
+    
+      <section data-background="#302433" id="js">
+
+        <section>
+          <h1>JavaScript</h1>
+          <h2>How does the page behave?</h2>
+        </section>
+
+        <section class="general_topic">
+          <h2 >First things first</h2>
+          <blockquote>"Java is to JavaScript as ham is to a hamster" <br>–Jeremy Keith</blockquote>
+        </section>
+
+        <section>
+          <h2>About JavaScript</h2>
+          <p>
+            JavaScript is a prototype-based scripting language that is dynamically typed. Despite 
+            the name it really does not have anything to do with Java. The syntax it uses resembles
+            that of C.
+          </p>
+          <p>
+            It is quite flexible, so you can do object-oriented programming, imperative
+            programming, and functional programming. Functions in JavaScript are first-class citizens.
+          </p>
+          <p>It has some very unfortunate features as well, such as defaulting to global. 
+            Methods for dealing with the unfortunate features are discussed at the end.</p>
+        </section>
+
+        <section>
+          <h2>About JavaScript</h2>
+          <p>It is widely popular, not least because it is <em>the</em>
+           scripting language for the web</p>
+          <p>
+            #1 Mistake with Javascript (according to Crockford)
+            is not bothering to learn the language</p>
+          <p>It might look like C and have Java in the name,
+            but it is a very different language.</p>
+          <p class="extra"><a href="http://www.crockford.com/javascript/javascript.html">The World's Most Misunderstood Programming Language</a></p>
+        </section>
+
+        <section>
+          <h2>How to Load Code</h2>
+          <p>There are two ways of getting JavaScript to your page:</p>
+          <ol>
+            <li>External file</li>
+            <li>Inside <code>script</code>-element</li>
+          </ol>
+          <p>Generally it is a good idea to move as much as you can of the script to external files.</p>
+
+          <pre><code>&lt;script src="my_script.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  console.log("Hello console");
+  alert("Alert");
+&lt;/script&gt; </code></pre>
+          <p class="extra">Actually there is a third way as well... but it is something that should not be used. The curious can Google <a href="http://www.google.com/search?q=inline+javascript">inline javascript</a>.</p>
+        </section>
+
+        <section>
+          <h2>Variables</h2>
+          <p>Variables are declared with <code>var</code> keyword:</p>
+          <pre><code>var lectureTopic = "javascript";</code></pre>
+          <p>Variables do not have types, but their values do. Additionally, the value can be <code>undefined</code> if it is not set.</p>
+<pre><code contenteditable="true">var lectureTopic = "javascript";
+var lecturer;
+console.log(lectureTopic); //javascript
+console.log(lecturer); //undefined
+lecturer = "Lassi";
+console.log(lecturer); //Lassi</code></pre>
+          <p><code>var</code> can be left out completely. But this means that it will be in the global scope. <em style="">Always use <code>var</code>. Leaving it out will eventually harm you and your users.</em>
+        </section>
+
+        <section>
+          <h2>Variables - Bad Example</h2>
+          <pre><code contenteditable="true">function addTenStupid(num) {
+  for(i=0; i &lt; 10; i++) {
+    num += 1;
+  }
+  return num;
+}
+
+function addThousandStupid(num) {
+  for(i=0; i &lt; 100; i++) {
+    num += addTenStupid(0);
+  }
+  return num;
+}
+console.log(addTenStupid(0)); //will produce 10
+console.log(addTenStupid(5)); //will produce 15
+console.log(addThousandStupid(1)); //Can you guess what will happen?
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Types</h2>
+
+          <p>Primitive types in JavaScript are immutable (can not be changed after you've created them). They are:</p>
+            <ul class="dense">
+              <li><code>String</code> (e.g. <code>'Hello'</code>, <code>"Hi"</code>)</li>
+              <li><code>Number</code> (e.g. <code>7</code>, <code>3.14</code>, <code>7.5e1</code>)</li>
+              <li><code>Boolean</code> (<code>true</code> and <code>false</code>)</li>
+              <li><code>Undefined</code> (e.g. accessing a value that is not set)</li>
+              <li><code>Null</code> (value that is defined but does not have a value)</li>
+            </ul>
+
+          <p class="dense">In addition to primitive types, there is also <code>Object</code> data type which is a collection of properties and is mutable. <code>Object</code> is the basis for many other types, such as:</p>
+          <ul>
+            <li>Array (list of numbers)</li>
+            <li>Functions (objects that are callable)</li>
+            <li>etc</li>
+          </ul>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">MDN JavaScript data types and data structures</a>
+        </section>
+        <section>
+          <h2>Arrays</h2>
+          <blockquote>"Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed." <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN Arrays</a></blockquote> 
+          <p class="dense">You access the contents with an index that starts from zero. They have a <code>length</code> property that is equal to the last index of the array + 1.</p>
+          <pre><code>//initializing array, for empty array just use []
+var someNumbers = [0,1,3,9]; 
+console.log( someNumbers.length ); //prints 4
+console.log( someNumbers[2] );     //prints 3
+
+// .push adds to the end of array
+someNumbers.push(12); // someNumbers is now [0, 1, 3, 9, 12]
+someNumbers.length; //5
+someNumbers[3] = 6; // someNumbers is now [0, 1, 3, 6, 12]
+
+someNumbers[7] = 99; // [0, 1, 3, 6, 12, undefined, undefined, 99]
+someNumbers.length; //8</code></pre>
+        </section>
+        
+        <section>
+          <h2>Functions</h2>
+          <p>Functions are defined with <code>function</code> keyword and a name (optional) and parameters in parenthesis (also optional) as comma separated list.</p>
+          <p>Functions are <a href="http://en.wikipedia.org/wiki/First-class_function">first class citizens</a> in JavaScript.</p>
+          <p>Method-functions are invoked with dot notation: <code>myObject.doSomething()</code>. Global functions are invoked with the function's name and parameters in parentheses.</p>           
+          <pre><code>function add(a,b) {
+  return a + b;
+}
+
+function addOne(a) {
+  return add(a,1);
+}
+
+console.log(add(1,3));  //4
+console.log(addOne(5)); //6
+</code></pre>
+        </section>
+        <section>
+          <h2>Functions Example</h2>
+          <pre><code>function add(a,b) {
+  return a+b; 
+}
+
+function square(x) {
+  return x*x;
+}
+
+add(1,2);         // 3
+square(7);        // 49
+square(add(1,2)); // 9
+
+myNumbers = [0,1,2,3];
+
+//Arrays have a map method
+myNumbers.map( square ); //[0, 1, 4, 9]
+
+myNumbers.map(
+  function foo(x) {
+    return add(1,x); 
+  } 
+); //[1, 2, 3, 4]
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Anonymous Functions</h2>
+          <p>If function's name is omitted (it's not given one) it is called an <em>anonymous function</em>. These are often used when the name is irrelevant (e.g. in event handling).</p>
+        </section>
+        <section>
+          <h2>Anonymous Function Examples</h2>
+          <pre style="width: 95%"><code >var myNumbers = [1,2,3,5];
+//Takes a number and returns it squared
+var squareNumber = function(num) {
+  return num*num;
+};
+var squaredAnon = myNumbers.map(
+  function(x) { return x*x; } // This function doesn't have a name
+); //returns [1,4,9,25]
+
+var squaredNamed = myNumbers.map( squareNumber ); //returns [1,4,9,25]
+
+//prints [1,4,9,25]
+squaredAnon.map( function(num) { console.log("This number is: " + num);} );
+
+//prints [1,4,9,25]
+squaredNamed.map( function(num) { console.log("This number is: " + num);} );
+
+//prints [1,2,3,5]
+myNumbers.map( function(num) {
+  console.log("This number is: " + num);
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Number type</h2>
+          <p>There is just one number type which simplifies things a lot. Internally it's 64 bit floating point. This causes some behavior that is not desirable:</p>
+          <pre><code>0.1 + 0.2 === 0.3; //false
+
+var biggestInt = 9007199254740992;
+var smallestInt = -9007199254740992;
+var expNumber = 7.5e2; //7.5*10^2 i.e. 750
+var hexNumber = 0xFF; // 255
+</code></pre>
+          <p class="extra">Crockford has proposed a <a href="http://dec64.org/">new number type</a> to solve this.</p>
+        </section>
+
+        <section>
+          <h2>Arithmetic Operations</h2>
+          <p>Following arithmetic operations are defined for numbers:</p>
+          <ul>
+            <li><code>+</code> Addition</li>
+            <li><code>-</code> Subtraction</li>
+            <li><code>/</code> Division</li>
+            <li><code>*</code> Multiplication</li>
+            <li><code>%</code> Remainder (there is no modulo)</li>
+            <li><code>++</code> Increment</li>
+            <li><code>--</code> Decrement</li>
+            <li><code>-</code> Unary negation</li>
+            <li><code>+</code> Unary plus</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>String type</h2>
+          <p>Strings are enclosed with single or double quotes and consist of 0-N characters: </p>
+          <pre><code>var text = 'This is fine.';
+var anotherText = "And so is this.";</code></pre>
+          <p>Characters can be escaped with backslash:</p>
+          <pre><code>var someQuote = "He said: \"It's a fine day\".";
+console.log(someQuote); //prints: He said: "It's a fine day".</code></pre>
+          <p>They have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">number of useful methods</a> and a <code>length</code> property:</p>
+          <pre><code class="js">var someText = 'This is my text';
+someText.length; //15
+someText.split(' '); //Split by space, produces: ["This", "is", "my", "text"]            
+someText.toUpperCase(); //"THIS IS MY TEXT"</code></pre>
+        </section>
+
+        <section>
+          <h2>Booleans</h2>
+          <p>Booleans in JavaScript are <code>true</code> and <code>false</code></p>
+          <p>There is also a notion of truthy/falsy values when using <code>==</code> comparison.</p>
+          <p>Falsy values are: false, 0, -0, '', "", null, undefined, NaN</p>
+          <p>Everything else is truthy: e.g. ' ', "false", {} (empty object)
+          <p>Instead of using <code>==</code> as comparator you should use <code>===</code>. Otherwise you might run into unexpected problems. Check out <a href="http://dorey.github.io/JavaScript-Equality-Table">Equality table for == comparison</a>.</p>
+          <p class="extra"><a href="http://es5.github.io/#x11.9.3">EcmaScript5 Annotated Spec - 11.9.3 The Abstract Equality Comparison Algorithm</a></p>
+        </section>
+
+
+        <section>
+          <h2>Operators and Precedences</h2>
+          <p>Incomplete list from highest to lowest precedence</p>
+          <ul>
+            <li><code>(...)</code> grouping</li>
+            <li><code>. []</code> member access</li>
+            <li><code>... (...)</code> function call</li>
+            <li><code>! (negation) typeof delete</code> </li>
+            <li><code>* / %</code> multiplication, division, remainder</li>
+            <li><code>+ - </code> addition and subtraction</li>
+            <li><code>&amp;&amp; || ?:</code> logical and/or, ternary conditional</li>
+            <li><code>= += *= etc.</code> assignments</li>
+          </ul>
+          <p>Some operators are used for multiple operator types which can be confusing. For example, + can mean addition, concatenation or unary plus.</p>
+          <p class="extra"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table">MDN Operator Precedence</a></p>
+        </section>
+
+        <section>
+          <h2>Control Structures</h2>
+          <p><code>if...else</code> statement (can also have optional <code>else if</code> branches):</p>
+          <pre><code>if(myVariable === 7) {
+  console.log("It is seven!");
+} else { //Else could also be completely omitted
+  console.log("It is NOT seven!");
+}</code></pre>
+          <p><code>switch</code> statement:</p>
+          <pre><code>switch (someVariable) {
+  case 7:
+    console.log("It's seven");
+    break;
+  case 6:
+    console.log("It's six");
+    break;
+  default:
+    console.log("It's something other than 6 or 7");
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>For Loops</h2>
+          <p>JavaScript has <code>while</code> and <code>do ... while</code> statements:</p><pre><code>/* This will just keep printing 'Still doing stuff' until 
+keepDoingStuff is set to false */
+
+// shorter way of expressing while(keepDoingStuff === true)
+while(keepDoingStuff) {
+  console.log("Still doing stuff");
+  // ... actually do something
+}</code></pre>
+          <p>For loops come in three varities <code>for</code>, <code>for in</code>, and <code>for each</code>. Example of 'normal' <code>for</code> statement:</p>
+<pre><code>var myArray = [0,1,4];
+for (var i = 0; i &lt; myArray.length; i++) {
+  console.log("Number: " + myArray[i]); 
+}</code></pre>
+<p>Be cautious of <code>for in</code> loops, they might not loop in the way you expect.</p>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Statements">Control Flow MDN</a>
+        </section>
+
+
+
+        <section>
+          <h2>Comments</h2>
+          <p>Single line comments are inserted with <code>//</code> :</p>
+          <pre><code>//this is a comment
+var foo = 7; //setting foo to 7</code></pre>
+          <p>Multiline comments start with <code>/*</code> and end with <code>*/</code>:</p>
+          <pre><code>/* 
+  This function takes two numbers
+  and returns the sum of them 
+  */
+function add(a,b) {
+  return a+b; // this line does all the work 
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Objects</h2>
+          <p>Objects are containers for properties where properties have a name and a value.</p>
+          <p>Property names are strings and the values can be anything.</p>
+          <pre><code>var person = { 'name': 'Bill', 'age': 50};
+var anotherPerson = {
+  'name': 'Mary',
+  'age': 51
+};
+person.favoriteColor = 'blue';
+
+/* Now person is an object with following properties: 
+{ name: "Bill", 
+  age: 50, 
+  favoriteColor: "blue"} */
+
+//bracket notation is also possible
+console.log( anotherPerson["name"] ); // will print Mary
+console.log( anotherPerson["favoriteColor"] ); // will print undefined
+
+delete anotherPerson.age; //removing a property
+console.log( anotherPerson ); //prints: Object {name: "Mary"}</code></pre>
+
+        </section>
+
+        <section>
+          <h2>Objects and Methods</h2>
+          <p>Setting a property to a function will create a method for that object. Accessing the object inside a method is done by <code>this</code> keyword. </p>
+          <pre><code>var person = { 'name': 'Bill', 'age': 50};
+
+//We set the greet property to a function
+person.greet = function (greeting) {
+  console.log(greeting + "! My name is " + this.name);
+};
+
+person.greet("Hello"); //prints: Hello! My name is Bill
+person.greet("Hi"); //prints: Hi! My name is Bill
+
+var anotherPerson = { 'name' : 'Mary', 'age': 51 };
+anotherPerson.greet = person.greet;
+anotherPerson.greet('Good day!'); //prints: Good day!! My name is Mary</code></pre> 
+
+        </section>
+        <section>
+          <h2>JSON</h2>
+          <p><code>JSON</code> stands for JavaScript Object Notation. It has two structures (taken from <a href="http://json.org/">json.org</a>):</p>
+          <ul>
+          <li>A collection of name/value pairs. In various languages, this is realized as an <code>object</code>, record, struct, dictionary, hash table, keyed list, or
+            associative array.</li>
+          <li>An ordered list of values. In most languages, this is realized as an <code>array</code>,vector, list, or sequence.</li>
+        </ul>
+        <pre><code class="json">{  
+  "artist":"U2",
+  "timestamp":"2011-09-07 21:14:02.102805",
+  "similars":[ ],
+  "tags":[  
+    [ "rock", "100"],
+    [ "U2", "100" ], 
+    [ "u 2","100" ]
+  ],
+  "track_id":"TRAATMY128F149562F",
+  "title":"Kite Live from Sydney"
+}</code>
+          
+        </pre>
+        </section>
+
+        <section>
+          <h2>Scoping</h2>
+          <p>JavaScript has a function scope which means that any variable declared with <code>var</code> inside a function will visible to that function and any inner function. Any variable declared inside a block will be visible everywhere within the function that holds the block.</p>
+          <pre><code>function foo(x) {
+  var xPlusOne = x + 1;
+
+  function bar(y) {
+    console.log(x);
+    console.log(xPlusOne);
+    console.log(y);
+  }
+
+  bar(xPlusOne + x);
+}          
+
+foo(7); //Will result in printing 7, 8, and 15</code></pre>
+          <p class="extra">Block-scoping is coming in the next standard <a href=" https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">MDN - Let keyword</a></p>
+        </section>
+
+        
+        <section>
+          <h2>JavaScript Standards</h2>
+          <p class="dense">JavaScript is an implementation of ECMAScript which is the official specification. Different versions of this specification have been released, the latest being the fifth edition.</p>
+          <p class="dense">The latest specification added a <code>strict</code> mode. It is more restricted than the normal mode, a subset of JavaScript where some features which are known to cause problems are removed. For example, some things which fail silently will throw an error.</p>
+          <pre><code class="js">function noStrict() {
+  message = "This is a bad idea";
+}
+function strict() {
+  "use strict";
+  message = "This will throw an error";
+}
+
+strict(); //will throw ReferenceError
+noStrict(); //works
+// Calling these functions in reverse order will work, 
+// since message will get bound to global scope
+          </code></pre>
+          <p class="extra"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">MDN - strict mode</a></p>
+        </section>
+        
+ 
+        <section>
+          <h2><code>this</code></h2>
+          <p><code>this</code> is a keyword that refers to the current execution context. When it is used in the global scope it refers to the global object. Inside functions it behaves differently depending on whether strict mode is used. Inside a method function it refers to the object on which it is called.</p>
+          <p>Good overview on what <code>this</code> can refer to on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN</a>.</p>
+        </section>
+        
+        <section>
+          <h2 id="js_dom_h2">DOM</h2>
+          <p>Document Object Model, or <code>DOM</code> for short, is the way we can access and manipulate HTML with JavaScript. Generally it is a pain to work with, which is why we use JavaScript libraries to make it tolerable. But before libraries let's take a look what it's like in "plain" JavaScript:</p>
+          <pre><code id="dom-demo" contenteditable="true">
+//get the element with id js_dom_h2
+document.getElementById('js_dom_h2').innerHTML = 'DOM is not nice';
+//create a new element
+var newElement = document.createElement('small');
+//set the content of the new element
+newElement.innerHTML = 'But you learn to live with it';
+//put the element inside the &lt;h2&gt; of the page
+document.getElementById('js_dom_h2').appendChild(newElement);
+          </code></pre>
+          <button id="dom-demo-btn">Try it</button>
+        </section>
+
+        <section>
+          <h2>Dom and Libraries</h2>
+          <p>What makes manipulating DOM directly particularly painful is that there are browser specific differences. Libraries handle these differences so you do not need to worry about them and you can focus on the real problem that you are solving at the moment.</p>
+          <p>We will use <a href="http://jquery.com/">jQuery</a>, make sure you glance through the <a href="http://api.jquery.com/">API documentation</a></p>
+        </section>
+
+       <section>
+          <h2>jQuery</h2>
+          <p class="dense">One of the most popular libraries is called <a href="http://jquery.com/">jQuery</a> - "write less, do more". Last slide's example written with using jQuery looks like this: </p>
+          <pre><code>$("#specialButton").click( function(event) {
+  alert("Someone clicked the special button!");
+});</code></pre>
+          <p>jQuery (often used just as <code>$</code> on the code) is based on selecting <code>HTML</code> elements with <code>CSS</code> selectors and manipulating them. In addition to just selecting elements, jQuery provides many convenient functions for manipulating those elements (and more).</p>
+        </section>
+
+        <section>
+          <h2>Events</h2>
+          <p>Most of what you end up doing with JavaScript in the browser is event-driven. What this means is that when something happens, you have some code that activates.</p>
+          <p>There are many events to which you can respond. Some examples are:</p>
+          <ul>
+            <li>Document finished loading</li>
+            <li>User clicked something</li>
+            <li>User moved a mouse</li>
+            <li>... and many others</li>
+          </ul>
+          <p>Do check out <a href="https://developer.mozilla.org/en-US/docs/Web/Events">MDN - Events</a> to see a long list of events that might be happening on a web page.</p>
+        </section>
+
+        <section>
+          <h2>Event Handling</h2>
+          <p>The way we handle these events is by attaching <em>event handlers</em> to elements (including the document itself).</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers">MDN - Event Handlers</a></p>
+          <pre><code>document.getElementById('specialButton').onclick = function (event) {
+  alert("Someone clicked the special button!");
+}</code></pre>
+        <p>In this example an <em>anonymous function</em> is added to the element that has the id of <code>specialButton</code>. The anonymous function gets executed when the specified event (<code>onclick</code>) happens and it will display an <code>alert</code>.</p>
+        </section>
+
+ 
+
+        <section>
+          <h2>Foot-guns</h2>
+          <p>What's a foot-gun? It's a device that's really powerful, but apparently only designed for the purpose of shooting your own foot. And JavaScript has a fair share those.</p>
+          <p>ASI, or Automatic Semicolon Insertion, is the mechanism by which <em>missing</em> semicolons are inserted. It was meant to help novice developers but in practise it does not work. Always insert a semicolon at the end of statement.</p>
+          <p>Similarly, the use of global namespace by default can lead to hard-to-detect problems which is why <code>var</code> should always be used.</p>
+          <p class="extra"><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">How ASI works</a></p>
+        </section>
+
+        <section>
+          <h2>style</h2>
+          <p>To assist dealing with these foot-guns and other features which might cause more harm than good, different tools are available.</p>
+          <!--<p>https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml</p>-->
+          <p><a href="http://www.jslint.com/">JSLint</a> - "Warning: JSLint will hurt your feelings."</p>
+          <p><a href="http://www.jshint.com/">JSHint</a> - "JSHint is a program that flags suspicious usage in programs written in JavaScript."</p>
+          <p>Incorporating tools such as JSLint or JSHint in to your workflow will make your life easier in the long run. A plethora of solutions exist for running these automatically, for instance, when you save a .js file in your editor.</p>
+        </section>
+
+        <section>
+          <h2>JSFiddle</h2>
+          <p>There are many useful tools available online, one of them is <a href="http://jsfiddle.net/">JSFiddle</a> which allows you to test things in the browser with HTML, CSS, and JavaScript. It also comes with libraries that you can use and try out. <a href="http://jsfiddle.net/ggu23ve6/">Example code</a></p>
+          <p><img style="width: 80%;" src="img/jsfiddle.png" alt="JSFiddle screenshot"></p>
+        </section>
+      </section>
+      </div></div>
+
+
+
+    <script src="lib/reveal.js-2.6.2/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js-2.6.2/js/reveal.min.js"></script>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="extra/custom.js"></script>
+    
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        fragments: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js-2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib//highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js-2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js-2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    $("#html_first_demo-btn").click(function() {
+      htmlExample("#html_first_demo", "#html_first_demo-target");
+    });
+    $("#css_first_demo-btn").click(function() {
+      htmlExample("#css_first_demo", "#css_first_demo-target");
+    });
+
+    $("#js_first_demo-btn").click(function() {
+      eval($("#js_first_demo").text())
+    });
+
+    $("#white_space_btn").click(function() {
+      htmlExample("#white_space_example", "#white_space_target");
+    });
+    $("#h1_example_btn").click(function() {
+      htmlExample("#h1_example", "#h1_example_target");
+    });
+    $("#table_example_btn").click(function() {
+      htmlExample("#table_example", "#table_example_target");
+    });
+    $("#form_example_btn").click(function() {
+      htmlExample("#form_example", "#form_example_target");
+    });
+    $("#div_span_example_btn").click(function() {
+      htmlExample("#div_span_example", "#div_span_example_target");
+    });
+    $("#css_float_example_btn").click(function() {
+      htmlExample("#css_float_example", "#css_float_example_target");
+    });    
+
+    $("#dom-demo-btn").click(function() {
+      eval($("#dom-demo").text())
+    });
+    $("#handler-demo-btn").click(function() {
+      eval($("#handler-demo").text())
+    });
+
+    </script>
+
+  </body>
+</html>
+

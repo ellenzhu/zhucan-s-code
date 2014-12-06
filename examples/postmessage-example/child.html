@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Child page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  <script>
+  $(document).ready( function() {
+    $("#click").click( function (evt) {
+      console.log("Button clicked!");
+      window.parent.postMessage("Hello", "*");
+    });    
+  });
+  </script>
+</head>
+<body>
+
+<button id="click">Click me</button>
+</body>
+</html>

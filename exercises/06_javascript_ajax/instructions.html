@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 6: JavaScript and Ajax</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 6: JavaScript and Ajax</h1>
+<ol>
+	<li><a href="#questionnaire">JavaScript and Ajax Questionnaire</a></li>
+	<li><a href="#postmessage">JavaScript PostMessage</a></li>
+	<li><a href="#jsonp">JSONP image search</a></li>
+</ol>
+</div>
+
+<div class="content" id="questionnaire">
+	<h1>1. JavaScript and Ajax Questionnaire</h1>
+	<p>Enter correct answers in the form at A-plus.</p>
+</div>
+
+<div class="content" id="postmessage">
+	<h1>2. Javascript PostMessage</h1>
+	<p>This exercises involves using <code>.postMessage()</code> to send messages from an iframe to the parent document. You are to write a simple 'service' in <code>reverser_service.html</code> that takes a string, reverses it and sends it as a message to the document that contains reverser_service.html as an iframe.</p>
+	<p><img src="img/reverser_service.png" alt="Example of reverser_service.html"></p>
+
+	<p><code>user_actions.html</code> is given to you so you can test your solution with that. Note that you should not rely on any modifications on user_actions.html, the grading will be done using the given file. The messages should have a payload attribute that contains:</p>
+	<ol>
+		<li>... either the string that was typed into <code>#toBeReversed</code> reversed if the <code>#reverser</code> form was submitted.</li>
+		<li>... or 'INPUT CLEARED' if the <code>#clearInput</code> was clicked.</li>
+	</ol>
+
+	<pre>
+	//Example message
+	msg = {};
+	msg.payload = 'elloH'; // (1) #toBeReversed contained 'Hello' and user submitted #reverser
+	msg.payload = 'INPUT CLEARED' // (2) User clicked #clearInput</pre>
+
+	<p class="warning">Note that you can assume that the grader will also have 'lib/jquery-1.11.1.min.js'.</p>
+	<h3>Where to Start</h3>
+	<ul>
+		<li>Read about postMessage from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">MDN</a>.</li>
+		<li>Create <code>reverser_service.html</code> and create the necessary elements.</li>
+		<li>Write the JavaScript code that handles the user actions and sends messages to the <code>window.parent</code>.
+			Write the code inside the HTML file.</li>
+	</ul>
+	
+	<h3>Submitting Your Project to A+</h3>
+	<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+	Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check
+	is <code>exercises/06_javascript_ajax/reverser_service.html</code>.</p>
+</div>
+
+<div class="content" id="jsonp">
+<h1>3. JSONP image search</h1>
+<p><a href="https://www.flickr.com">Flickr</a> is a photography site where people can
+share their photography and meta data like tags or location. They have an
+<a href="https://www.flickr.com/services/feeds/">open photo feed</a>
+in several formats including JSONP. In this exercise you will fetch photo data from the
+feed and dynamically create related image elements in the DOM. 
+</p>
+
+<h3>Static parts</h3>
+<p>Start by creating new <code>search.html</code> and <code>search.js</code> files.
+Create an empty HTML5 page and include the jQuery library and your own JavaScript
+file after it. For grading you must include the jQuery like this:</p>
+<pre>&lt;script src="lib/jquery-1.11.1.min.js"&gt;&lt;/script&gt;</pre>
+<p>Next, add a form element which contains an input type=text element with id <code>tag</code>
+and input type=submit element with id <code>search</code>. This form is used to query the feed with the entered tag name. The form
+can look for example like in the image below. Furthermore, add an empty element with id <code>images</code>
+for adding the images later on.
+</p>
+<img alt="Example query form" src="data:image/png;base64,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"/>
+
+<h3>JSONP request</h3>
+<p class="warning">Note that you need to always wait for the HTML DOM to be completely loaded
+and prepared before looking for any DOM elements.
+<a href="http://api.jquery.com/ready/">Check jQuery examples for document ready.</a>
+</p>
+<p>Now using jQuery, select the form and attach an event listener to <code>submit</code> event.
+In the handler function remember to prevent the default action so that the page is not reloaded
+when the form is submitted. If the page is reloaded the entered tag and page state will disappear.
+You can use <code>console.log("remarks", somedata);</code> to debug how your code works.
+</p>
+<p>The Flickr JSONP feed has following URL structure:<br/>
+<a href="http://api.flickr.com/services/feeds/photos_public.gne?format=json&amp;jsoncallback=replacethistoo&amp;tags=aalto">
+http://api.flickr.com/services/feeds/photos_public.gne?format=json&amp;jsoncallback=replacethistoo&amp;tags=aalto</a></p>
+<p>To build the request URL get the entered tag value and URL-encode it.
+See exercise 1 questionnaire for making the JSONP request. Some useful functions:
+<a href="http://api.jquery.com/on/">on</a>,
+<a href="http://api.jquery.com/event.preventDefault/">event.preventDefault</a>,
+<a href="http://api.jquery.com/val/">val</a>,
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>,
+<a href="http://api.jquery.com/jQuery.getJSON/">jQuery.getJSON</a>
+</p>
+
+<h3>Dynamic DOM elements</h3>
+<p>At this point you should be able to receive a data object requested from the Flickr feed and for example log
+the contents. Let the received feed object be in a variable <code>data</code>. The photos are in an array
+<code>data.items</code> that you should loop through. Each photo object has an URL for a small image at
+<code>data.items[i].media.m</code> and a title at <code>data.items[i].title</code>. You can test this part by logging
+the values for each photo.</p>
+<p>Next, you will create <code>img</code> elements inside the empty <code>images</code> container element to display
+the images. Each image must have <code>alt</code> attribute containing the title value and <code>src</code>
+attribute containing the image URL. The jQuery function <a href="http://api.jquery.com/append/">append</a>
+can take raw HTML to add inside the selected element. Note that the form can be submitted multiple times with
+different tag queries and old feed images should be removed before appending new ones.</p>
+<p class="warning">Think how you could manage the img elements without writing HTML into your JavaScript code.
+After all, it would be nice to have all the different elements represented in the "template".</p>
+<img alt="Example result" src="img/jsonp_result.png" style="width: 100%;" />
+
+<h3>Styling your application (bonus exercise, not graded)</h3>
+<p>This would be a good chance to try some CSS styles. It would be hard to automatically
+judge your styling choices so no points are awarded. You can for example create a framed picture wall
+by adjusting image flow, spacing, borders and background.
+</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p><strong>Please make sure that you have used the required id:s (<code>tag</code>, <code>search</code>, <code>images</code>)
+in correct elements.</strong></p>
+<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus. The files we will check
+are <code>exercises/06_javascript_ajax/search.html</code> and <code>exercises/06_javascript_ajax/search.js</code>.</p>
+</div>
+
+</body>
+</html>

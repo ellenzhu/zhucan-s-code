@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Round 5: Django</title>
+	<link rel="stylesheet" type="text/css" href="../lib/exercises.css" />
+</head>
+<body>
+
+<div id="exercises">
+<h1>Round 5: Django</h1>
+<ol>
+	<li><a href="#questionnaire">Django Basics Questionnaire</a></li>
+	<li><a href="#intro">Introduction</a></li>
+	<li><a href="#models">Models</a></li>
+	<li><a href="#views">Views</a></li>
+</ol>
+</div>
+
+<div class="content" id="questionnaire">
+<h1>1. Django Basics Questionnaire</h1>
+<p>Enter correct answers in the form at A-plus.</p>
+</div>
+
+<div class="content" id="intro">
+<h1>2. Introduction</h1>
+
+<h3>(Pre-Exercise) Install Python and Django</h3>
+
+<p>
+This courses uses Python 3.4 and Django 1.7 as a web development framework.
+Django is delivered as a Python library.
+</p>
+
+<p>
+First, make sure you have Python3. Check
+<a href="../04_python/instructions.html#functions">Python installation instructions</a> in Round 4.
+Alternatively python3 is ready for use in Aalto IT Linux and Niksula machines. If you want to work
+in Aalto environments, see <a href="#linux">note about linux</a>.
+</p>
+
+<p>
+Next, we will install <a href="https://www.djangoproject.com/">Django</a>. If you plan to use different Python working environments on the computer,
+take a look at the <a href="#virtualenv">note about virtualenv</a>. If not, one can just open Git Bash and type:
+</p>
+<pre>
+$ /C/Python34/python -m pip install django
+</pre>
+<p>OR on OS X type:</p>
+<pre>
+$ python3 -m pip install django
+</pre>
+<p>
+If using Python versios before 3.4.2 you may need to install <a href="https://pypi.python.org/pypi/setuptools">setuptools</a>
+before using pip.
+That is it, you are now
+ready for the Exercise.
+</p>
+
+<div class="warning" id="virtualenv">
+<p><strong>Virtualenv</strong> enables to install Python modules in separate environments contained in directories. Here is a quick
+way to install the latest Django to an environment that one can activate and deactivate when other libraries and
+versions are required.</p>
+<pre>
+$ python3 -m venv djangoenv
+$ source djangoenv/bin/activate
+$ python3 -m pip install django
+</pre>
+<p>For each terminal session one has to run the <code>source djangoenv/bin/activate</code>
+(On Windows <code>djangoenv/Scripts/activate.bat</code>).
+You can type <code>deactivate</code> to deactivate the environment.</p>
+</div>
+
+<div class="warning" id="linux">
+<p><strong>Linux</strong> environments usually provide Python 3 via package management system.
+At the moment the version available is usually 3.2 rather than 3.4. You can use the 3.2 but there are
+some differences about virtualenv and pip. If you are not using Aalto environments but your own Linux computer you may have to first
+<code>easy_install pip</code> and <code>pip install virtualenv</code>.. Create Django virtualenv:
+</p>
+<pre>
+$ virtualenv -p /usr/bin/python3 ~/djangoenv
+$ source ~/djangoenv/bin/activate
+$ pip install django
+</pre>
+</div>
+
+<div class="warning" id="envtest">
+<p><strong>Testing</strong> the requirements:.
+<pre>
+$ python3
+Python 3.2.3 (default, Feb 27 2014, 21:31:18) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import django
+>>> django.VERSION
+(1, 7, 1, 'final', 0)
+</pre>
+</div>
+
+<p>If you have trouble with the Django installation come to the exercise session and/or make
+questions in Piazza.</p>
+
+<h3>(Exercise) First Django project</h3>
+
+<p>Now you should have Django installed. In this first part of the exercise, we
+will create a new Django project (site) to the exercise directory, install an existing
+application in it, set up an sqlite database and run the Django
+development server locally.
+</p>
+
+<p>
+(2.1) To create a new Django project in the exercise directory open Git Bash and type:
+</p>
+<pre>
+$ cd wsd-material/exercises/05_django 
+$ /C/Python34/python /C/Python34/Scripts/django-admin.py startproject firstdjango
+</pre>
+<p>OR on OS X and Linux systems:</p>
+<pre>
+$ cd wsd-material/exercises/05_django
+$ django-admin.py startproject firstdjango
+</pre>
+
+<p>
+(2.2) Next, you need to extract <code>webshop.zip</code> and move the contained <code>webshop</code> directory to inside the newly created <code>firstdjango</code> directory. You can use for example file manager window to achieve these tasks
+in <code>wsd-material/exercises/05_django</code>.
+</p>
+
+<p>
+Edit the project settings <code>firstdjango/firstdjango/settings.py</code>. Add webshop to installed apps and study the other default settings.
+</p>
+<p>(2.3) Next, you can create the tables to your database. Open Git Bash and type:</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ /C/Python34/python manage.py makemigrations webshop
+Migrations for 'webshop':
+  0001_initial.py:
+    - Create model Product
+$ /C/Python34/python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, webshop, contenttypes, auth, sessions
+Running migrations:
+...
+</pre>
+<p>OR on OS X and Linux systems:</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ python3 manage.py makemigrations webshop
+Migrations for 'webshop':
+  0001_initial.py:
+    - Create model Product
+$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, webshop, contenttypes, auth, sessions
+Running migrations:
+...
+</pre>
+
+<p>
+(2.4) Now edit the main routing <code>firstdjango/firstdjango/urls.py</code> to contain the following routings:
+</p>
+
+<ol>
+<li><code>/about/</code> should render view <code>webshop.views.about</code></li>
+<li><code>/products/</code> should render view <code>webshop.views.available_products</code></li>
+<li><code>/products/some~number~here/</code> should render view <code>webshop.views.productview</code> with non-named integer parameter to the view. (an example URL "/products/523/")</li>
+</ol>
+
+<p class="warning">
+In general, it would be better to have a separate urls.py inside the
+webshop app and in the main url refer to this url. However, in this
+exercise you are asked to write the url routings directly to the main
+urls.py (created when the project was created).
+</p>
+
+<p>Finally, it is time to test the site. In Git Bash type:</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ /C/Python34/python manage.py runserver
+</pre>
+<p>OR on OS X and Linux systems:</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ python3 manage.py runserver
+</pre>
+
+<p>Direct your browser e.g. to <a href="http://localhost:8000/about/">http://localhost:8000/about</a> and try out the URLs you added. Remember that you can submit this exercise only 10 times. Grading is either all or nothing. Test your urls before submitting. You can stop
+the test server with <code>ctrl-c</code> in the terminal.
+</p>
+
+<p class="warning">
+For a full list of Django management actions run <code>python3 manage.py</code>
+without adding an action name to the end.
+</p>
+
+<p>The webshop application includes some unit tests. It is a good
+idea to run these before submitting. (From now on we do not separate with
+different environments: instead of writing <code>python3</code> on Windows Git Bash write
+the full path <code>/C/Python34/python</code> or add python to environment variable PATH)</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ python3 manage.py test webshop
+Creating test database for alias 'default'...
+.s.ssss.sss
+----------------------------------------------------------------------
+Ran 11 tests in 0.027s
+
+OK (skipped=8)
+Destroying test database for alias 'default'...
+</pre>
+
+<p class="warning">A normal 404 page will be shown if settings are changed
+to <code>DEBUG=False</code> and <code>ALLOWED_HOSTS=["*"]</code>
+and none of the urls from the urls.py matches to the request. You can change
+the default page by adding a 404.html to you project. This could be in the
+same place where other templates - but because that template is often project,
+rather than app, specific, you can also create a project specific templates
+directory (e.g. next to your apps) and place your 404.html there. Finally,
+<a href="https://docs.djangoproject.com/en/1.7/ref/settings/#template-dirs">you need to tell Django</a>
+about this new location from where templates can be found.
+</P>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your new files and possible changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus. The file we will check is
+<code>exercises/05_django/firstdjango/firstdjango/urls.py</code>.</p>
+
+</div>
+
+<div class="content" id="models">
+<h1>3. Models</h1>
+
+<p>In this exercise your job is to write the required model for our sample Django application "webshop". A skeleton for the model is already provided by the  exercise template - your job is to add the properly configured fields and some methods to the <code>Product</code> class.</p>
+
+<h4>Fields</h4>
+<table class="separated table">
+	<thead><tr><th>field name</th><th>requirements</th></tr></thead>
+	<tbody>
+	<tr><td>title</td><td>string of maximum of 255 characters, needs to be unique</td></tr>
+	<tr><td>description</td><td>unlimited text</td></tr>
+	<tr><td>image_url</td><td>a <strong>URL</strong> of an image of the product. The value should be optional.</td></tr>
+	<tr><td>quantity</td><td>number of items in stock (default to 0)</td></tr>
+	</tbody>
+</table>
+
+<p>Django will automatically add a field <code>id</code> for the primary key so you don't have to worry about this.</p>
+
+<h4>Methods</h4>
+<ul>
+	<li><code>sell()</code>, method that should decrease the quantity of the product by one. Remenber that in Python methods need to be given <code>self</code> as the first parameter in the definition.</li>
+</ul>
+
+<h4>Additional study material</h4>
+<ul><li><a href="http://docs.djangoproject.com/en/1.7/ref/models/fields/#ref-models-fields">Django Model Field Reference</a></li></ul>
+
+<h4>Typical Mistakes</h4>
+<ul>
+	<li>forgetting to save() after making changes</li>
+	<li>forgetting the self-parameter when defining methods</li>
+	<li>forgetting to use self when referencing instance variables</li>
+</ul>
+
+<p class="warning">
+Students familar with concurrency issues in database systems may recognize the potential for a race condition in the way
+that the <code>sell()</code> method updates the <tt>quantity</tt> field. While this is not an issue in this exercise when limited to single concurrent request, you should note that Django provides mechanisms such as 
+<a href="https://docs.djangoproject.com/en/1.7/topics/db/transactions/">database transactions</a> or more specialized
+<a href="https://docs.djangoproject.com/en/1.7/ref/models/instances/#updating-attributes-based-on-existing-fields">update expressions</a>
+which would be required in an implementation of <code>sell()</code> designed to handle multiple concurrent requests.
+</p>
+	
+<h3>How to Test Your Models</h3>
+<p>
+First of all, before you can use your models in Django, you need to
+<a href="https://docs.djangoproject.com/en/1.7/topics/migrations/">migrate</a>
+the model changes to your database schema. Open up the terminal and run.
+</p>
+<pre>
+$ cd wsd-material/exercises/05_django/firstdjango
+$ python3 manage.py makemigrations webshop
+$ python3 manage.py migrate
+</pre>
+<strong>The above needs to be done every time after the models have been changed!</strong>
+</p>
+
+<p class="warning">
+It is also possible to delete the file <code>db.sqlite3</code> and create a new database
+using the <code>migrate</code> command.
+</p>
+
+<p>
+To play around with your models, use the managepy's shell
+command. This is a fully functional python interpreter with some
+special environment variables set. But before you can access any of
+your models and views, you need to import them:</p>
+
+<pre>
+$ python3 manage.py shell
+>>> from webshop.models import *
+</pre>
+
+<p>Now try to create an instance of the model you just created:</p>
+
+<pre>
+>>> p = Product(title="Teddy Bear", description="Huge fluffy teddy-bear", quantity=10)
+>>> print(p.title)
+</pre>
+
+<p>Notice that you can already use the object (just like Python object)
+even though it is not saved in the database yet. Try</p>
+
+<pre>
+>>> print(p.pk)
+</pre>
+
+<p>There's nothing there. But after you save it, the object has a pk (id) assigned by the database:</p>
+<pre>
+>>> p.save()
+>>> print(p.pk)
+</pre>
+
+<p>
+Other things to try out in the shell:
+</p>
+<ul>
+	<li>Fetch a specific saved model from the database by its title.</li>
+	<li>Test your sell() method. Test that it actually saves the decreased quantity to the database.</li>
+	<li>Create some Products, save them, fetch them from the database, for-loop over them and print their titles.</li>
+	<li>Create few Products with quantity of 0 and few with quantity of &gt; 0 and save them to database. Make a query that returns a QuerySet with only those Products that have quantity &gt; 0.</li>
+	<li>Try using the delete() method to remove a Product from the database.</li>
+</ul>
+
+<p>Remember that you can submit this exercise only 10 times. Grading
+is either all or nothing. Test your models before submitting. Some unit tests are
+provided also for exercise 3 but they are currently skipped. In the webshop tests
+remove lines <code>@unittest.skip("Exercise 3")</code> and run the tests again. 
+While doind so, you hopefully read some tests and perhaps even look into
+<a href="https://docs.djangoproject.com/en/1.7/topics/testing/">Django testing documentation</a>.</p>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.
+The file we will check is <code>exercises/05_django/firstdjango/webshop/models.py</code>.</p>
+
+</div>
+
+<div class="content" id="views">
+<h1>4. Views</h1>
+
+<p>In this exercise your job is to write some required views for our sample Django application "webshop".
+Use the models you created in the previous exercise.</p>
+
+<h3>Views to implement</h3>
+
+<h4>productview(request, product_id)</h4>
+
+<p>This view should render a product description page
+  for the given product_id. The template <code>product_view.html</code>
+  is expecting a single parameter <code>product</code> in the context which refers to
+  the <code>Product</code> model object with the given id.</p>
+
+<p>Your job is to make the view retrieve the <code>Product</code> object from the database,
+    use it to render the template and finally return an HttpResponse object that contains the resulting string.
+    If the <code>Product</code> with the given <code>product_id</code> can not be found raise a 404 exception
+    (or return HttpResponseNotFound)</p>
+<p><strong>Note:</strong> The dummy implementation of the return statement is there for other exercises.
+    Replace it with the required return statement.</p>
+
+<pre class="brush: py">def productview(request, product_id):
+  """
+  Write your view implementations for exercise 4 here.
+  Remove the current return line below.
+  """
+  return HttpResponse("product %s"%(product_id))</pre>
+
+<h4>available_products(request)</h4>
+
+<p>This view should render a page with a list of all available products. A
+  product is available if it has a quantity that's bigger than 0.
+  The template <code>product_list.html</code> is expecting
+  a single parameter <code>products</code> in the context which refers to
+  an iterable of <code>Product</code> objects.</p>
+
+<p>Your job is to make the view retrieve the the available products, use them to render the template and
+    return an HttpResponse object that contains the resulting string.</p>
+
+<p><strong>Note:</strong> The dummy implementation of the return statement is there for other exercises.
+    Replace it with the required return statement.</p>
+
+<pre class="brush: python">def available_products(request):
+  """
+  Write your view implementations for exercise 4 here.
+  Remove the current return line below.
+  """
+  return HttpResponse("View not implemented!")</pre>
+
+<h4>Hints</h4>
+<ul>
+  <li>Test your code before sending it in. Use the Django's runserver and your browser
+      and also run the provided unit tests skipped with <code>unittest.skip("Exercise 4")</code>
+      and notice some tests for Exercise 2 will now fail and should be skipped.
+  <li>Don't forget to import methods/classes you use in your code.</li>
+  <li>Django automatically generates an <code>id</code> field for every model (instance)</li>
+</ul>
+
+<h3 id="things-to-read">Things to Read</h3>
+<p>Here are some external resources to help you out with this exercise:</p>
+<ul>
+    <li><a href="https://docs.djangoproject.com/en/1.7/topics/http/views/">Writing Views</a></li>
+    <li>
+        <a href="https://docs.djangoproject.com/en/1.7/topics/db/queries/#retrieving-objects">Retrieving Objects</a>
+    </li>
+</ul>
+
+<h3>Submitting Your Project to A+</h3>
+<p>Add, commit and push your changes to the Git as in round 1.
+Finally, just copy and paste your GitLab project's URL to A-plus.
+The file we will check is <code>exercises/05_django/firstdjango/webshop/views.py</code>.</p>
+
+</div>
+
+</body></html>
