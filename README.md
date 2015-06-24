@@ -8,3 +8,5 @@ Contents of the folders:
   lectures/ - Contains lecture arranged by topics
 
 More content will be added as the course progresses.
+
+test
