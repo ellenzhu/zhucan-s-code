@@ -1,6 +1,5 @@
 
 //add a new line here.
-//changed in master branch. 
 
 #include "aes128gcm.h"
 #include "aes128e.h"
